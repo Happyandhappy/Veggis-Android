@@ -32,7 +32,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_frame);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 45);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1001);
         } else {
             launched = false;
             FragmentUtils.changeFragment(this, R.id.content, SplashFragment.newInstance(), false);
@@ -43,7 +43,6 @@ public class SplashActivity extends AppCompatActivity {
                 }
             }, Config.SPLASH_DELAY_TIME);
         }
-
 
 //        try {
 //            PackageInfo info = getPackageManager().getPackageInfo(
@@ -64,7 +63,7 @@ public class SplashActivity extends AppCompatActivity {
     // Requestion of External storage read/write permission using Code  (Can set it using manifest permission)
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode == 45) {
+        if(requestCode == 1001) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 launched = false;
                 FragmentUtils.changeFragment(this, R.id.content, SplashFragment.newInstance(), false);
