@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/orderBG"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_bank_account"
+            android:id="@+id/textView"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp" />
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                style="@style/EditOrder"
+                android:hint="@string/hint_bank_name"
+                android:singleLine="true"
+                android:id="@+id/edit_user_name" />
+
+            <EditText
+                style="@style/EditOrder"
+                android:hint="@string/hint_bank_branch"
+                android:singleLine="true"
+                android:id="@+id/edit_bank_name"
+                android:layout_marginTop="10dp" />
+
+            <EditText
+                style="@style/EditOrder"
+                android:hint="@string/account_number"
+                android:singleLine="true"
+                android:id="@+id/edit_account_number"
+                android:layout_marginTop="10dp" />
+
+            <EditText
+                style="@style/EditOrder"
+                android:hint="@string/ifsc_code"
+                android:id="@+id/edit_ifsc_code"
+                android:singleLine="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:text="@string/bank_help"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <Button
+            style="@style/BtnGreen"
+            android:id="@+id/btnSave"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/save" />
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Base.Theme.AppCompat.Dialog"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center"
+    android:layout_height="match_parent"
+    android:layout_width="wrap_content">
+
+    <ImageView
+        android:adjustViewBounds="true"
+        android:id="@+id/menu_badge_icon"
+        android:layout_gravity="center"
+        android:layout_height="35dp"
+        android:layout_width="wrap_content" />
+
+    <TextView
+        android:id="@+id/menu_badge"
+        android:text="123"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_width="wrap_content"
+        android:paddingBottom="1dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:paddingTop="1dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="12sp" />
+</FrameLayout>

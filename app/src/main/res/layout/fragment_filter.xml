@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/FilterSidePadding"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="left"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="@string/filter_sortby"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/btnDone"
+                    style="@style/FilterSidePadding"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/done"
+                    android:textColor="@color/mainGreen"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/textSecondary" />
+
+            <RadioGroup
+                android:id="@+id/radioAnswers"
+                style="@style/FilterSidePadding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="15dp"
+                android:paddingTop="0dp" >
+
+                <RadioButton
+                    android:id="@+id/first"
+                    style="@style/SurveyCheckNew"
+                    android:text="@string/filter_new" />
+
+                <RadioButton
+                    android:id="@+id/second"
+                    style="@style/SurveyCheckNew"
+                    android:text="@string/filter_popularity" />
+
+                <RadioButton
+                    android:id="@+id/third"
+                    style="@style/SurveyCheckNew"
+                    android:text="@string/filter_ending_soon" />
+
+                <RadioButton
+                    android:id="@+id/fourth"
+                    style="@style/SurveyCheckNew"
+                    android:text="@string/filter_price_low" />
+            </RadioGroup>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/textSecondary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.0"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/edtText"
+                    style="@style/FilterSidePadding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:hint=""
+                    android:textColor="@color/textPrimary"
+                    android:textSize="14sp"
+                    android:visibility="gone"/>
+
+                <AutoCompleteTextView
+                    android:id="@+id/searchBrand"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/ic_search_grey_600_24dp"
+                    android:hint="@string/filter_brands_hint"
+                    android:paddingLeft="10dp"
+                    android:paddingBottom="15dp"
+                    android:textSize="14sp"
+                    android:singleLine="true"/>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="180dp"
+                    android:layout_weight="1.0" >
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv"
+                        style="@style/FilterSidePadding"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <LinearLayout
+                        android:id="@+id/list_brand"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"
+                        android:orientation="vertical"
+                        android:paddingLeft="50dp"
+                        android:background="#fff">
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <Button
+                    android:id="@+id/btnReset"
+                    style="@style/BtnGreen"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/btn_green_disabled"
+                    android:text="@string/reset" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+
+</LinearLayout>

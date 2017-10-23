@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:padding="15dp">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_above="@id/btnNext"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" />
+
+    <Button
+        style="@style/BtnGreen"
+        android:id="@+id/btnNext"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:text="@string/next" />
+</RelativeLayout>

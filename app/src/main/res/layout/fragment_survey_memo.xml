@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/survey_triangle"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/testify"
+        android:id="@+id/txt_title"
+        android:textSize="20sp"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/question"
+        android:textSize="15sp"
+        android:textColor="@color/textSecondary"
+        android:id="@+id/txt_question_title"
+        android:layout_below="@+id/txt_title"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:id="@+id/txtQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Question Question Question QuestionQuestionQuestion Question Question Question Question Question"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_below="@+id/txt_question_title" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/txt_answer"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/txtQuestion"
+        android:padding="5dp"
+        android:background="@drawable/btn_border_dark" />
+
+    <Button
+        android:id="@+id/btnNext"
+        style="@style/BtnGreen"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:text="@string/unlock"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

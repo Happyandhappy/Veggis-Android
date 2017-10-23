@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- -->
+    <attr name="timeRangeColor" format="color" />
+    <attr name="textLabelColor" format="color" />
+
+    <!-- -->
+</resources>

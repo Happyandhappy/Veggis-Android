@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/survey_triangle"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
+
+    <TextView
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp"
+        android:layout_marginTop="7dp"
+        android:layout_width="wrap_content"
+        android:text="Lets Battle"/>
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:text="@string/survey_choose_favourite"
+        android:textColor="@color/black"
+        android:gravity="center"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1.0"
+        android:layout_width="match_parent"/>
+
+    <Button
+        style="@style/BtnGreen"
+        android:id="@+id/btnNext"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:text="@string/unlock" />
+</LinearLayout>

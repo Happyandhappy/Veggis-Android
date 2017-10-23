@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp">
+
+    <LinearLayout
+        android:id="@+id/manageAlertLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tutorial"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/button_background_custom"
+            android:gravity="center"
+            android:text="@string/tutorial_walk_through"
+            android:clickable="true"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dim_foreground_material_dark" />
+
+        <TextView
+            android:id="@+id/howToUse"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/button_background_custom"
+            android:gravity="center"
+            android:text="@string/how_to_use_kikbac"
+            android:clickable="true"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dim_foreground_material_dark" />
+
+        <TextView
+            android:id="@+id/helpCenter"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/button_background_custom"
+            android:gravity="center"
+            android:text="@string/help_center"
+            android:clickable="true"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/cancelBtn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/button_background_custom"
+            android:text="@string/cancel"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:clickable="true"
+            android:layout_marginTop="20dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

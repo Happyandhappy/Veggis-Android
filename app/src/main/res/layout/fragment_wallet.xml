@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/mainGreen"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_weight="0.9">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="@string/you_earned"
+            android:textColor="@color/whiteSecondary"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0₹"
+            android:textColor="@color/white"
+            android:textSize="50sp"
+            android:id="@+id/txt_wallet" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pending Earnings :"
+                android:textColor="@color/whiteSecondary"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_pending"
+                android:textColor="@color/whiteSecondary" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnPayout"
+            style="@style/BtnGreen"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/btn_white"
+            android:text="@string/wallet_cash_out"
+            android:textColor="@color/mainGreen" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="@string/cash_out"
+            android:textColor="@color/whiteSecondary"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_gift"
+            android:textColor="@color/textSecondary"
+            android:textSize="16sp" />
+
+        <com.quickveggies.quickveggies.ui.custom.PagerContainer
+            android:id="@+id/pagerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:clipToPadding="false"
+            android:paddingLeft="10dp"
+            android:background="#eeeeee">
+
+            <android.support.v4.view.ViewPager
+                android:layout_width="@dimen/card_width"
+                android:layout_height="@dimen/card_height"
+                android:layout_gravity="center"
+                android:fadingEdge="vertical"
+                android:overScrollMode="ifContentScrolls" />
+        </com.quickveggies.quickveggies.ui.custom.PagerContainer>
+
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:fillColor="@color/mainGreen"
+            app:pageColor="#c2cdd9"
+            app:radius="5dp" />
+
+        <Button
+            android:id="@+id/btnSubmit"
+            style="@style/BtnRed"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/wallet_submit"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone" />
+    </LinearLayout>
+</LinearLayout>

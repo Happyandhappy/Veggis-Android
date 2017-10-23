@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/img"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+
+        android:maxHeight="200dp"
+        android:scaleType="fitCenter"
+        android:layout_marginTop="10dp"
+         />
+    <!--android:maxWidth="42dp"-->
+
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="200dp"-->
+    <TextView
+        android:id="@+id/txtQuestion"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1.0"
+        android:layout_width="match_parent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="Question Question Question QuestionQuestionQuestion Question Question Question Question Question"
+        android:textColor="@color/textPrimary"
+        android:textSize="14sp" />
+
+
+    <Button
+        style="@style/BtnGreen"
+        android:id="@+id/btnNext"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/unlock" />
+</LinearLayout>

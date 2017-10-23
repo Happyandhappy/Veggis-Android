@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_height="130dp"
+            android:layout_width="130dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_unlocked" />
+
+        <com.felipecsl.gifimageview.library.GifImageView
+            android:id="@+id/gifView"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:visibility="visible">
+
+        </com.felipecsl.gifimageview.library.GifImageView>
+
+        <TextView
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:text="Unlocked"
+            android:textColor="@color/mainGreen"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <Button
+        style="@style/BtnGreen"
+        android:id="@+id/btnNext"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/done" />
+</RelativeLayout>

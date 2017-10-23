@@ -1,0 +1,71 @@
+{
+  "project_info": {
+    "project_number": "764736851038",
+    "project_id": "firebase-veggies"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764736851038:android:d694d6a61247cfc1",
+        "android_client_info": {
+          "package_name": "com.developer.android.quickveggis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "764736851038-hpbnfaatuo4brc179fnlskpbbtfihai9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFOahe_Neyw79auZ8sLUTlSz6hA_ZFGOk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764736851038:android:cbd8a8ba106358e1",
+        "android_client_info": {
+          "package_name": "com.developer.android.quickveggiss"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "764736851038-hpbnfaatuo4brc179fnlskpbbtfihai9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFOahe_Neyw79auZ8sLUTlSz6hA_ZFGOk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

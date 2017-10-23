@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/imgIcon"
+        android:layout_height="30dp"
+        android:layout_width="30dp" />
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1.0"
+        android:layout_width="0dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="14sp"
+            android:textColor="@color/blue"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtValue"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_gravity="left"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_height="15dp"
+            android:layout_width="15dp"
+            android:src="@drawable/ic_time" />
+
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:text="08/12"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtTime"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="04.15"
+            android:textSize="10sp" />
+    </LinearLayout>
+</LinearLayout>

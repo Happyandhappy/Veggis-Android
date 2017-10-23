@@ -1,0 +1,2 @@
+include ':app', 'DialTimePickerLibrary', ':ptr-lib', ':library'
+include ':ViewPagerLibrary'

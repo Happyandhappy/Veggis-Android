@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="5dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="false">
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:text="@string/we_got_it"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_width="match_parent"
+            android:text="@string/receipt_submitted"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:text="@string/purchase_pending"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:adjustViewBounds="true"
+            android:id="@+id/img"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:scaleType="fitCenter" />
+
+        <Button
+            style="@style/BtnGreen"
+            android:id="@+id/btnNext"
+            android:text="@string/dialog_ok" />
+    </LinearLayout>
+</android.support.v7.widget.CardView>

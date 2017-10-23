@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="4dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="@string/submit_title"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/txt_description" />
+    <!--
+    <com.github.lzyzsd.circleprogress.DonutProgress
+        android:id="@+id/circleProgressBar"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:donut_text_color="@color/mainGreen"
+        app:donut_finished_color="@color/mainGreen"
+        app:donut_progress="75"
+        app:donut_text_size="50sp"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/txt_description"
+        android:layout_centerHorizontal="true" /> -->
+
+    <ProgressBar
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_centerInParent="true"
+        android:max="100"
+        android:progress="0"
+        android:indeterminate="false"
+        android:progressDrawable="@drawable/circular_progress_bar"
+        android:background="@drawable/circular_shape"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="50%"
+        android:id="@+id/txt_percent"
+        android:textSize="40sp"
+        android:layout_marginTop="20dp"
+        android:layout_centerInParent="true"
+        android:textColor="@color/mainGreen" />
+
+    <TextView
+        android:id="@+id/txtProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/submit_sending"
+        android:textColor="@color/mainGreen"
+        android:textSize="16sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/progressBar" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        style="@style/BtnGreen"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/btn_red"
+        android:text="@string/cancel"
+        android:gravity="center"
+        android:layout_alignParentBottom="true" />
+
+
+
+</RelativeLayout>

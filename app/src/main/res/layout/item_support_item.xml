@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    >
+
+    <ImageView
+        android:id="@+id/imgIcon"
+        android:background="@null"
+        android:layout_gravity="center"
+        android:layout_height="40dp"
+        android:layout_width="40dp"
+        android:layout_marginLeft="20dp"/>
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1.0"
+        android:layout_width="0dp"
+        android:layout_marginTop="0dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Rebate Status"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtDesc"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-3dp"
+            android:layout_width="wrap_content"
+            android:text="My transaction wasn't approved"
+            android:textColor="#555555"
+            android:textSize="15sp"
+            android:paddingTop="5dp"/>
+    </LinearLayout>
+
+</LinearLayout>

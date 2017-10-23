@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Animation.AppCompat.Dialog"
+    android:ellipsize="middle"
+    android:id="@+id/txt"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:singleLine="true" />

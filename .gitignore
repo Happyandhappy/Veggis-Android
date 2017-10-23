@@ -1,0 +1,15 @@
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+.idea
+app-release.apk
+app/libs
+ViewPagerLibrary/build
+ptr-lib/build
+library/build
+DialTimePickerLibrary/build

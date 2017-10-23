@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imgBg"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" />
+
+    <ImageView
+        android:adjustViewBounds="true"
+        android:id="@+id/imgLogo"
+        android:layout_height="80dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="190dp"
+        android:layout_width="match_parent" />
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <RelativeLayout
+            style="@style/BtnLoginSocial"
+            android:background="@drawable/btn_facebook"
+            android:id="@+id/btnFacebook"
+            android:layout_marginBottom="15dp">
+
+            <ImageView
+                style="@style/BtnLoginSocial.Img"
+                android:src="@drawable/ic_facebook" />
+
+            <TextView
+                style="@style/BtnLoginSocial"
+                android:layout_centerInParent="true"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/login_facebook" />
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/fbLoginButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/BtnLoginSocial"
+            android:background="@drawable/btn_plus"
+            android:id="@+id/btnGoogle"
+            android:layout_marginBottom="20dp">
+
+            <ImageView
+                style="@style/BtnLoginSocial.Img"
+                android:src="@drawable/ic_google_plus_solid" />
+
+            <TextView
+                style="@style/BtnLoginSocial"
+                android:layout_centerInParent="true"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/login_google" />
+        </RelativeLayout>
+
+        <TextView
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:text="@string/login_bottom2"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                style="@style/BtnLogin"
+                android:id="@+id/btnSignIn"
+                android:text="@string/login_signin" />
+
+            <Button
+                style="@style/BtnLogin"
+                android:id="@+id/btnSignUp"
+                android:layout_marginLeft="20dp"
+                android:text="@string/login_signup" />
+        </LinearLayout>
+
+        <TextView
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/login_bottom_text"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</RelativeLayout>

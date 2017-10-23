@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+
+            <ImageView
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/profile_header"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                style="@style/ProfileLabel"
+                android:text="@string/profile_zip" />
+
+            <EditText
+                android:id="@+id/edZipCode"
+                style="@style/ProfileValue" />
+
+            <TextView
+                style="@style/ProfileLabel"
+                android:text="@string/profile_ref_code" />
+
+            <EditText
+                android:id="@+id/edReferalCode"
+                style="@style/ProfileValue" />
+
+            <TextView
+                style="@style/ProfileLabel"
+                android:text="@string/profile_gender" />
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioMale"
+                    style="@style/ProfileValue_Radio_Inline"
+                    android:text="@string/profile_male"
+                    android:checked="true"/>
+
+                <RadioButton
+                    android:id="@+id/radioFemale"
+                    style="@style/ProfileValue_Radio_Inline"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/profile_female" />
+            </RadioGroup>
+
+            <TextView
+                style="@style/ProfileLabel"
+                android:text="@string/profile_birthday" />
+
+            <EditText
+                android:id="@+id/edBirthday"
+                style="@style/ProfileValue"
+                android:editable="false"
+                android:text="14/03/2017" />
+
+            <TextView
+                style="@style/ProfileLabel"
+                android:text="@string/profile_shopping_count" />
+
+            <RadioGroup
+                android:id="@+id/rg_family"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_family_1"
+                    style="@style/ProfileValue_Radio_Inline"
+                    android:text="1" />
+
+                <RadioButton
+                    android:id="@+id/rb_family_2"
+                    style="@style/ProfileValue_Radio_Inline"
+                    android:layout_marginLeft="20dp"
+                    android:text="2" />
+
+                <RadioButton
+                    android:id="@+id/rb_family_3"
+                    style="@style/ProfileValue_Radio_Inline"
+                    android:layout_marginLeft="20dp"
+                    android:text="3" />
+
+                <RadioButton
+                    android:id="@+id/rb_family_4"
+                    style="@style/ProfileValue_Radio_Inline"
+                    android:layout_marginLeft="20dp"
+                    android:text="4+" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
+
+                <TextView
+                    style="@style/ProfileLabel_Inline"
+                    android:text="@string/profile_app_that_apply" />
+
+                <include layout="@layout/multiple_options" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:divider="@color/divider"
+                android:orientation="vertical"
+                android:showDividers="middle">
+
+                <CheckBox
+                    android:id="@+id/cb_apply_cook_home"
+                    style="@style/ProfileValue_Checkbox"
+                    android:text="@string/profile_poll1_1" />
+
+                <CheckBox
+                    android:id="@+id/cb_apply_baby_product"
+                    style="@style/ProfileValue_Checkbox"
+                    android:text="@string/profile_poll1_2" />
+
+                <CheckBox
+                    android:id="@+id/cb_apply_kid_product"
+                    style="@style/ProfileValue_Checkbox"
+                    android:text="@string/profile_poll1_3" />
+
+                <CheckBox
+                    android:id="@+id/cb_apply_pet_owner"
+                    style="@style/ProfileValue_Checkbox"
+                    android:text="@string/profile_poll1_4" />
+
+                <CheckBox
+                    android:id="@+id/cb_apply_none"
+                    style="@style/ProfileValue_Checkbox"
+                    android:text="@string/profile_poll1_5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
+
+                <TextView
+                    style="@style/ProfileLabel_Inline"
+                    android:text="@string/profile_shopping_style" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:divider="@color/divider"
+                android:orientation="vertical"
+                android:showDividers="middle">
+
+                <CheckBox
+                    android:id="@+id/cb_style_premium_fan"
+                    style="@style/ProfileValue_Checkbox"
+                    android:text="@string/profile_poll2_1" />
+
+                <CheckBox
+                    android:id="@+id/cb_style_health_item"
+                    style="@style/ProfileValue_Checkbox"
+                    android:text="@string/profile_poll2_2" />
+
+                <CheckBox
+                    android:id="@+id/cb_style_biggest_saving"
+                    style="@style/ProfileValue_Checkbox"
+                    android:text="@string/profile_poll2_3" />
+
+                <CheckBox
+                    android:id="@+id/cb_style_new_products"
+                    style="@style/ProfileValue_Checkbox"
+                    android:text="@string/profile_poll2_4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
+
+                <TextView
+                    style="@style/ProfileLabel_Inline"
+                    android:text="@string/profile_food_preference" />
+
+                <include layout="@layout/multiple_options" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:divider="@color/divider"
+                android:orientation="vertical"
+                android:showDividers="middle">
+
+                <CheckBox
+                    android:id="@+id/cb_preference_vegetarian"
+                    style="@style/ProfileValue_Checkbox"
+                    android:text="@string/profile_poll3_1" />
+
+                <CheckBox
+                    android:id="@+id/cb_preference_vagan"
+                    style="@style/ProfileValue_Checkbox"
+                    android:text="@string/profile_poll3_2" />
+
+                <CheckBox
+                    android:id="@+id/cb_preference_gluten_free"
+                    style="@style/ProfileValue_Checkbox"
+                    android:text="@string/profile_poll3_3" />
+
+                <CheckBox
+                    android:id="@+id/cb_preference_milk"
+                    style="@style/ProfileValue_Checkbox"
+                    android:text="@string/profile_poll3_4" />
+
+                <CheckBox
+                    android:id="@+id/cb_preference_peanut"
+                    style="@style/ProfileValue_Checkbox"
+                    android:text="@string/profile_poll3_5" />
+
+                <CheckBox
+                    android:id="@+id/cb_preference_none"
+                    style="@style/ProfileValue_Checkbox"
+                    android:text="@string/profile_poll1_5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
+
+                <TextView
+                    style="@style/ProfileLabel_Inline"
+                    android:text="@string/profile_enthnicity" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:divider="@color/divider"
+                android:orientation="vertical"
+                android:showDividers="middle">
+
+                <RadioGroup
+                    android:id="@+id/rg_eth"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RadioButton
+                        android:id="@+id/rb_eth_hindu"
+                        style="@style/ProfileValue_Checkbox"
+                        android:text="@string/profile_enthnicity_hindu" />
+
+                    <RadioButton
+                        android:id="@+id/rb_eth_sikh"
+                        style="@style/ProfileValue_Checkbox"
+                        android:text="@string/profile_enthnicity_sikh" />
+
+                    <RadioButton
+                        android:id="@+id/rb_eth_christian"
+                        style="@style/ProfileValue_Checkbox"
+                        android:text="@string/profile_enthnicity_christian" />
+
+                    <RadioButton
+                        android:id="@+id/rb_eth_muslim"
+                        style="@style/ProfileValue_Checkbox"
+                        android:text="@string/profile_enthnicity_Muslim" />
+
+                    <RadioButton
+                        android:id="@+id/rb_eth_other"
+                        style="@style/ProfileValue_Checkbox"
+                        android:text="@string/profile_enthnicity_other" />
+                </RadioGroup>
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSave"
+            style="@style/BtnGreen"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/save" />
+    </LinearLayout>
+</ScrollView>

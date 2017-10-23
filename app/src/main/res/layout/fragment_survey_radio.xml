@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="40dp"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/survey"
+        android:id="@+id/txtHeader"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/question"
+        android:textSize="15sp"
+        android:textColor="@color/textSecondary"
+        android:id="@+id/txt_question_title"
+        android:layout_below="@+id/txtHeader"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:id="@+id/txtQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_below="@+id/txt_question_title"
+        android:text="@string/task_questions" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/answers"
+        android:textSize="15sp"
+        android:id="@+id/txt_answer"
+        android:textColor="@color/textSecondary"
+        android:layout_below="@+id/txtQuestion" />
+
+    <RadioGroup
+        android:id="@+id/radioAnswers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_answer"
+        android:layout_marginTop="10dp">
+
+    </RadioGroup>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:id="@+id/btnNext"
+            style="@style/BtnGreen"
+            android:layout_gravity="center"
+            android:text="@string/unlock"/>
+
+        <TextView
+            android:id="@+id/txtError"
+            android:text="Wrong Answer, Try Again!"
+            android:gravity="center"
+            style="@style/BtnRed"
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="35dp" />
+    </LinearLayout>
+
+</RelativeLayout>
