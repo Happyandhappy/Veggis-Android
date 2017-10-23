@@ -30,9 +30,21 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frame);
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 45);
+        } else {
+            launched = false;
+            FragmentUtils.changeFragment(this, R.id.content, SplashFragment.newInstance(), false);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    startActivityOnCondition();
+                }
+            }, Config.SPLASH_DELAY_TIME);
         }
+
+
 //        try {
 //            PackageInfo info = getPackageManager().getPackageInfo(
 //                    "com.developer.android.myquickveggis",
@@ -62,7 +74,6 @@ public class SplashActivity extends AppCompatActivity {
                         startActivityOnCondition();
                     }
                 }, Config.SPLASH_DELAY_TIME);
-
             } else {
                 Toast.makeText(this,"Please allow all premissions",Toast.LENGTH_SHORT).show();
                 finish();

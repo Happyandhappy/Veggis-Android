@@ -54,8 +54,8 @@ public class Walk2PagerFragment extends Fragment {
 
             Intent intent = new Intent(getActivity(), MainActivity.class);
 
-              getActivity().startActivity(intent);
-            //getActivity().finish();
+            getActivity().startActivity(intent);
+//            getActivity().finish();
         }
     }
 
