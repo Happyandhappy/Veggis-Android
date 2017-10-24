@@ -56,10 +56,8 @@ public class SplashActivity extends AppCompatActivity {
 //        } catch (PackageManager.NameNotFoundException e) {
 //
 //        } catch (NoSuchAlgorithmException e) {
-//
 //        }
     }
-
     // Requestion of External storage read/write permission using Code  (Can set it using manifest permission)
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
