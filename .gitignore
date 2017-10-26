@@ -8,7 +8,6 @@
 /captures
 .idea
 app-release.apk
-app/libs
 ViewPagerLibrary/build
 ptr-lib/build
 library/build
