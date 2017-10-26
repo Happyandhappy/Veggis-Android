@@ -1,5 +1,5 @@
 package com.developer.android.quickveggis.ui.fragments;
-
+// Changed by happyandhappy 10/26/2017
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -30,6 +30,7 @@ public class SettingsFragment extends Fragment {
     public static int MENU_LINK_FACEBOOK;
     public static int MENU_NOTIFY;
     public static int MENU_PREF;
+    public static int MENU_SECURITY;   //// Add by happyandhappy 10/26/2017
     MenuAdapter adapter;
     List<ProfileMenu> data;
     @Bind(R.id.rv)
@@ -94,6 +95,9 @@ public class SettingsFragment extends Fragment {
             case 4: /*Notify*/
                 FragmentUtils.changeFragment(getActivity(), R.id.content, NotifyFragment.newInstance(), true);
                 break;
+            case 5: // Add by happyandhappy 10/26/2017
+                FragmentUtils.changeFragment(getActivity(),R.id.content,SecuritySettingsFragment.newInstance(), true);
+                break;
         }
     }
 
@@ -106,6 +110,7 @@ public class SettingsFragment extends Fragment {
         MENU_LINK_GOOGLE = 2;
         MENU_PREF = 3;
         MENU_NOTIFY = 4;
+        MENU_SECURITY=5; // Add by happyandhappy 10/26/2017
     }
 
     public static SettingsFragment newInstance() {
@@ -139,6 +144,7 @@ public class SettingsFragment extends Fragment {
         this.data.add(new ProfileMenu(R.string.link_google, MENU_LINK_GOOGLE, true));
         this.data.add(new ProfileMenu(R.string.preference, MENU_PREF));
         this.data.add(new ProfileMenu(R.string.notify, MENU_NOTIFY));
+        this.data.add(new ProfileMenu(R.string.security_settings,MENU_SECURITY));    // Add by happyandhappy 10/26/2017
     }
 
     @Override

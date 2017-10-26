@@ -333,6 +333,14 @@ Contact:%s"</string>
     <string name="how_to_use_kikbac">How to use KIKBAC</string>
     <string name="help_center">Help Center</string>
 
+
+    <!--Add by happyandhappy -->
+    <string name="security_settings">Security Settings</string>
+    <string name="toggle_app_lock">Toggle App Lock</string>
+    <string name="changepassword">Change Password</string>
+    <string name="current_paytem_password">Current Paytem Password</string>
+    <string name="enter_new_password">Enter New Password</string>
+    <string name="re_enter_password">Re-enter New Password</string>
     <!--377136942489698-->
     <string name="facebook_app_id">885206444909227</string>
 
