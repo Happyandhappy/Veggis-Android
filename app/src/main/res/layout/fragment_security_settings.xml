@@ -13,7 +13,8 @@
           android:layout_marginRight="15dp"
           android:layout_marginLeft="15dp"
           android:layout_marginBottom="15dp"
-          android:id="@+id/btn_security_changepassword">
+          android:id="@+id/btn_security_changepassword"
+          android:clickable="true">
 
          <ImageView
              android:layout_width="40dp"
@@ -51,7 +52,8 @@
           android:layout_marginRight="15dp"
           android:layout_marginLeft="15dp"
           android:layout_marginBottom="15dp"
-          android:id="@+id/btn_security_finger">
+          android:id="@+id/btn_security_finger"
+          android:clickable="true">
 
          <ImageView
              android:layout_width="40dp"
@@ -84,7 +86,14 @@
 
       </RelativeLayout>
 
-
-
-
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/BtnGreen"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="SAVE"
+        />
 </LinearLayout>

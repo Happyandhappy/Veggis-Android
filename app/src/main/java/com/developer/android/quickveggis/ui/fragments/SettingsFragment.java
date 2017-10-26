@@ -31,6 +31,7 @@ public class SettingsFragment extends Fragment {
     public static int MENU_NOTIFY;
     public static int MENU_PREF;
     public static int MENU_SECURITY;   //// Add by happyandhappy 10/26/2017
+
     MenuAdapter adapter;
     List<ProfileMenu> data;
     @Bind(R.id.rv)
