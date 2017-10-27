@@ -85,6 +85,7 @@ import static com.developer.android.quickveggis.api.ServiceConfig.SAVE_GIFT_CARD
 import static com.developer.android.quickveggis.api.ServiceConfig.SOCIAL_LOGIN;
 import static com.developer.android.quickveggis.api.ServiceConfig.UPDATE_ACCOUNT;
 import static com.developer.android.quickveggis.api.ServiceConfig.UPDATE_BANK;
+import static com.developer.android.quickveggis.api.ServiceConfig.UPDATE_PASSWORD;
 import static com.developer.android.quickveggis.api.ServiceConfig.UPLOAD_RECEIPT_IMAGE;
 import static com.developer.android.quickveggis.api.ServiceConfig.UPLOAD_TASK_GROUP_IMAGE;
 
@@ -179,6 +180,11 @@ public interface VeggiesService {
     Call<BaseResponse>                                  registerUser(@Header("X-Oc-Merchant-Id") String merchantId,
                                                                      @Header("X-Oc-Session")String session,
                                                                      @Body SignUpUserData data);
+
+    @POST(UPDATE_PASSWORD)
+    Call<BaseResponse<Customer>>                        updatePassword(@Header("X-Oc-Merchant-Id")String merchantId,
+                                                              @Header("X-Oc-Session")String session,
+                                                              @Body LoginUserData data);
 
     @POST(LOGIN_USER)
     Call<BaseResponse<Customer>>                        login(@Header("X-Oc-Merchant-Id")String merchantId,

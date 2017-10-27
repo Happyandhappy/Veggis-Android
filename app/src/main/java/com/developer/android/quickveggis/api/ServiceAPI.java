@@ -814,6 +814,31 @@ public class ServiceAPI {
         });
     }
 
+    public  void changePassword(String Email,String newPassword,final ResponseCallback<Customer> callback)
+    {
+        LoginUserData changeUserData = new LoginUserData(Email, newPassword);
+        Call<BaseResponse<Customer>> call = mService.updatePassword(MECHANT_ID, SessionController.getInstance().getLoggedInSession(), changeUserData);
+        call.enqueue(new Callback<BaseResponse<Customer>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<Customer>> call, Response<BaseResponse<Customer>> response) {
+                if (response.body().getSuccess())
+                {
+                    callback.onSuccess(response.body().getData());
+                }
+                else {
+                    if (response.body().getError() != null)
+                        callback.onFailure(response.body().getError().toString());
+                    else
+                        callback.onFailure(RESULT_SERVER_ERROR);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<Customer>> call, Throwable t) {
+                callback.onFailure(RESULT_SERVER_ERROR);
+            }
+        });
+    }
     public void logout(final ResponseCallback<String> callback){
         Call<BaseResponse> call = mService.logout(MECHANT_ID, SessionController.getInstance().getLoggedInSession());
         call.enqueue(new Callback<BaseResponse>() {
@@ -1366,4 +1391,6 @@ public class ServiceAPI {
             }
         });
     }
+
+
 }

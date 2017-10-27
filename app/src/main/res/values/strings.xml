@@ -341,8 +341,13 @@ Contact:%s"</string>
     <string name="current_paytem_password">Current Paytem Password</string>
     <string name="enter_new_password">Enter New Password</string>
     <string name="re_enter_password">Re-enter New Password</string>
+    <string name="touch_id_str">Enable Touch ID or Password based\nto access to prevent unauthorized\naccess to your Paytm App</string>
+    <string name="password_length_error">Password length must be between 4 and 20.</string>
+    <string name="password_reenter_error">Confirm Password is invalid.</string>
+
     <!--377136942489698-->
     <string name="facebook_app_id">885206444909227</string>
+
 
     <integer name="fade_animation_duration">2000</integer>
     <integer name="fade_animation_duration_short">500</integer>

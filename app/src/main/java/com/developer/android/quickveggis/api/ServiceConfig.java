@@ -66,6 +66,7 @@ public class ServiceConfig {
     public static final String ADD_REWARD = FIRST_ENDPOINT + "/reward";
 
     public static final String REGISTER_USER = FIRST_ENDPOINT + "/register";
+    public static final String UPDATE_PASSWORD=FIRST_ENDPOINT+"/updatepassword";
     public static final String LOGIN_USER = FIRST_ENDPOINT + "/login";
     public static final String LOGOUT_USER = FIRST_ENDPOINT + "/logout";
     public static final String GET_ACCOUNT_DETAILS = FIRST_ENDPOINT + "/account";
