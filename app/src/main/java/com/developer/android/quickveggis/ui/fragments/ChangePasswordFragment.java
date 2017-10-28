@@ -96,6 +96,6 @@ public class ChangePasswordFragment extends Fragment {
         loginDialog.setCancelable(false);
         loginDialog.show();
 
-        ServiceAPI.newInstance().changePassword();
+        //ServiceAPI.newInstance().changePassword();
     }
 }
