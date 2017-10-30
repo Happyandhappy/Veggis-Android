@@ -16,9 +16,7 @@
             android:background="@color/mainGreen"
             android:gravity="right"
             android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:theme="@style/AppBar">
-
-        </android.support.v7.widget.Toolbar>
+            android:theme="@style/AppBar"></android.support.v7.widget.Toolbar>
         <FrameLayout
             android:id="@+id/content"
             android:layout_width="match_parent"

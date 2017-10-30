@@ -36,7 +36,6 @@ public class NotificationListFragment extends Fragment implements MainActivity.M
     @Bind(R.id.rv)
     RecyclerView rv;
     int type;
-    //@Bind(R.id.)
 
     /* renamed from: com.quickveggies.quickveggies.ui.fragment.HistoryListFragment.1 */
     class C05651 implements RecyclerItemClickListener.OnItemClickListener {
@@ -103,17 +102,11 @@ public class NotificationListFragment extends Fragment implements MainActivity.M
                 List<NotificationModel> notifications = notificationRepo.getAll();
                 ArrayList<NotificationModel> arrayList = new ArrayList<>(notifications);
                 data.addAll(arrayList);
-
-//                Toast.makeText(getContext(), notificationRepo.getList().size(), Toast.LENGTH_SHORT).show();
-
         }
 
         adapter = new NotificationAdapter(this.data, getContext());
         rv.setAdapter(this.adapter);
-//        decoration = new StickyRecyclerHeadersDecoration(this.adapter);
-//        rv.addItemDecoration(this.decoration);
         rv.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), new C05651()));
-//        rv.addItemDecoration(((Builder) ((Builder) new Builder(getActivity()).color(getResources().getColor(R.color.divider))).sizeResId(R.dimen.divider_history)).build());
 
         NotificationModel.lastVisited(getContext());
     }

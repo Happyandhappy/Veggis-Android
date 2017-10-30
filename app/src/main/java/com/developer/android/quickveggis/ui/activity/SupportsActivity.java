@@ -30,7 +30,7 @@ public class SupportsActivity extends AppCompatActivity {
         ButterKnife.bind((Activity) this);
         setSupportActionBar(this.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        FragmentUtils.changeFragment((FragmentActivity) this, R.id.content, SupportListFragment.newInstance(), false);
+//        FragmentUtils.changeFragment((FragmentActivity) this, R.id.content, SupportListFragment.newInstance(), false);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -2,11 +2,9 @@ package com.developer.android.quickveggis.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Movie;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -16,7 +14,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,12 +35,9 @@ import com.developer.android.quickveggis.model.event.Logout;
 import com.developer.android.quickveggis.ui.BadgeDrawable;
 import com.developer.android.quickveggis.ui.fragments.CartFragment;
 import com.developer.android.quickveggis.ui.fragments.CategoriesFragment;
-import com.developer.android.quickveggis.ui.fragments.ConversationListFragment;
 import com.developer.android.quickveggis.ui.fragments.MenuFragment;
 import com.developer.android.quickveggis.ui.fragments.NotificationListFragment;
 import com.developer.android.quickveggis.ui.fragments.ProductFragment;
-import com.developer.android.quickveggis.ui.fragments.SupportListFragment;
-import com.developer.android.quickveggis.ui.utils.DialogUtils;
 import com.developer.android.quickveggis.ui.utils.FragmentUtils;
 import com.freshdesk.hotline.Hotline;
 import com.freshdesk.hotline.HotlineConfig;
@@ -52,7 +46,6 @@ import com.google.gson.Gson;
 import org.greenrobot.eventbus.Subscribe;
 import org.joda.time.MutableDateTime;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import butterknife.Bind;
@@ -74,8 +67,6 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.appBar)
     AppBarLayout appBarLayout;
     private OnBackStackChangedListener backStackListener;
-//    @Bind(R.id.collapse_toolbar)
-//    CollapsingToolbarLayout collapsingToolbar;
     int currentMenuVisibility;
     @Bind(R.id.drawerLayout)
     public DrawerLayout mDrawerLayout;
@@ -163,6 +154,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         getSupportFragmentManager().addOnBackStackChangedListener(backStackListener);
+
+        //Nav menu set content
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerToggle.setDrawerIndicatorEnabled(true);
         mDrawerToggle.setToolbarNavigationClickListener(new OnClickListener() {
@@ -172,17 +165,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         mDrawerToggle.syncState();
-
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-        getCustomerInfo();
+
+        getCustomerInfo();//get customer info from server using API
 
         int mode = getIntent().getIntExtra("mode", -1);
 
         if (mode == Config.PRODUCT_MODE) {
             mDrawerToggle.setDrawerIndicatorEnabled(false);
             setExpanded(false);
-//            collapsingToolbar.setEnabled(false);
             Product product = new Gson().fromJson(getIntent().getExtras().getString("product"), Product.class);
             FragmentUtils.changeFragment(this, R.id.content, ProductFragment.newInstance(product), false);
         } else if (mode == -1) {
@@ -192,16 +184,7 @@ public class MainActivity extends AppCompatActivity {
             mDrawerToggle.setDrawerIndicatorEnabled(false);
             FragmentUtils.changeFragment(this, R.id.content, CartFragment.newInstance(mode), false);
         }
-//        collapsingToolbar.setExpandedTitleTextAppearance(R.style.expandedappbar);
-//        collapsingToolbar.setCollapsedTitleTextAppearance(R.style.collapsedappbar);
     }
-
-//    protected void onNewIntent(Intent intent) {
-//        super.onNewIntent(intent);
-//        int mode = intent.getIntExtra("mode", -1);
-//        FragmentUtils.popBackStack(this);
-//        FragmentUtils.changeFragment((FragmentActivity) this, R.id.content, CartFragment.newInstance(mode), false);
-//    }
 
     public static void setBadgeCount(Context context, LayerDrawable icon, String count) {
 
@@ -298,8 +281,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void setTitle(int titleId) {
         super.setTitle(titleId);
-//        collapsingToolbar.setTitle(getString(titleId));
     }
+
 
     public void updateMenu(Fragment fragment) {
         if (fragment != null && (fragment instanceof MenuController)) {
@@ -317,16 +300,6 @@ public class MainActivity extends AppCompatActivity {
         mDrawerToggle.setDrawerIndicatorEnabled(getSupportFragmentManager().getBackStackEntryCount() == 0);
     }
 
-    public void moveIntoConversationsActivity() {
-        FragmentUtils.popBackStack(this);
-        FragmentUtils.changeFragment((FragmentActivity) this, R.id.content, ConversationListFragment.newInstance(), false);
-    }
-
-    public void moveIntoSupportActivity() {
-        FragmentUtils.popBackStack(this);
-        FragmentUtils.changeFragment((FragmentActivity) this, R.id.content, SupportListFragment.newInstance(), false);
-    }
-
     public void setCurrentFragment(Fragment fragment) {
         currentFragment = fragment;
     }
@@ -342,19 +315,11 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.action_messages:
-
+                mDrawerToggle.setDrawerIndicatorEnabled(false);
                 Hotline.showConversations((FragmentActivity) this);
-
-//                FragmentUtils.popBackStack(this);
-//                FragmentUtils.changeFragment((FragmentActivity) this, R.id.content, SupportListFragment.newInstance(), false);
-
                 break;
 
             case R.id.action_cart:
-//                startActivity(CartActivity.getStartIntent(this));
-
-//                currentFragment.startActivity(CartActivity.getStartIntent(getApplicationContext()));
-
                 mDrawerToggle.setDrawerIndicatorEnabled(false);
                 FragmentUtils.popBackStack(this);
                 if (CartFragment.mFragment == null) {
@@ -362,20 +327,14 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     FragmentUtils.changeFragment((FragmentActivity) this, R.id.content, CartFragment.mFragment, false);//2 = offlinemode
                 }
-
-//                FragmentUtils.changeFragment(currentFragment.getActivity(), R.id.content, CartFragment.newInstance(2), false);//2 = offlinemode
-
                 break;
 
             case R.id.action_notifications:
-
                 FragmentUtils.popBackStack(this);
+                mDrawerToggle.setDrawerIndicatorEnabled(false);
                 FragmentUtils.changeFragment((FragmentActivity) this, R.id.content, NotificationListFragment.newInstance(), false);
-//                FragmentUtils.changeFragment(currentFragment.getActivity(), R.id.content, NotificationListFragment.newInstance(), false);
-//                categoriesFragment.moveIntoNotificationFragment();
-
-//                startActivity(NotificationActivity.getStartIntent(this));
                 break;
+
             case R.id.action_share:
                 App.getInstance().intentShare(this, "", "");
                 break;
@@ -408,7 +367,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBackPressed() {
-
         super.onBackPressed();
     }
 
