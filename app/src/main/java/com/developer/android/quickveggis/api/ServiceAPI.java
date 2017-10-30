@@ -839,6 +839,7 @@ public class ServiceAPI {
             }
         });
     }
+
     public void logout(final ResponseCallback<String> callback){
         Call<BaseResponse> call = mService.logout(MECHANT_ID, SessionController.getInstance().getLoggedInSession());
         call.enqueue(new Callback<BaseResponse>() {

@@ -36,6 +36,7 @@ public class NotificationListFragment extends Fragment implements MainActivity.M
     @Bind(R.id.rv)
     RecyclerView rv;
     int type;
+    //@Bind(R.id.)
 
     /* renamed from: com.quickveggies.quickveggies.ui.fragment.HistoryListFragment.1 */
     class C05651 implements RecyclerItemClickListener.OnItemClickListener {
@@ -119,6 +120,6 @@ public class NotificationListFragment extends Fragment implements MainActivity.M
 
     @Override
     public int getMenuVisibility() {
-        return 1;
+        return 5;
     }
 }

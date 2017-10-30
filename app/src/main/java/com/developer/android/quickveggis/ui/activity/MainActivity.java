@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int MENU_PRODUCT_VISIBLE = 3;
     public static final int MENU_CART_VISIBLE = 2;
     public static final int MENU_NOT_VISIBLE = 1;
+    public static final int MENU_MESSAGE_VISIBLE=5;
     public static final int MENU_VISIBLE = 0;
 
     public static final int FROM_CART = 1;
@@ -221,13 +222,13 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onPrepareOptionsMenu(Menu menu) { // because of this, the app crash ???
 
-        setBadge(menu, R.id.action_messages, R.drawable.ic_message, MENU_NOT_VISIBLE); //
+        setBadge(menu, R.id.action_messages, R.drawable.ic_message, MENU_MESSAGE_VISIBLE); //
         setBadge(menu, R.id.action_cart, R.drawable.ic_shopping, MENU_VISIBLE);
         setBadge(menu, R.id.action_notifications, R.drawable.ic_reminder, MENU_CART_VISIBLE);
 
         switch (currentMenuVisibility) {
             case MutableDateTime.ROUND_NONE /*0*/:
-                menu.findItem(R.id.action_messages).setVisible(true);
+                menu.findItem(R.id.action_messages).setVisible(false);
                 menu.findItem(R.id.action_cart).setVisible(true);
                 menu.findItem(R.id.action_notifications).setVisible(true);
                 menu.findItem(R.id.action_share).setVisible(false);
@@ -260,6 +261,13 @@ public class MainActivity extends AppCompatActivity {
                 menu.findItem(R.id.action_notifications).setVisible(false);
                 menu.findItem(R.id.action_share).setVisible(false);
                 menu.findItem(R.id.action_edit).setVisible(true);
+                break;
+            case MENU_MESSAGE_VISIBLE: //5
+                menu.findItem(R.id.action_messages).setVisible(true);
+                menu.findItem(R.id.action_cart).setVisible(false);
+                menu.findItem(R.id.action_notifications).setVisible(false);
+                menu.findItem(R.id.action_share).setVisible(false);
+                menu.findItem(R.id.action_edit).setVisible(false);
                 break;
         }
 
