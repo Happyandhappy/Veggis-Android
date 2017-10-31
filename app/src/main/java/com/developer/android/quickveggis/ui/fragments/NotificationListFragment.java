@@ -19,6 +19,7 @@ import com.developer.android.quickveggis.ui.activity.MainActivity;
 import com.developer.android.quickveggis.ui.adapter.NotificationAdapter;
 import com.developer.android.quickveggis.ui.utils.FragmentUtils;
 import com.developer.android.quickveggis.ui.utils.RecyclerItemClickListener;
+import com.quickveggies.quickveggies.ui.custom.SlideButton;
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
 
 import org.json.JSONObject;
@@ -30,11 +31,21 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class NotificationListFragment extends Fragment implements MainActivity.MenuController{
+    static final int TAB_NOTIFICATION = 1;
+    static final int TAB_MESSAGE = 2;
+
     NotificationAdapter adapter;
     List<NotificationModel> data;
-    StickyRecyclerHeadersDecoration decoration;
+
     @Bind(R.id.rv)
     RecyclerView rv;
+    @Bind(R.id.tabNotification)
+    View tabNotification;
+    @Bind(R.id.tabSupport)
+    View tabSupport;
+    @Bind(R.id.btn_notislide)
+    SlideButton btnSlide;
+
     int type;
 
     /* renamed from: com.quickveggies.quickveggies.ui.fragment.HistoryListFragment.1 */
@@ -113,6 +124,22 @@ public class NotificationListFragment extends Fragment implements MainActivity.M
 
     @Override
     public int getMenuVisibility() {
-        return 5;
+        return 1;
+    }
+
+    private void updateTab(int tab) {
+        if (tab == TAB_NOTIFICATION) {
+            this.btnSlide.startAnimation(TAB_NOTIFICATION);
+            this.tabNotification.setSelected(true);
+            this.tabSupport.setSelected(false);
+//            this.blockNotification.setVisibility(View.VISIBLE);
+//            this.blockSupport.setVisibility(View.GONE);
+            return;
+        }
+        this.btnSlide.startAnimation(100);
+        this.tabSupport.setSelected(false);
+        this.tabNotification.setSelected(true);
+//        this.blockSupport.setVisibility(View.VISIBLE);
+//        this.blockNotification.setVisibility(View.GONE);
     }
 }

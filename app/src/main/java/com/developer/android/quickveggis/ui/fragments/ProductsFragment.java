@@ -103,18 +103,16 @@ public class ProductsFragment extends Fragment {
             }
         });
 
-//        getActivity().setTitle("Food mart");
         products = new ArrayList();
         productsFiltered = new ArrayList<>();
-//        this.data = TestData.getNewProducts();
         this.rv.setLayoutManager(new GridLayoutManager(getContext(), 2));
         this.adapter = new ProductAdapter(getContext(), productsFiltered);
         this.rv.setAdapter(this.adapter);
-//        this.rv.addItemDecoration(((Builder) ((Builder) new Builder(getActivity()).color(getResources().getColor(17170445))).sizeResId(R.dimen.divider_products)).build());
-//        this.rv.addItemDecoration(((HorizontalDividerItemDecoration.Builder) ((HorizontalDividerItemDecoration.Builder) new HorizontalDividerItemDecoration.Builder(getActivity()).color(getResources().getColor(17170445))).sizeResId(R.dimen.divider_products)).build());
         this.rv.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), new C05681()));
 
         this.productsLoadingPage.setVisibility(View.VISIBLE);
+
+        //Get product data from API Happyandhappy
         ServiceAPI.newInstance().getProductsByCategory(category.getCategoryId(), new ResponseCallback<ArrayList<Product>>() {
             @Override
             public void onSuccess(ArrayList<Product> data) {

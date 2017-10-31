@@ -155,11 +155,7 @@ public class FilterFragment extends Fragment {
         }
 
         public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
-//            View itemView = LayoutInflater.from(getContext()).inflate(R.layout.item_filter, parent, false);
-//            RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//            itemView.setLayoutParams(lp);
             return new Holder(LayoutInflater.from(getActivity()).inflate(R.layout.item_filter, parent, false));
-//            return new Holder(itemView);
         }
 
         public void onBindViewHolder(Holder holder, int position) {

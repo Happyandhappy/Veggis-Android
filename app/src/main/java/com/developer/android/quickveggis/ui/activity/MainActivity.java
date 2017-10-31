@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
     public static final int MENU_PRODUCT_VISIBLE = 3;
     public static final int MENU_CART_VISIBLE = 2;
     public static final int MENU_NOT_VISIBLE = 1;
-    public static final int MENU_MESSAGE_VISIBLE=5;
     public static final int MENU_VISIBLE = 0;
 
     public static final int FROM_CART = 1;
@@ -136,9 +135,9 @@ public class MainActivity extends AppCompatActivity {
          //     Hotline
          */
         HotlineConfig hlConfig=new HotlineConfig("c0213431-7b89-4235-aea8-6233dadab310","958dca37-374a-4548-92a0-49a7acce482e");
-        hlConfig.setVoiceMessagingEnabled(true);
-        hlConfig.setCameraCaptureEnabled(true);
-        hlConfig.setPictureMessagingEnabled(true);
+//        hlConfig.setVoiceMessagingEnabled(true);
+//        hlConfig.setCameraCaptureEnabled(true);
+//        hlConfig.setPictureMessagingEnabled(true);
 
         Hotline.getInstance(getApplicationContext()).init(hlConfig);
 
@@ -205,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onPrepareOptionsMenu(Menu menu) { // because of this, the app crash ???
 
-        setBadge(menu, R.id.action_messages, R.drawable.ic_message, MENU_MESSAGE_VISIBLE); //
+        setBadge(menu, R.id.action_messages, R.drawable.ic_message, MENU_NOT_VISIBLE); //
         setBadge(menu, R.id.action_cart, R.drawable.ic_shopping, MENU_VISIBLE);
         setBadge(menu, R.id.action_notifications, R.drawable.ic_reminder, MENU_CART_VISIBLE);
 
@@ -244,13 +243,6 @@ public class MainActivity extends AppCompatActivity {
                 menu.findItem(R.id.action_notifications).setVisible(false);
                 menu.findItem(R.id.action_share).setVisible(false);
                 menu.findItem(R.id.action_edit).setVisible(true);
-                break;
-            case MENU_MESSAGE_VISIBLE: //5
-                menu.findItem(R.id.action_messages).setVisible(true);
-                menu.findItem(R.id.action_cart).setVisible(false);
-                menu.findItem(R.id.action_notifications).setVisible(false);
-                menu.findItem(R.id.action_share).setVisible(false);
-                menu.findItem(R.id.action_edit).setVisible(false);
                 break;
         }
 
@@ -370,20 +362,8 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    public void openMenu() {
-        mDrawerLayout.openDrawer(Gravity.LEFT);
-    }
-
     public void closeMenu() {
         mDrawerLayout.closeDrawers();
-    }
-
-    public void toggleMenu() {
-        if (mDrawerLayout.isDrawerOpen(Gravity.LEFT)) {
-            closeMenu();
-        } else {
-            openMenu();
-        }
     }
 
     @Override

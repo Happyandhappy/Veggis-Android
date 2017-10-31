@@ -78,8 +78,6 @@ public class ProductFragment extends Fragment implements SlideButtonListener , M
     @Bind(R.id.txtTitle)
     TextView txtTitle;
     @Bind(R.id.txt_date_available)
-//    TextView txtAvailable;
-//    @Bind(R.id.txt_description)
     TextView txtDescription;
 
     @Bind(R.id.txtValietyAndSize)
@@ -97,8 +95,6 @@ public class ProductFragment extends Fragment implements SlideButtonListener , M
     TextView txtNote;
     @Bind(R.id.lay_stores)
     LinearLayout lay_storeslist;
-
-
 
     @Bind(R.id.txt_meta_title)
     TextView txtMetaTitle;
@@ -168,11 +164,6 @@ public class ProductFragment extends Fragment implements SlideButtonListener , M
         C03081() {
         }
 
-        /*public void onClick(View v) {
-//            ProductFragment.this.startActivity(SurveyActivity.getStartIntent(ProductFragment.this.getContext())); // origin
-//            startActivity(TaskActivity.getStartIntent(getContext())); // new
-        }*/
-
         public void onClick(View v) {
 
 //            Intent intent = TaskActivity.getStartIntent(ProductFragment.this.getContext());
@@ -205,10 +196,8 @@ public class ProductFragment extends Fragment implements SlideButtonListener , M
             }
 
             if (selectedTask != null){
-//                Config.selectedTask = selectedTask;
                 try {
                     Intent intent;
-                    //intent.putExtra("selected_task", selectedTask);
                     if ((Integer.parseInt(selectedTask.getType()) == Config.TASK_DO_GOODER && selectedTask.getTaskData().getVideoUrl() != null && !selectedTask.getTaskData().getVideoUrl().isEmpty())
                             || Integer.parseInt(selectedTask.getType()) == Config.TASK_VIDEO) {
 
@@ -225,7 +214,6 @@ public class ProductFragment extends Fragment implements SlideButtonListener , M
                     e.printStackTrace();
                 }
             }
-            //startActivity(TaskActivity.getStartIntent(getContext())); // new
         }
     }
 
@@ -265,7 +253,6 @@ public class ProductFragment extends Fragment implements SlideButtonListener , M
         }
 
         public void onClick(View v) {
-//            ProductFragment.this.mSmallBang.bang(ProductFragment.this.btnLike);
 
             addProductToWishList();
         }
@@ -322,14 +309,12 @@ public class ProductFragment extends Fragment implements SlideButtonListener , M
         });
 
         Picasso.with(getContext()).load(product.getImage()).fit().centerInside().into(this.image);
-//        this.image.setImageResource(R.drawable.img_back);
 
         updateTab(TAB_TC);
         this.tabTc.setSelected(true);
         this.prevTab = this.tabTc;
         this.tabTc.setOnClickListener(new C03103());
         this.tabDescription.setOnClickListener(new C03114());
-//        setLockedState(true, this.btnShare, this.txtPriceShare);
         this.btnLike.setOnClickListener(new C03125());
 
         this.task1Button.setOnClickListener(new C03081());
@@ -410,8 +395,6 @@ public class ProductFragment extends Fragment implements SlideButtonListener , M
                 } else {
                     long d = compareTime / (3600 * 24);
                     long h = (compareTime % (3600 * 24)) / 3600;
-                    //  long m = (compareTime % 3600) / 60;
-                    //  txtValidityRestSec.setText(d + "d " + h + "h " + m + "m " + (compareTime % 60) +"s");
                     txtValidityRestSec.setText(d + "d " + h + "h");
                 }
             }
@@ -456,10 +439,6 @@ public class ProductFragment extends Fragment implements SlideButtonListener , M
     @Override
     public void onResume() {
         super.onResume();
-//        if (App.getTask()){
-//            DialogUtils.showAlertUnLockDialog(getActivity());
-//            App.setTask(true);
-//        }
     }
 
     private void getTaskList(){
@@ -469,13 +448,11 @@ public class ProductFragment extends Fragment implements SlideButtonListener , M
             public void onSuccess(ArrayList<Task> data) {
                 if (data != null && data.size() > 0)
                     tasks.addAll(data);
-//                initTaskViews();
                 getTaskWalletStatus();
             }
 
             @Override
             public void onFailure(String error) {
-//                Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -507,12 +484,10 @@ public class ProductFragment extends Fragment implements SlideButtonListener , M
                 } else {
                     tutorialLayout.setVisibility(View.GONE);
                 }
-
             }
 
             @Override
             public void onFailure(String error) {
-//                Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
 
                 initTaskViews();
             }
@@ -528,8 +503,6 @@ public class ProductFragment extends Fragment implements SlideButtonListener , M
             @Override
             public void onSuccess(String data) {
 
-//                Toast.makeText(getActivity(), data, Toast.LENGTH_SHORT).show();
-
                 if (data.contains("not")) {
                     btnLike.setImageResource(R.drawable.icon_unliked_count);
                 } else {
@@ -539,8 +512,6 @@ public class ProductFragment extends Fragment implements SlideButtonListener , M
 
             @Override
             public void onFailure(String error) {
-//                progressDialog.dismiss();
-//                Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -579,13 +550,11 @@ public class ProductFragment extends Fragment implements SlideButtonListener , M
                 btnTask1.setEnabled(false);
                 BitmapUtils.setTaskImage(btnTask1, Integer.parseInt(tasks.get(0).getType()), false);
                 txtTask1Price.setEnabled(false);
-//                btnTask1.setAlpha(0.5f);
             }
             else{
                 BitmapUtils.setTaskImage(btnTask1, Integer.parseInt(tasks.get(0).getType()), true);
                 btnTask1.setEnabled(true);
                 txtTask1Price.setEnabled(true);
-//                btnTask1.setAlpha(1.0f);
             }
         }
         else if (tasks.size() == 2){
@@ -604,26 +573,22 @@ public class ProductFragment extends Fragment implements SlideButtonListener , M
                 btnTask1.setEnabled(false);
                 BitmapUtils.setTaskImage(btnTask1, Integer.parseInt(tasks.get(0).getType()), false);
                 txtTask1Price.setEnabled(false);
-//                btnTask1.setAlpha(0.5f);
             }
             else{
                 BitmapUtils.setTaskImage(btnTask1, Integer.parseInt(tasks.get(0).getType()), true);
                 btnTask1.setEnabled(true);
                 txtTask1Price.setEnabled(true);
-//                btnTask1.setAlpha(1.0f);
             }
 
             if (tasks.get(1).getDisableTask()==1 || this.isDisabledTask(tasks.get(1).getId())){
                 btnTask2.setEnabled(false);
                 BitmapUtils.setTaskImage(btnTask2, Integer.parseInt(tasks.get(1).getType()), false);
                 txtTask2Price.setEnabled(false);
-//                btnTask2.setAlpha(0.5f);
             }
             else{
                 btnTask2.setEnabled(true);
                 BitmapUtils.setTaskImage(btnTask2, Integer.parseInt(tasks.get(1).getType()), true);
                 txtTask2Price.setEnabled(true);
-//                btnTask2.setAlpha(1.0f);
             }
         }
         else if (tasks.size() == 3){
@@ -645,39 +610,33 @@ public class ProductFragment extends Fragment implements SlideButtonListener , M
                 btnTask1.setEnabled(false);
                 BitmapUtils.setTaskImage(btnTask1, Integer.parseInt(tasks.get(0).getType()), false);
                 txtTask1Price.setEnabled(false);
-//                btnTask1.setAlpha(0.5f);
             }
             else{
                 BitmapUtils.setTaskImage(btnTask1, Integer.parseInt(tasks.get(0).getType()), true);
                 btnTask1.setEnabled(true);
                 txtTask1Price.setEnabled(true);
-//                btnTask1.setAlpha(1.0f);
             }
 
             if (tasks.get(1).getDisableTask() == 1 || this.isDisabledTask(tasks.get(1).getId())){
                 btnTask2.setEnabled(false);
                 BitmapUtils.setTaskImage(btnTask2, Integer.parseInt(tasks.get(1).getType()), false);
                 txtTask2Price.setEnabled(false);
-//                btnTask2.setAlpha(0.5f);
             }
             else{
                 btnTask2.setEnabled(true);
                 BitmapUtils.setTaskImage(btnTask2, Integer.parseInt(tasks.get(1).getType()), true);
                 txtTask2Price.setEnabled(true);
-//                btnTask2.setAlpha(1.0f);
             }
 
             if (tasks.get(2).getDisableTask() == 1 || this.isDisabledTask(tasks.get(2).getId())){
                 btnTask3.setEnabled(false);
                 BitmapUtils.setTaskImage(btnTask3, Integer.parseInt(tasks.get(2).getType()), false);
                 txtTask3Price.setEnabled(false);
-//                btnTask3.setAlpha(0.5f);
             }
             else{
                 btnTask3.setEnabled(true);
                 BitmapUtils.setTaskImage(btnTask3, Integer.parseInt(tasks.get(2).getType()), true);
                 txtTask3Price.setEnabled(true);
-//                btnTask3.setAlpha(1.0f);
             }
         }
         else{
@@ -691,22 +650,15 @@ public class ProductFragment extends Fragment implements SlideButtonListener , M
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == UNLOCKED_TASK_REQUEST_CODE && resultCode == Activity.RESULT_OK){
-//            Toast.makeText(getActivity(), "Unlocked task", Toast.LENGTH_SHORT).show();
             if (data != null){
                 if (selectedTask.getId().equals(data.getStringExtra(Config.KEY_UNLOCKED_TASK_ID))) {
-//                    Config.list_cart.add(currentProduct);
                     addUnlockedTaskToCart();
-//                    isExistCartList(currentProduct);
                 }
             }
         }
     }
 
     private void addUnlockedTaskToCart(){
-//        final ProgressDialog loginDialog = new ProgressDialog(getActivity());
-//        loginDialog.setMessage("Adding unlocked task to your cart...");
-//        loginDialog.setCancelable(false);
-//        loginDialog.show();
 
         unlockSuccess = false;
         showGifAnimator();
@@ -783,7 +735,6 @@ public class ProductFragment extends Fragment implements SlideButtonListener , M
             @Override
             public void onFailure(String error) {
                 pDialog.dismiss();
-//                Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
             }
         });
     }

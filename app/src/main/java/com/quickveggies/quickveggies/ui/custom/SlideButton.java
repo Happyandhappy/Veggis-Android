@@ -19,11 +19,11 @@ import java.lang.ref.WeakReference;
 import com.developer.android.quickveggis.R;
 
 @SuppressWarnings("deprecation")
-public class SlideButton extends SeekBar {
+public class SlideButton extends android.support.v7.widget.AppCompatSeekBar {
     private static final int MIN_PROGRESS_VALUE = 50;
     private WeakReference<SlideButtonListener> listener;
     ValueAnimator progressAnim;
-    Drawable thumb;
+    public Drawable thumb;
 
     public interface SlideButtonListener {
         void onTabSelected(int i);
