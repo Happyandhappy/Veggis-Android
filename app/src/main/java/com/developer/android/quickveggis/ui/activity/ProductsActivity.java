@@ -94,6 +94,49 @@ public class ProductsActivity extends AppCompatActivity {
             categoryText.setText(categoryList.get(index));
         }
 
+        categoryRV.setLayoutManager(new GridLayoutManager(ProductsActivity.this,3));
+        CategoryAdapter adapter = new CategoryAdapter();
+        categoryRV.setAdapter(adapter);
+
+        categoryRV.addOnItemTouchListener(new RecyclerItemClickListener(ProductsActivity.this, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int i) {
+                categoryRV.setVisibility(View.GONE);
+                dimmer.setVisibility(View.GONE);
+
+                if (!categoryText.getText().equals(categoryList.get(i))){
+                    categoryText.setText(categoryList.get(i));
+
+                    filterFragment=FilterFragment.newInstance();
+
+                    if (categoryList.get(i).equals(getString(R.string.all))){
+                        allProductsFragment=allProductsFragment.newInstance(categories.get(i));
+                        FragmentUtils.popBackStack(ProductsActivity.this);
+                        FragmentUtils.changeFragment(ProductsActivity.this,R.id.content,allProductsFragment,false);
+                    }else{
+                        productsFragment=ProductsFragment.newInstance(categories.get(i));
+                        FragmentUtils.popBackStack(ProductsActivity.this);
+                        FragmentUtils.changeFragment(ProductsActivity.this,R.id.content,productsFragment, false);
+                    }
+
+                    FragmentUtils.changeFragment(ProductsActivity.this,R.id.filter,filterFragment,false);
+                }
+            }
+        }));
+
+        categoryMenuLayout.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (categoryRV.getVisibility()==View.VISIBLE){
+                    categoryRV.setVisibility(View.GONE);
+                    dimmer.setVisibility(View.GONE);
+                }else{
+                    categoryRV.setVisibility(View.VISIBLE);
+                    dimmer.setVisibility(View.VISIBLE);
+                }
+
+            }
+        });
         filterFragment = FilterFragment.newInstance();
 
         if (categoryList.get(index).equals(getString(R.string.all))) {
@@ -109,12 +152,43 @@ public class ProductsActivity extends AppCompatActivity {
 
         setSupportActionBar(this.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        setTitle("");
 
         this.txtFilter.setOnClickListener(new C02651());
 
         _inst = this;
     }
+
+    public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Holder> {
+
+        public class Holder extends RecyclerView.ViewHolder {
+            @Bind(R.id.imgIcon)
+            ImageView imgIcon;
+            @Bind(R.id.txtTitle)
+            TextView txtTitle;
+
+            public Holder(View itemView) {
+                super(itemView);
+                ButterKnife.bind(this, itemView);
+            }
+        }
+
+        public CategoryAdapter.Holder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new CategoryAdapter.Holder(LayoutInflater.from(ProductsActivity._inst).inflate(R.layout.item_category, parent, false));
+        }
+
+        public void onBindViewHolder(CategoryAdapter.Holder holder, int position) {
+            Category category = categories.get(position);
+            holder.txtTitle.setText(category.getName());
+
+            Picasso.with(ProductsActivity.this).load(category.getImage().replace(" ", "%20")).into(holder.imgIcon);
+        }
+
+        public int getItemCount() {
+            return categories.size();
+        }
+    }
+
 
     public void toggleMenu() {
         if (this.drawerLayout.isDrawerOpen(Gravity.RIGHT)) {

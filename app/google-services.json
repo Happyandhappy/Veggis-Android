@@ -1,25 +1,35 @@
 {
   "project_info": {
-    "project_number": "764736851038",
-    "project_id": "firebase-veggies"
+    "project_number": "849533419597",
+    "firebase_url": "https://fcmdemo-726c6.firebaseio.com",
+    "project_id": "fcmdemo-726c6",
+    "storage_bucket": "fcmdemo-726c6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:764736851038:android:d694d6a61247cfc1",
+        "mobilesdk_app_id": "1:849533419597:android:d694d6a61247cfc1",
         "android_client_info": {
           "package_name": "com.developer.android.quickveggis"
         }
       },
       "oauth_client": [
         {
-          "client_id": "764736851038-hpbnfaatuo4brc179fnlskpbbtfihai9.apps.googleusercontent.com",
+          "client_id": "849533419597-djtu0t8b7mlmm077koevindgro3febbe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.developer.android.quickveggis",
+            "certificate_hash": "4b1ceec52f18cf0c5785ad3f5f8ac8d49c7ddf04"
+          }
+        },
+        {
+          "client_id": "849533419597-u6gukr7ffv6ps5elc1b75jcnatjga42n.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBFOahe_Neyw79auZ8sLUTlSz6hA_ZFGOk"
+          "current_key": "AIzaSyAgvDOjmuBut4s2bqhgm46TWg2D3izzKdE"
         }
       ],
       "services": {
@@ -27,42 +37,16 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "849533419597-u6gukr7ffv6ps5elc1b75jcnatjga42n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
-          "status": 1
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:764736851038:android:cbd8a8ba106358e1",
-        "android_client_info": {
-          "package_name": "com.developer.android.quickveggiss"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "764736851038-hpbnfaatuo4brc179fnlskpbbtfihai9.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBFOahe_Neyw79auZ8sLUTlSz6hA_ZFGOk"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }

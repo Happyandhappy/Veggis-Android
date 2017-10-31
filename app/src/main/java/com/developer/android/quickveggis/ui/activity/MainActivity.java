@@ -14,7 +14,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -130,16 +129,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        /*
          //     Hotline
-         */
         HotlineConfig hlConfig=new HotlineConfig("c0213431-7b89-4235-aea8-6233dadab310","958dca37-374a-4548-92a0-49a7acce482e");
         hlConfig.setVoiceMessagingEnabled(true);
         hlConfig.setCameraCaptureEnabled(true);
         hlConfig.setPictureMessagingEnabled(true);
 
         Hotline.getInstance(getApplicationContext()).init(hlConfig);
+
 
         currentFragment = CategoriesFragment.newInstance();
 
@@ -148,9 +145,11 @@ public class MainActivity extends AppCompatActivity {
 
         instance = this;
         setSupportActionBar(toolbar);
-
+        //Set Left Menubar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
 
         getSupportFragmentManager().addOnBackStackChangedListener(backStackListener);
 
