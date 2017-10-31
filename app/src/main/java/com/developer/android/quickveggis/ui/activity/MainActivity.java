@@ -135,9 +135,9 @@ public class MainActivity extends AppCompatActivity {
          //     Hotline
          */
         HotlineConfig hlConfig=new HotlineConfig("c0213431-7b89-4235-aea8-6233dadab310","958dca37-374a-4548-92a0-49a7acce482e");
-//        hlConfig.setVoiceMessagingEnabled(true);
-//        hlConfig.setCameraCaptureEnabled(true);
-//        hlConfig.setPictureMessagingEnabled(true);
+        hlConfig.setVoiceMessagingEnabled(true);
+        hlConfig.setCameraCaptureEnabled(true);
+        hlConfig.setPictureMessagingEnabled(true);
 
         Hotline.getInstance(getApplicationContext()).init(hlConfig);
 

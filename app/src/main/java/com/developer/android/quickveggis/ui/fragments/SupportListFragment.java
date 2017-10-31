@@ -1,3 +1,5 @@
+/*Unuseful Anymore from 10/31/2017 by Happyandhappy*/
+
 package com.developer.android.quickveggis.ui.fragments;
 
 import android.os.Bundle;
@@ -27,10 +29,8 @@ import butterknife.ButterKnife;
 public class SupportListFragment extends Fragment implements MainActivity.MenuController{
     SupportAdapter adapter;
     List<Support> data;
-    StickyRecyclerHeadersDecoration decoration;
     @Bind(R.id.rv)
     RecyclerView rv;
-    int type;
 
     /* renamed from: com.quickveggies.quickveggies.ui.fragment.HistoryListFragment.1 */
     class C05651 implements RecyclerItemClickListener.OnItemClickListener {
@@ -73,10 +73,7 @@ public class SupportListFragment extends Fragment implements MainActivity.MenuCo
         data.addAll(TestData.getSupports());
         adapter = new SupportAdapter(this.data, getContext());
         rv.setAdapter(this.adapter);
-//        decoration = new StickyRecyclerHeadersDecoration(this.adapter);
-//        rv.addItemDecoration(this.decoration);
         rv.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), new C05651()));
-//        rv.addItemDecoration(((Builder) ((Builder) new Builder(getActivity()).color(getResources().getColor(R.color.divider))).sizeResId(R.dimen.divider_history)).build());
     }
 
     @Override

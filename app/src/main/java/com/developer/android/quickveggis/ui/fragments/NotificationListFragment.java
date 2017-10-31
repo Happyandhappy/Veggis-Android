@@ -1,3 +1,5 @@
+
+/*Merge Notification and support chat by Happyandhappy on 10/31/2017*/
 package com.developer.android.quickveggis.ui.fragments;
 
 import android.os.Bundle;
@@ -9,18 +11,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.developer.android.quickveggis.R;
 import com.developer.android.quickveggis.TestData;
-import com.developer.android.quickveggis.db.NotificationRepo;
 import com.developer.android.quickveggis.model.NotificationModel;
+import com.developer.android.quickveggis.model.Support;
 import com.developer.android.quickveggis.ui.activity.MainActivity;
 import com.developer.android.quickveggis.ui.adapter.NotificationAdapter;
+import com.developer.android.quickveggis.ui.adapter.SupportAdapter;
 import com.developer.android.quickveggis.ui.utils.FragmentUtils;
 import com.developer.android.quickveggis.ui.utils.RecyclerItemClickListener;
+import com.freshdesk.hotline.Hotline;
 import com.quickveggies.quickveggies.ui.custom.SlideButton;
-import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
 
 import org.json.JSONObject;
 
@@ -34,8 +36,12 @@ public class NotificationListFragment extends Fragment implements MainActivity.M
     static final int TAB_NOTIFICATION = 1;
     static final int TAB_MESSAGE = 2;
 
-    NotificationAdapter adapter;
-    List<NotificationModel> data;
+    NotificationAdapter notifyadapter;    // the adapter for notification data
+    SupportAdapter suppAdapter;           // the adapter for support chat data
+
+    List<NotificationModel> notifydata;   // notification data
+    List<Support> suppdata;               // support chat data
+
 
     @Bind(R.id.rv)
     RecyclerView rv;
@@ -46,7 +52,7 @@ public class NotificationListFragment extends Fragment implements MainActivity.M
     @Bind(R.id.btn_notislide)
     SlideButton btnSlide;
 
-    int type;
+    boolean flag;
 
     /* renamed from: com.quickveggies.quickveggies.ui.fragment.HistoryListFragment.1 */
     class C05651 implements RecyclerItemClickListener.OnItemClickListener {
@@ -55,34 +61,39 @@ public class NotificationListFragment extends Fragment implements MainActivity.M
 
         public void onItemClick(View view, int position) {
 
-            NotificationModel notification = (NotificationModel) data.get(position);
+            if (tabNotification.isSelected()) { //if the current tab is tabNotification
+                NotificationModel notification = (NotificationModel) notifydata.get(position);
+                String description = notification.getContent();
+                try {
+                    JSONObject obj = new JSONObject(description);
 
-            String description = notification.getContent();
-            try {
-                JSONObject obj = new JSONObject(description);
+                    String customStr = obj.getString("custom");
+                    JSONObject customObj0 = new JSONObject(customStr);
 
-                String customStr = obj.getString("custom");
-                JSONObject customObj0 = new JSONObject(customStr);
+                    if (customObj0 != null) {
+                        String urlObj = customObj0.getString("u");
+                        if (urlObj != null) {
 
-                if (customObj0 != null) {
-                    String urlObj = customObj0.getString("u");
-                    if (urlObj != null) {
-
-                        FragmentUtils.changeFragment(NotificationListFragment.this.getActivity(), (int) R.id.content, NotificationLaunch.newInstance(urlObj, NotificationListFragment.this), true);
+                            FragmentUtils.changeFragment(NotificationListFragment.this.getActivity(), (int) R.id.content, NotificationLaunch.newInstance(urlObj, NotificationListFragment.this), true);
+                        }
                     }
+                    Log.d("My App", obj.toString());
+
+                } catch (Throwable t) {
+                    Log.e("My App", "Could not parse malformed JSON: \"" + description + "\"");
+
                 }
-
-                Log.d("My App", obj.toString());
-
-            } catch (Throwable t) {
-                Log.e("My App", "Could not parse malformed JSON: \"" + description + "\"");
-
+            } else if (flag){//if the current tab is tabSupport
+                    Hotline.showConversations(NotificationListFragment.this.getActivity());
+                    flag=!flag;
             }
         }
     }
 
     public NotificationListFragment() {
-        this.data = new ArrayList();
+        this.notifydata = new ArrayList();
+        this.suppdata=new ArrayList<>();
+        flag=true;
     }
 
     public static NotificationListFragment newInstance() {
@@ -96,30 +107,88 @@ public class NotificationListFragment extends Fragment implements MainActivity.M
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notification_list, container, false);
         ButterKnife.bind((Object) this, view);
+
         return view;
     }
 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getActivity().setTitle(R.string.notifications);
-        rv.setLayoutManager(new LinearLayoutManager(getContext()));
-        data.clear();
+        getActivity().setTitle("");
 
+        // Initially set tabNotification as current tab
+        updateTab(TAB_NOTIFICATION);
+        tabNotification.setSelected(true);
+        tabSupport.setSelected(false);
+        rv.setLayoutManager(new LinearLayoutManager(getContext()));
+        setNotificationData();
+
+        // set the listener to the TABs which control the state.
+        tabNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateTab(TAB_NOTIFICATION);
+                tabNotification.setSelected(true);
+                tabSupport.setSelected(false);
+            }
+        });
+
+        tabSupport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateTab(TAB_MESSAGE);
+                tabNotification.setSelected(false);
+                tabSupport.setSelected(true);
+            }
+        });
+
+    }
+
+    // Set the tab state which tab is selected
+    private void updateTab(int tab) {
+        if (tab == TAB_NOTIFICATION) {
+            this.btnSlide.startAnimation(TAB_NOTIFICATION);
+            this.tabNotification.setSelected(true);
+            this.tabSupport.setSelected(false);
+            setNotificationData();
+            return;
+        }
+        this.btnSlide.startAnimation(100);
+        this.tabSupport.setSelected(false);
+        this.tabNotification.setSelected(true);
+        setSupportData();
+    }
+
+    private void setNotificationData(){  // set data in notification list
+        notifydata.clear();
         NotificationModel notificationRepo = new NotificationModel();
         if (false) { // To test
-            data.addAll(TestData.getNotification());
+            notifydata.addAll(TestData.getNotification());
         } else {
 
-                List<NotificationModel> notifications = notificationRepo.getAll();
-                ArrayList<NotificationModel> arrayList = new ArrayList<>(notifications);
-                data.addAll(arrayList);
+            List<NotificationModel> notifications = notificationRepo.getAll();
+            ArrayList<NotificationModel> arrayList = new ArrayList<>(notifications);
+            notifydata.addAll(arrayList);
         }
 
-        adapter = new NotificationAdapter(this.data, getContext());
-        rv.setAdapter(this.adapter);
+        notifyadapter = new NotificationAdapter(this.notifydata, getContext());
+        rv.setAdapter(this.notifyadapter);
         rv.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), new C05651()));
-
         NotificationModel.lastVisited(getContext());
+    }
+
+    private void setSupportData(){  // set data in support chat list
+        flag=true;
+        suppdata.clear();
+        suppdata.addAll(TestData.getSupports());
+        suppAdapter = new SupportAdapter(suppdata, getContext());
+        rv.setAdapter(suppAdapter);
+        rv.addOnItemTouchListener(new RecyclerItemClickListener(getContext(),new C05651()));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        flag=true;  // initial set flag for avoid double hotline screens
     }
 
     @Override
@@ -127,19 +196,5 @@ public class NotificationListFragment extends Fragment implements MainActivity.M
         return 1;
     }
 
-    private void updateTab(int tab) {
-        if (tab == TAB_NOTIFICATION) {
-            this.btnSlide.startAnimation(TAB_NOTIFICATION);
-            this.tabNotification.setSelected(true);
-            this.tabSupport.setSelected(false);
-//            this.blockNotification.setVisibility(View.VISIBLE);
-//            this.blockSupport.setVisibility(View.GONE);
-            return;
-        }
-        this.btnSlide.startAnimation(100);
-        this.tabSupport.setSelected(false);
-        this.tabNotification.setSelected(true);
-//        this.blockSupport.setVisibility(View.VISIBLE);
-//        this.blockNotification.setVisibility(View.GONE);
-    }
 }
+
