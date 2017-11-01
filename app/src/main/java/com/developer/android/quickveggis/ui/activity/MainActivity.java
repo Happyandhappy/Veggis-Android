@@ -40,6 +40,7 @@ import com.developer.android.quickveggis.ui.fragments.ProductFragment;
 import com.developer.android.quickveggis.ui.utils.FragmentUtils;
 import com.freshdesk.hotline.Hotline;
 import com.freshdesk.hotline.HotlineConfig;
+import com.freshdesk.hotline.HotlineUser;
 import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -136,6 +137,17 @@ public class MainActivity extends AppCompatActivity {
         hlConfig.setPictureMessagingEnabled(true);
 
         Hotline.getInstance(getApplicationContext()).init(hlConfig);
+
+        //Set UserData in support chat
+        HotlineUser hlUser=Hotline.getInstance(getApplicationContext()).getUser();
+        hlUser.setName("John Doe");
+        hlUser.setEmail("john.doe.1982@mail.com");
+        hlUser.setExternalId("john.doe");
+        hlUser.setPhone("+91", "9790987495");
+
+
+        //Call updateUser so that the user information is synced with Hotline's servers
+        Hotline.getInstance(getApplicationContext()).updateUser(hlUser);
 
 
         currentFragment = CategoriesFragment.newInstance();

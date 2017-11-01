@@ -93,8 +93,7 @@ public class ProductAdapter extends Adapter<ProductAdapter.Holder> {
         }
 
         try {
-            boolean isNew = TimeUtils.isNewProduct(product.getDateAdded(), "yyyy-MM-dd HH:mm:ss");
-            if (isNew) {
+            if (product.isNew()) {
                 holder.newBadge.setVisibility(View.VISIBLE);
             } else {
                 holder.newBadge.setVisibility(View.GONE);

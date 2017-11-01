@@ -814,16 +814,16 @@ public class ServiceAPI {
         });
     }
 
-    public  void changePassword(String Email,String newPassword,final ResponseCallback<Customer> callback)
+    public  void changePassword(String Email,String newPassword,final ResponseCallback<String> callback)
     {
         LoginUserData changeUserData = new LoginUserData(Email, newPassword);
-        Call<BaseResponse<Customer>> call = mService.updatePassword(MECHANT_ID, SessionController.getInstance().getLoggedInSession(), changeUserData);
-        call.enqueue(new Callback<BaseResponse<Customer>>() {
+        Call<BaseResponse> call = mService.updatePassword(MECHANT_ID, SessionController.getInstance().getLoggedInSession(), changeUserData);
+        call.enqueue(new Callback<BaseResponse>() {
             @Override
-            public void onResponse(Call<BaseResponse<Customer>> call, Response<BaseResponse<Customer>> response) {
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                 if (response.body().getSuccess())
                 {
-                    callback.onSuccess(response.body().getData());
+                    callback.onSuccess("success");
                 }
                 else {
                     if (response.body().getError() != null)
@@ -834,7 +834,7 @@ public class ServiceAPI {
             }
 
             @Override
-            public void onFailure(Call<BaseResponse<Customer>> call, Throwable t) {
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
                 callback.onFailure(RESULT_SERVER_ERROR);
             }
         });

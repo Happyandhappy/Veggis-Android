@@ -1,5 +1,5 @@
 package com.developer.android.quickveggis.ui.fragments;
-
+/*Added newsNumtxt in each product by Happyandhappy 11/1/2017*/
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -17,10 +17,12 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.support.v7.widget.RecyclerView.ViewHolder;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -104,13 +106,11 @@ public class CategoriesFragment extends Fragment implements MainActivity.MenuCon
     }
 
     public void moveIntoSupportFragment() {
-//        FragmentUtils.changeFragment(CategoriesFragment.this.getActivity(), (int) R.id.content, SupportListFragment.newInstance(), true);
         Hotline.showConversations(CategoriesFragment.this.getActivity());
     }
 
     public void moveIntoNotificationFragment() {
         FragmentUtils.changeFragment(CategoriesFragment.this.getActivity(), (int) R.id.content, NotificationListFragment.newInstance(), false);
-//        FragmentUtils.changeFragment(CategoriesFragment.this.getActivity(), (int) R.id.content, SupportListFragment.newInstance(), true);
     }
 
     public void moveIntoCartFragment() {
@@ -124,6 +124,8 @@ public class CategoriesFragment extends Fragment implements MainActivity.MenuCon
             ImageView imgIcon;
             @Bind(R.id.txtTitle)
             TextView txtTitle;
+            @Bind(R.id.newsNumtxt)
+            Button newsNumtxt;
 
             public Holder(View itemView) {
                 super(itemView);
@@ -138,7 +140,11 @@ public class CategoriesFragment extends Fragment implements MainActivity.MenuCon
         public void onBindViewHolder(Holder holder, int position) {
             Category category = categories.get(position);
             holder.txtTitle.setText(category.getName());
-
+            if (Integer.parseInt(category.getNewoffers())>0)  holder.newsNumtxt.setText(category.getNewoffers()+"  New");
+            else {
+                holder.newsNumtxt.setBackgroundResource(R.color.white);
+                holder.newsNumtxt.setText("");
+            }
             Picasso.with(mFragment.getContext()).load(category.getImage().replace(" ", "%20")).into(holder.imgIcon);
         }
 
@@ -246,6 +252,7 @@ public class CategoriesFragment extends Fragment implements MainActivity.MenuCon
             progressDialog.setMessage("Please wait...");
             progressDialog.setCancelable(false);
             progressDialog.show();
+
             ServiceAPI.newInstance().getCategories(new ResponseCallback<ArrayList<Category>>() {
                 @Override
                 public void onSuccess(ArrayList<Category> data) {

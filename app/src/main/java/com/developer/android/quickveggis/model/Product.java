@@ -1,5 +1,6 @@
 package com.developer.android.quickveggis.model;
 
+import com.developer.android.quickveggis.ui.utils.TimeUtils;
 import com.google.gson.annotations.SerializedName;
 
 import java.text.ParseException;
@@ -431,6 +432,8 @@ public class Product {
     public String getDateAdded() {
         return dateAdded;
     }
+
+    public boolean isNew() throws Exception {return TimeUtils.isNewProduct(dateAdded, "yyyy-MM-dd HH:mm:ss");}
 
     public void setDateAdded(String dateAdded) {
         this.dateAdded = dateAdded;

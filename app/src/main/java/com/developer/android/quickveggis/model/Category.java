@@ -13,6 +13,8 @@ public class Category {
     private String image;
     @SerializedName("categories")
     private Object categories;
+    @SerializedName("newoffers")
+    private String newoffers;
 
     public String getCategoryId() {
         return categoryId;
@@ -46,11 +48,14 @@ public class Category {
         this.image = image;
     }
 
-    public Object getCategories() {
-        return categories;
-    }
+    public Object getCategories() {  return categories;}
 
     public void setCategories(Object categories) {
         this.categories = categories;
     }
+
+    public String getNewoffers(){return newoffers;}
+
+    public void setNewoffers(String newoffers){this.newoffers=newoffers;}
+
 }

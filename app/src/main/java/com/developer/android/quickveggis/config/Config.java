@@ -40,7 +40,7 @@ public final class Config {
     public static final String KEY_API_HEADER_SESSION       = "X-Oc-Session";
     public static final String KEY_API_HEADER_CONTENT_TYPE  = "Content-Type";
 
-    public static final String API_BASE_URL                 = "http://kikbac.com/api/rest";
+    public static final String API_BASE_URL                 = "http://dev.kikbac.com/api/rest";
     public static final String API_GET_CATEGORY_LIST        = "/categories";
     public static final String API_LOGIN                    = "/login";
     public static final String API_GET_SESSION              = "/session";
@@ -48,30 +48,30 @@ public final class Config {
     public static final String API_LOGOUT                   = "/logout";
     public static final String API_SIGNUP                   = "/register";
     public static final String API_GET_PRODUCT_LIST         = "/products/category/";
-    public static final String API_GET_WISHLIST             = "http://kikbac.com/index.php?route=feed/rest_api/getWishlist&customer_id=";
-    public static final String API_GET_WISHLIST1            = "http://kikbac.com/api/rest/wishlist";
-    public static final String API_GET_TASKS                = "http://kikbac.com/index.php?route=feed/rest_api/getProductTasks&product_id=";
-    public static final String API_GET_WALLET_AMOUNT        = "http://kikbac.com/index.php?route=feed/rest_api/getWallet&customer_id=";
-    public static final String API_GET_BANKACCOUNT          = "http://kikbac.com/index.php?route=feed/rest_api/getBanks&customer_id=";
-    public static final String API_GET_GIFTCARDS            = "http://kikbac.com/index.php?route=feed/rest_api/getGiftcards";
+    public static final String API_GET_WISHLIST             = "http://dev.kikbac.com/index.php?route=feed/rest_api/getWishlist&customer_id=";
+    public static final String API_GET_WISHLIST1            = "http://dev.kikbac.com/api/rest/wishlist";
+    public static final String API_GET_TASKS                = "http://dev.kikbac.com/index.php?route=feed/rest_api/getProductTasks&product_id=";
+    public static final String API_GET_WALLET_AMOUNT        = "http://dev.kikbac.com/index.php?route=feed/rest_api/getWallet&customer_id=";
+    public static final String API_GET_BANKACCOUNT          = "http://dev.kikbac.com/index.php?route=feed/rest_api/getBanks&customer_id=";
+    public static final String API_GET_GIFTCARDS            = "http://dev.kikbac.com/index.php?route=feed/rest_api/getGiftcards";
 
-    public static final String API_ADD_NEW_ACCOUNT          = "http://kikbac.com/index.php?route=feed/rest_api/addBank";
-    public static final String API_UPDATE_BANK              = "http://kikbac.com/index.php?route=feed/rest_api/updateBank";
+    public static final String API_ADD_NEW_ACCOUNT          = "http://dev.kikbac.com/index.php?route=feed/rest_api/addBank";
+    public static final String API_UPDATE_BANK              = "http://dev.kikbac.com/index.php?route=feed/rest_api/updateBank";
 
-    public static final String API_GET_ORDER_LIST           = "http://kikbac.com/api/rest/customerorders";
-    public static final String API_SAVE_CASHOUT             = "http://kikbac.com/index.php?route=feed/rest_api/savecashout";
-    public static final String API_SAVE_GIFTCARD            = "http://kikbac.com/index.php?route=feed/rest_api/savegiftcard";
+    public static final String API_GET_ORDER_LIST           = "http://dev.kikbac.com/api/rest/customerorders";
+    public static final String API_SAVE_CASHOUT             = "http://dev.kikbac.com/index.php?route=feed/rest_api/savecashout";
+    public static final String API_SAVE_GIFTCARD            = "http://dev.kikbac.com/index.php?route=feed/rest_api/savegiftcard";
 
-    public static final String API_UPLOAD_RECEIPT_IMAGES    = "http://kikbac.com/index.php?route=feed/rest_api/taskReceiptUpload";
-    public static final String API_UPLOAD_GROUP_IMAGE       = "http://kikbac.com/index.php?route=feed/rest_api/taskGroupImageUpload";
+    public static final String API_UPLOAD_RECEIPT_IMAGES    = "http://dev.kikbac.com/index.php?route=feed/rest_api/taskReceiptUpload";
+    public static final String API_UPLOAD_GROUP_IMAGE       = "http://dev.kikbac.com/index.php?route=feed/rest_api/taskGroupImageUpload";
 
-    public static final String API_ADD_PRODUCT_WISHLIST     = "http://kikbac.com/api/rest/wishlist/";
-    public static final String API_DELETE_PRODUCT_WISHLIST  = "http://kikbac.com/api/rest/wishlist/";
+    public static final String API_ADD_PRODUCT_WISHLIST     = "http://dev.kikbac.com/api/rest/wishlist/";
+    public static final String API_DELETE_PRODUCT_WISHLIST  = "http://dev.kikbac.com/api/rest/wishlist/";
 
     //cart API
-    public static final String API_ADD_TASK_TO_CART         = "http://kikbac.com/index.php?route=feed/rest_api/addTaskInCart";
-    public static final String API_GET_CART_LIST            = "http://kikbac.com/index.php?route=feed/rest_api/getCartProducts&customer_id=";
-    public static final String API_REMOVE_PRODUCT_TO_CART   = "http://kikbac.com/index.php?route=feed/rest_api/cartRemove";
+    public static final String API_ADD_TASK_TO_CART         = "http://dev.kikbac.com/index.php?route=feed/rest_api/addTaskInCart";
+    public static final String API_GET_CART_LIST            = "http://dev.kikbac.com/index.php?route=feed/rest_api/getCartProducts&customer_id=";
+    public static final String API_REMOVE_PRODUCT_TO_CART   = "http://dev.kikbac.com/index.php?route=feed/rest_api/cartRemove";
 
     public static String FB_ACCESS_TOKEN;
     public static String GOOGLE_ACCESS_TOKEN;

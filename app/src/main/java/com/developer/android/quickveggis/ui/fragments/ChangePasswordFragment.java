@@ -8,11 +8,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.developer.android.quickveggis.R;
 import com.developer.android.quickveggis.api.ServiceAPI;
+import com.developer.android.quickveggis.api.response.ResponseCallback;
 import com.developer.android.quickveggis.ui.activity.ProfileActivity;
 import com.developer.android.quickveggis.ui.utils.DialogUtils;
 import com.developer.android.quickveggis.ui.utils.FragmentUtils;
@@ -65,6 +65,7 @@ public class ChangePasswordFragment extends Fragment {
                 current_passStr = current_password.getEditText().toString();
                 new_passStr=enter_newpssword.getEditText().getText().toString();
                 reenter_passStr=reenter_newpassword.getEditText().getText().toString();
+
                 //compare the current password with input current_password
                 /*if (current_passStr.equals()){
                     Toast.makeText(getContext(),"Current Password is not correct, Please try again",Toast.LENGTH_SHORT).show();
@@ -72,7 +73,6 @@ public class ChangePasswordFragment extends Fragment {
                 }*/
 
                 //check the length of the new password is more than 4
-
                 if (new_passStr.length()<4 || new_passStr.length()>20){
                     DialogUtils.showAlertDialog(getActivity(), getString(R.string.password_length_error));
                     return;
@@ -83,19 +83,40 @@ public class ChangePasswordFragment extends Fragment {
                     return;
                 }
 
-                sendLoginRequest();
+                sendPasswordChangeRequest();
 
                // Toast.makeText(getActivity(), "Confirmed.", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void sendLoginRequest() {
+    private void sendPasswordChangeRequest() {
         final ProgressDialog loginDialog = new ProgressDialog(getActivity());
-        loginDialog.setMessage("Changing Password...");
+        loginDialog.setMessage(new_passStr);
         loginDialog.setCancelable(false);
         loginDialog.show();
 
         //ServiceAPI.newInstance().changePassword();
+        ServiceAPI.newInstance().changePassword("a@a.com",new_passStr, new ResponseCallback<String>() {
+            @Override
+            public void onSuccess(String data) {
+                Toast.makeText(getActivity(), "Success", Toast.LENGTH_LONG).show();
+                loginDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(String error) {
+//                    Toast.makeText(getActivity(), "Sign Up Failed.\nPlease try again later", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), error, Toast.LENGTH_LONG).show();
+                loginDialog.dismiss();
+
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((ProfileActivity)getActivity()).btnSave.setVisibility(View.VISIBLE);
     }
 }

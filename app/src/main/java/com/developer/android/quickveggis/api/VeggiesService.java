@@ -40,6 +40,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -48,6 +49,7 @@ import static com.developer.android.quickveggis.api.ServiceConfig.ADD_BANK;
 import static com.developer.android.quickveggis.api.ServiceConfig.ADD_PRODUCT_TASK_TO_CART;
 import static com.developer.android.quickveggis.api.ServiceConfig.ADD_PRODUCT_TO_WISHLIST;
 import static com.developer.android.quickveggis.api.ServiceConfig.ADD_REWARD;
+import static com.developer.android.quickveggis.api.ServiceConfig.CHANGE_PASSWORD;
 import static com.developer.android.quickveggis.api.ServiceConfig.CREATE_ORDER;
 import static com.developer.android.quickveggis.api.ServiceConfig.DELETE_BANK;
 import static com.developer.android.quickveggis.api.ServiceConfig.DELETE_PRODUCT_FROM_CART;
@@ -85,7 +87,7 @@ import static com.developer.android.quickveggis.api.ServiceConfig.SAVE_GIFT_CARD
 import static com.developer.android.quickveggis.api.ServiceConfig.SOCIAL_LOGIN;
 import static com.developer.android.quickveggis.api.ServiceConfig.UPDATE_ACCOUNT;
 import static com.developer.android.quickveggis.api.ServiceConfig.UPDATE_BANK;
-import static com.developer.android.quickveggis.api.ServiceConfig.UPDATE_PASSWORD;
+import static com.developer.android.quickveggis.api.ServiceConfig.CHANGE_PASSWORD;
 import static com.developer.android.quickveggis.api.ServiceConfig.UPLOAD_RECEIPT_IMAGE;
 import static com.developer.android.quickveggis.api.ServiceConfig.UPLOAD_TASK_GROUP_IMAGE;
 
@@ -181,8 +183,8 @@ public interface VeggiesService {
                                                                      @Header("X-Oc-Session")String session,
                                                                      @Body SignUpUserData data);
 
-    @POST(UPDATE_PASSWORD)
-    Call<BaseResponse<Customer>>                        updatePassword(@Header("X-Oc-Merchant-Id")String merchantId,
+    @POST(CHANGE_PASSWORD)
+    Call<BaseResponse>                        updatePassword(@Header("X-Oc-Merchant-Id")String merchantId,
                                                               @Header("X-Oc-Session")String session,
                                                               @Body LoginUserData data);
 

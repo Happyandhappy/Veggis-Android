@@ -113,7 +113,7 @@ public class NotificationListFragment extends Fragment implements MainActivity.M
 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getActivity().setTitle("");
+        getActivity().setTitle("Notification and Support");
 
         // Initially set tabNotification as current tab
         updateTab(TAB_NOTIFICATION);

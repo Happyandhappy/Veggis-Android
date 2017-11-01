@@ -53,4 +53,10 @@ public class SecuritySettingsFragment extends Fragment {
         getActivity().setTitle(R.string.security_settings);
 
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((ProfileActivity)getActivity()).btnSave.setVisibility(View.GONE);
+    }
 }
