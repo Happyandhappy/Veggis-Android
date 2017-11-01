@@ -12,7 +12,9 @@ import android.widget.Toast;
 
 import com.developer.android.quickveggis.R;
 import com.developer.android.quickveggis.api.ServiceAPI;
+import com.developer.android.quickveggis.api.model.LoginUserData;
 import com.developer.android.quickveggis.api.response.ResponseCallback;
+import com.developer.android.quickveggis.controller.SessionController;
 import com.developer.android.quickveggis.ui.activity.ProfileActivity;
 import com.developer.android.quickveggis.ui.utils.DialogUtils;
 import com.developer.android.quickveggis.ui.utils.FragmentUtils;
@@ -62,23 +64,27 @@ public class ChangePasswordFragment extends Fragment {
         ((ProfileActivity)getActivity()).btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                current_passStr = current_password.getEditText().toString();
+                current_passStr = current_password.getEditText().getText().toString();
                 new_passStr=enter_newpssword.getEditText().getText().toString();
                 reenter_passStr=reenter_newpassword.getEditText().getText().toString();
 
                 //compare the current password with input current_password
-                /*if (current_passStr.equals()){
+                if (!current_passStr.equals(SessionController.getInstance().getLoginUserInfo().getPassword())){
                     Toast.makeText(getContext(),"Current Password is not correct, Please try again",Toast.LENGTH_SHORT).show();
                     return;
-                }*/
+                }
 
+                if (current_passStr.equals(new_passStr)) {
+                    Toast.makeText(getContext(),"New password is the same as old password. Please try again",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 //check the length of the new password is more than 4
                 if (new_passStr.length()<4 || new_passStr.length()>20){
                     DialogUtils.showAlertDialog(getActivity(), getString(R.string.password_length_error));
                     return;
                 }
                 //compare the enter_password with reenter_password
-                if (!new_passStr.equalsIgnoreCase(reenter_passStr)){
+                if (!new_passStr.equals(reenter_passStr)){
                     DialogUtils.showAlertDialog(getActivity(), getString(R.string.password_reenter_error));
                     return;
                 }
@@ -92,7 +98,7 @@ public class ChangePasswordFragment extends Fragment {
 
     private void sendPasswordChangeRequest() {
         final ProgressDialog loginDialog = new ProgressDialog(getActivity());
-        loginDialog.setMessage(new_passStr);
+        loginDialog.setMessage("Please wait ...");
         loginDialog.setCancelable(false);
         loginDialog.show();
 
@@ -101,6 +107,12 @@ public class ChangePasswordFragment extends Fragment {
             @Override
             public void onSuccess(String data) {
                 Toast.makeText(getActivity(), "Success", Toast.LENGTH_LONG).show();
+
+                //Save new session data
+                LoginUserData logindata=SessionController.getInstance().getLoginUserInfo();
+                logindata.setPassword(new_passStr);
+                SessionController.getInstance().saveLoginInfo(logindata);
+
                 loginDialog.dismiss();
             }
 
