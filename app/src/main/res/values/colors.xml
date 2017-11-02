@@ -68,6 +68,7 @@
     <color name="mainGreenDisabled">#ffc2c2c2</color>
     <color name="mainRed">#ffff6868</color>
     <color name="mainRedDark">#ffe85f5f</color>
+    <color name="mainYellw">#f0dfa0</color>
     <color name="termsColor">#ffb3b3</color>
     <color name="material_blue_grey_800">#ff37474f</color>
     <color name="material_blue_grey_900">#ff263238</color>

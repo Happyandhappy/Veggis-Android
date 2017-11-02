@@ -11,13 +11,13 @@
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="2dp"
-        app:contentPadding="0dp"
-        android:background="@drawable/bg_round">
+        app:contentPadding="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/btn_border_yellow">
 
             <View
                 android:id="@+id/topLine"
