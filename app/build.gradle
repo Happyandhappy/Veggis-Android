@@ -107,6 +107,7 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') {
         transitive = true;
     }
+    compile 'com.msg91.sendotp.library:library:3.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

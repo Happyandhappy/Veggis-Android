@@ -1,5 +1,5 @@
 package com.developer.android.quickveggis.ui.activity;
-
+/*Chanded by happyandhappy on 11/2/2017*/
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -166,6 +167,8 @@ public class ProductsActivity extends AppCompatActivity {
             ImageView imgIcon;
             @Bind(R.id.txtTitle)
             TextView txtTitle;
+            @Bind(R.id.newsNumtxt)
+            Button newsNumtxt;
 
             public Holder(View itemView) {
                 super(itemView);
@@ -181,6 +184,11 @@ public class ProductsActivity extends AppCompatActivity {
             Category category = categories.get(position);
             holder.txtTitle.setText(category.getName());
 
+            if (Integer.parseInt(category.getNewoffers())>0)  holder.newsNumtxt.setText(category.getNewoffers()+"  New");
+            else {
+                holder.newsNumtxt.setBackgroundResource(R.color.white);
+                holder.newsNumtxt.setText("");
+            }
             Picasso.with(ProductsActivity.this).load(category.getImage().replace(" ", "%20")).into(holder.imgIcon);
         }
 

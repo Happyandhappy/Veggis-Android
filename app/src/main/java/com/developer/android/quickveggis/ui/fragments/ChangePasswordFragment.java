@@ -59,7 +59,6 @@ public class ChangePasswordFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getActivity().setTitle(R.string.changepassword);
-        ((ProfileActivity)getActivity()).btnSave.setVisibility(View.VISIBLE);
 
         ((ProfileActivity)getActivity()).btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +74,7 @@ public class ChangePasswordFragment extends Fragment {
                 }
 
                 if (current_passStr.equals(new_passStr)) {
-                    Toast.makeText(getContext(),"New password is the same as old password. Please try again",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"You already used this password. Please try again",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 //check the length of the new password is more than 4
@@ -103,7 +102,7 @@ public class ChangePasswordFragment extends Fragment {
         loginDialog.show();
 
         //ServiceAPI.newInstance().changePassword();
-        ServiceAPI.newInstance().changePassword("a@a.com",new_passStr, new ResponseCallback<String>() {
+        ServiceAPI.newInstance().changePassword(SessionController.getInstance().getLoginUserInfo().getEmail(),new_passStr, new ResponseCallback<String>() {
             @Override
             public void onSuccess(String data) {
                 Toast.makeText(getActivity(), "Success", Toast.LENGTH_LONG).show();

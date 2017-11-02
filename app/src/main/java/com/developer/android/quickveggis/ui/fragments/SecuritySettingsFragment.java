@@ -33,6 +33,7 @@ public class SecuritySettingsFragment extends Fragment {
     public void onClickTouchID(){
         FragmentUtils.changeFragment(getActivity(),R.id.content,TouchIDFragment.newInstance(),true);
     }
+
     public static SecuritySettingsFragment newInstance() {
         Bundle args = new Bundle();
         SecuritySettingsFragment fragment = new SecuritySettingsFragment();
@@ -43,7 +44,6 @@ public class SecuritySettingsFragment extends Fragment {
     @Nullable
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_security_settings, container, false);
-        ButterKnife.bind((Object) this, view);
         ButterKnife.bind((Object) this, view);
         return view;
     }
