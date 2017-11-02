@@ -433,8 +433,6 @@ public class Product {
         return dateAdded;
     }
 
-    public boolean isNew() throws Exception {return TimeUtils.isNewProduct(dateAdded, "yyyy-MM-dd HH:mm:ss");}
-
     public void setDateAdded(String dateAdded) {
         this.dateAdded = dateAdded;
     }

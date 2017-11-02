@@ -1,6 +1,8 @@
 package com.developer.android.quickveggis.ui.utils;
 
 
+import android.widget.Toast;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -8,23 +10,10 @@ import java.util.Date;
 public class TimeUtils {
     public static boolean isNewProduct(String addedDate, String dateFormat) throws Exception {
 
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
-        cal.clear(Calendar.MINUTE);
-        cal.clear(Calendar.SECOND);
-        cal.clear(Calendar.MILLISECOND);
-
-        // get start of this week in milliseconds
-        cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
-
-        Long addedMilis = timeStringtoMilis(addedDate, dateFormat);
-
-        if (cal.getTimeInMillis() - addedMilis > 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date strDate = sdf.parse(addedDate);
+        return !(new Date().after(strDate));
+  }
 
     public static long timeStringtoMilis(String inputString, String format) throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat(format);
