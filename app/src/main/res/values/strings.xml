@@ -344,7 +344,11 @@ Contact:%s"</string>
     <string name="touch_id_str">Enable Touch ID or Password based\nto access to prevent unauthorized\naccess to your Paytm App</string>
     <string name="password_length_error">Password length must be between 4 and 20.</string>
     <string name="password_reenter_error">Confirm Password is invalid.</string>
-
+    <string name="fingerprint_identity">Please pleace your fingertip on the scanner to verify your identity</string>
+    <string name="fingerprint_success">You have successfully logged in with fingerprint authentication</string>
+    <string name="fingerprint_nodevice">Fingerprint authentication permission not enable</string>
+    <string name="fingerprint_insert_register">Register at least one fingerprint in Settings</string>
+    <string name="fingerprint_lockscreen">Lock screen security not enabled in Settings</string>
     <!--377136942489698-->
     <string name="facebook_app_id">377136942489698</string>
     <string name="fb_login_protocol_scheme">fb377136942489698</string>

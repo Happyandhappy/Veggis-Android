@@ -1,7 +1,6 @@
 package com.developer.android.quickveggis.ui.fragments;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -29,15 +28,12 @@ import butterknife.ButterKnife;
 
 import com.developer.android.quickveggis.R;
 import com.developer.android.quickveggis.db.HistoryRepo;
-import com.developer.android.quickveggis.model.Brand;
-import com.developer.android.quickveggis.ui.activity.MainActivity;
 import com.developer.android.quickveggis.ui.activity.ProductsActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.zip.Inflater;
 
 public class FilterFragment extends Fragment {
     FIlterAdapter adapter;
