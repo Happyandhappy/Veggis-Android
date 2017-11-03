@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.developer.android.quickveggis.R;
 import com.developer.android.quickveggis.api.ServiceAPI;
+import com.developer.android.quickveggis.api.model.SocialLoginData;
 import com.developer.android.quickveggis.api.response.ResponseCallback;
 import com.developer.android.quickveggis.config.Config;
 import com.developer.android.quickveggis.controller.CustomerController;
@@ -83,7 +84,6 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void startActivityOnCondition(){
-
         if (SessionController.getInstance().isLoggedInSession()){
             checkTutorial();
             Log.d("session", SessionController.getInstance().getLoggedInSession());

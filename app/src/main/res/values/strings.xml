@@ -346,8 +346,10 @@ Contact:%s"</string>
     <string name="password_reenter_error">Confirm Password is invalid.</string>
 
     <!--377136942489698-->
-    <string name="facebook_app_id">885206444909227</string>
+    <string name="facebook_app_id">377136942489698</string>
+    <string name="fb_login_protocol_scheme">fb377136942489698</string>
 
+    <string name="sendotp_key">84044AwKDEHKgbhjt554ef84d</string>
 
     <integer name="fade_animation_duration">2000</integer>
     <integer name="fade_animation_duration_short">500</integer>
@@ -357,5 +359,5 @@ Contact:%s"</string>
     <integer name="main_menu_open_anim_1st_step_duration">200</integer>
     <integer name="main_menu_open_anim_2nd_step_duration">80</integer>
     <integer name="main_menu_close_anim_step_duration">200</integer>
-
+    
 </resources>

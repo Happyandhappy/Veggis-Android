@@ -17,6 +17,7 @@
     <ImageView
         android:layout_width="25dp"
         android:layout_height="25dp"
+        android:id="@+id/arrow"
         android:layout_gravity="right|center_vertical"
         android:src="@drawable/ic_chevron_right_black_18dp" />
 </LinearLayout>

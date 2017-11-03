@@ -15,8 +15,17 @@
         android:textStyle="bold"
         android:textSize="18sp" />
 
-    <android.support.v7.widget.SwitchCompat
-        android:layout_gravity="center"
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:id="@+id/arrow"
+        android:layout_gravity="right|center_vertical"
+        android:src="@drawable/ic_chevron_right_black_18dp" />
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content" />
+        android:id="@+id/social_state"
+        android:text="Unlink"
+        android:textSize="20dp"
+        android:textColor="@color/mainRed"/>
 </LinearLayout>

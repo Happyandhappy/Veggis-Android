@@ -74,7 +74,7 @@ public class App extends Application {
         ActiveAndroid.initialize(this);
 
         context = getApplicationContext();
-
+//for facebook login
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
 

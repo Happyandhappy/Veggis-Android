@@ -235,7 +235,7 @@ public class MenuFragment extends Fragment {
         return view;
     }
 
-    private SocialLoginData readSocialData() {
+    public SocialLoginData readSocialData() {
         SharedPreferences preferences = getActivity().getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
 
         String profileImg = preferences.getString("profileImg","");
