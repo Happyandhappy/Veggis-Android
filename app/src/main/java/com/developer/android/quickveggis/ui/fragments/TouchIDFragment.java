@@ -52,6 +52,7 @@ public class TouchIDFragment extends Fragment{
             Toast.makeText(getActivity(),"Fingerprint not Allowed",Toast.LENGTH_SHORT).show();
         }
         editor.commit();
+        FragmentUtils.changeFragment(getActivity(),R.id.content,FingerprintFragment.newInstance(),true);
     }
     public static TouchIDFragment newInstance() {
         Bundle args = new Bundle();

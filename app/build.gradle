@@ -111,6 +111,7 @@ dependencies {
         transitive = true;
     }
     compile 'com.msg91.sendotp.library:library:3.1'
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.8'
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -76,7 +76,7 @@ public class FingerprintFragment extends Fragment {
 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getActivity().setTitle(R.string.about);
+        getActivity().setTitle(R.string.security_settings);
 
         SharedPreferences preferences = getActivity().getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
         Boolean state=preferences.getBoolean(FINGERPRINT_ALLOW_STATE,false);
