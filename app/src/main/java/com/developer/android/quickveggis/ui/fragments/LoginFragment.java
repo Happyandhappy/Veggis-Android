@@ -53,14 +53,14 @@ import java.util.Arrays;
 public class LoginFragment extends Fragment implements GoogleApiClient.OnConnectionFailedListener{
     @Bind(R.id.btnFacebook)
     View btnFacebook;
-    @Bind(R.id.btnGoogle)
-    View btnGoogle;
+//    @Bind(R.id.btnGoogle)
+//    View btnGoogle;
     @Bind(R.id.btnSignIn)
     View btnSignIn;
     @Bind(R.id.btnSignUp)
     View btnSignUp;
-    @Bind(R.id.imgBg)
-    ImageView imgBg;
+//    @Bind(R.id.imgBg)
+//    ImageView imgBg;
     @Bind(R.id.imgLogo)
     ImageView imgLogo;
     @Bind(R.id.fbLoginButton)
@@ -94,8 +94,8 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Picasso.with(getContext()).load(R.drawable.logo).fit().centerInside().into(this.imgLogo);
-        Picasso.with(getContext()).load(R.drawable.splash).fit().centerCrop().into(this.imgBg);
+//        Picasso.with(getContext()).load(R.drawable.logo).fit().centerInside().into(this.imgLogo);
+//        Picasso.with(getContext()).load(R.drawable.loginwithbanner).fit().centerCrop().into(this.imgBg);
 
         initFBLogin();
         initGoogle();
@@ -207,11 +207,11 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
     }
 
 
-    @OnClick(R.id.btnGoogle)
-    public void onClickGoogleLogin(){
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
+//    @OnClick(R.id.btnGoogle)
+//    public void onClickGoogleLogin(){
+//        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+//        startActivityForResult(signInIntent, RC_SIGN_IN);
+//    }
 
     private void initGoogle() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

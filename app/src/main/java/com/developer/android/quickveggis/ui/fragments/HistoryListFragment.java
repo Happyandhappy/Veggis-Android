@@ -157,7 +157,7 @@ public class HistoryListFragment extends Fragment implements MainActivity.MenuCo
 
     @Override
     public int getMenuVisibility() {
-        return 1;
+        return 0;
     }
 
     @Override

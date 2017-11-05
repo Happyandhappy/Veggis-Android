@@ -18,6 +18,7 @@ import com.developer.android.quickveggis.R;
 import com.developer.android.quickveggis.api.ServiceAPI;
 import com.developer.android.quickveggis.api.response.ResponseCallback;
 import com.developer.android.quickveggis.config.Config;
+import com.developer.android.quickveggis.model.CartItem;
 import com.developer.android.quickveggis.model.Category;
 import com.developer.android.quickveggis.model.Product;
 import com.developer.android.quickveggis.ui.activity.MainActivity;
@@ -34,12 +35,14 @@ import java.util.Comparator;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+import static com.developer.android.quickveggis.App.shoppingListChanged;
 import static com.developer.android.quickveggis.ui.utils.FadeAnim.startFadeInAnim;
 
 public class ProductsFragment extends Fragment {
     ProductAdapter adapter;
     ArrayList<Product> products;
     ArrayList<Product> productsFiltered;
+    ArrayList<CartItem> cartItems;
     @Bind(R.id.rv)
     RecyclerView rv;
     @Bind(R.id.backToTop)
@@ -105,6 +108,7 @@ public class ProductsFragment extends Fragment {
 
         products = new ArrayList();
         productsFiltered = new ArrayList<>();
+        cartItems = new ArrayList<>();
         this.rv.setLayoutManager(new GridLayoutManager(getContext(), 2));
         this.adapter = new ProductAdapter(getContext(), productsFiltered);
         this.rv.setAdapter(this.adapter);
@@ -132,11 +136,36 @@ public class ProductsFragment extends Fragment {
                         }
                     }
                 }
-
                 products.addAll(data);
                 productsFiltered.addAll(data);
-                adapter.setProducts(productsFiltered);
-                adapter.notifyDataSetChanged();
+
+                //Get CartItem data from server
+                ServiceAPI.newInstance().getCartItems(new ResponseCallback<ArrayList<CartItem>>() {
+                    @Override
+                    public void onSuccess(ArrayList<CartItem> data) {
+                        cartItems.clear();
+                        if (data.size()>0) cartItems.addAll(data);
+                        //Compare the CartItem and Products
+                        if (cartItems.size()>0){
+                            ArrayList<Product> temp=new ArrayList<>();
+                            for (Product proTemp:productsFiltered){
+                                for (CartItem cartTemp:cartItems){
+                                    if (proTemp.getId().equals(cartTemp.getProductId()))proTemp.setAddedCart();
+                                }
+                                temp.add(proTemp);
+                            }
+                            productsFiltered.clear();
+                            productsFiltered.addAll(temp);
+                        }
+                        adapter.setProducts(productsFiltered);
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onFailure(String error) {
+                        Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
+                    }
+                });
 
                 if (PreferenceUtil.getBooleanFromPreference(getActivity(), Config.PRODUCTS_TUTORIAL_VISIBLE, true)) {
                     tutorialLayout.setVisibility(View.VISIBLE);
@@ -159,6 +188,7 @@ public class ProductsFragment extends Fragment {
             }
         });
 
+
         backToTop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,6 +196,9 @@ public class ProductsFragment extends Fragment {
                 rv.smoothScrollToPosition(0);
             }
         });
+
+
+
     }
 
     public void doFilte(String item1, String item2, String item3) {

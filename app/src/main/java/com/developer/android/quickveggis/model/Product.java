@@ -132,6 +132,11 @@ public class Product {
     private Date availabeDate;
     private Date added;
     private Date modified;
+    private boolean isAddedtoCart=false;
+
+    public Product(){
+        isAddedtoCart=false;
+    }
 
     public String getId() {
         return id;
@@ -606,8 +611,13 @@ public class Product {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         return date;
+    }
+    public boolean checkAddedtoCart(){
+        return isAddedtoCart;
+    }
+    public void setAddedCart(){
+        isAddedtoCart=true;
     }
 
 }

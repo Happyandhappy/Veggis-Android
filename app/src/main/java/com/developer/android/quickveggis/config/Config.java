@@ -12,7 +12,7 @@ import java.util.List;
  * Created by developer on 4/21/2016.
  */
 public final class Config {
-    public static final int SPLASH_DELAY_TIME = 1000;
+    public static final int SPLASH_DELAY_TIME = 3000;
     public static final int ONLINE_MODE = 1;
     public static final int OFFLINE_MODE = 2;
     public static final int PRODUCT_MODE = 3;

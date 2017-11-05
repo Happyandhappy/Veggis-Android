@@ -1,6 +1,7 @@
 package com.developer.android.quickveggis.ui.activity;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.developer.android.quickveggis.R;
@@ -22,6 +24,9 @@ import com.developer.android.quickveggis.controller.SessionController;
 import com.developer.android.quickveggis.model.Session;
 import com.developer.android.quickveggis.ui.fragments.SplashFragment;
 import com.developer.android.quickveggis.ui.utils.FragmentUtils;
+import com.squareup.picasso.Picasso;
+
+import butterknife.Bind;
 
 import static com.developer.android.quickveggis.App.launched;
 
@@ -30,13 +35,14 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_frame);
+        setContentView(R.layout.fragmen_splash);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1001);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1010);
         } else {
             launched = false;
-            FragmentUtils.changeFragment(this, R.id.content, SplashFragment.newInstance(), false);
+           // FragmentUtils.changeFragment(this, R.id.content, SplashFragment.newInstance(), false);
+
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -62,14 +68,16 @@ public class SplashActivity extends AppCompatActivity {
     // Requestion of External storage read/write permission using Code  (Can set it using manifest permission)
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode == 1001) {
+        if(requestCode == 1010) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 launched = false;
-                FragmentUtils.changeFragment(this, R.id.content, SplashFragment.newInstance(), false);
+                //FragmentUtils.changeFragment(this, R.id.content, SplashFragment.newInstance(), false);
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         startActivityOnCondition();
+//                        progressDialog.dismiss();
                     }
                 }, Config.SPLASH_DELAY_TIME);
             } else {
@@ -98,6 +106,7 @@ public class SplashActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(String error) {
                     Toast.makeText(SplashActivity.this, error, Toast.LENGTH_SHORT).show();
+
                     restartThisActivity();
                 }
             });

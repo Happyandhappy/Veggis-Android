@@ -1,5 +1,5 @@
 package com.developer.android.quickveggis.ui.fragments;
-
+/*Created by happyandhappy on 11/3/2017*/
 import android.Manifest;
 import android.app.KeyguardManager;
 import android.content.Context;
@@ -65,7 +65,6 @@ public class FingerprintFragment extends Fragment {
         return fragment;
     }
     public FingerprintFragment(){
-
     }
 
     @Nullable

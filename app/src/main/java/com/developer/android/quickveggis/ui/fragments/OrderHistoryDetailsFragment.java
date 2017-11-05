@@ -212,6 +212,6 @@ public class OrderHistoryDetailsFragment extends Fragment implements MainActivit
     }
 
     public int getMenuVisibility() {
-        return 1;
+        return 5;
     }
 }

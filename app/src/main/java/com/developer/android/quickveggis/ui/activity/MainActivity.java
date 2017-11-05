@@ -2,6 +2,7 @@ package com.developer.android.quickveggis.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.developer.android.quickveggis.App;
@@ -42,6 +44,7 @@ import com.freshdesk.hotline.Hotline;
 import com.freshdesk.hotline.HotlineConfig;
 import com.freshdesk.hotline.HotlineUser;
 import com.google.gson.Gson;
+import com.quickveggies.quickveggies.ui.custom.SlideButton;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.joda.time.MutableDateTime;
@@ -52,12 +55,12 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
+    public static final int MENU_ARROW_VISIBLE=5;
     public static final int MENU_EDIT_VISIBLE = 4;
     public static final int MENU_PRODUCT_VISIBLE = 3;
     public static final int MENU_CART_VISIBLE = 2;
     public static final int MENU_NOT_VISIBLE = 1;
     public static final int MENU_VISIBLE = 0;
-
     public static final int FROM_CART = 1;
     public static final int FROM_PRODUCTS_ACTIVITY = 2;
 
@@ -69,9 +72,21 @@ public class MainActivity extends AppCompatActivity {
     int currentMenuVisibility;
     @Bind(R.id.drawerLayout)
     public DrawerLayout mDrawerLayout;
+
     public ActionBarDrawerToggle mDrawerToggle;
+
     @Bind(R.id.toolbar)
-    Toolbar toolbar;
+    public Toolbar toolbar;
+    ////////////////////////For Notification and Support Tabs/////////////////////////////
+    @Bind(R.id.toolbar_notisupport)
+    public RelativeLayout toolbar_notisupport;
+    @Bind(R.id.btn_notislide)
+    public SlideButton btnSlide;
+    @Bind(R.id.tabNotification)
+    public View tabNotification;
+    @Bind(R.id.tabSupport)
+    public View tabSupport;
+    ///////////////////////////////////////////////////////////////////////////////////////
     @Bind(R.id.txtOffline)
     public TextView txtOffline;
 
@@ -255,7 +270,32 @@ public class MainActivity extends AppCompatActivity {
                 menu.findItem(R.id.action_share).setVisible(false);
                 menu.findItem(R.id.action_edit).setVisible(true);
                 break;
+            case MENU_ARROW_VISIBLE:
+                menu.findItem(R.id.action_messages).setVisible(false);
+                menu.findItem(R.id.action_cart).setVisible(false);
+                menu.findItem(R.id.action_notifications).setVisible(false);
+                menu.findItem(R.id.action_share).setVisible(false);
+                menu.findItem(R.id.action_edit).setVisible(false);
+                break;
         }
+/*For change the back-arrow color*/
+        Drawable upArrow = getResources().getDrawable(R.drawable.back_arrow);
+        if (currentMenuVisibility==MENU_NOT_VISIBLE){
+            toolbar_notisupport.setVisibility(View.VISIBLE);
+            toolbar.setBackground(getResources().getDrawable(R.color.white));
+            upArrow.setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
+        }else if(currentMenuVisibility==MutableDateTime.ROUND_NONE) {
+            upArrow = getResources().getDrawable(R.drawable.ic_action_nav);
+            toolbar_notisupport.setVisibility(View.GONE);
+            toolbar.setBackground(getResources().getDrawable(R.color.mainGreen));
+            upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        }
+        else{
+            toolbar_notisupport.setVisibility(View.GONE);
+            toolbar.setBackground(getResources().getDrawable(R.color.mainGreen));
+            upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        }
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
         return super.onPrepareOptionsMenu(menu);
     }

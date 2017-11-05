@@ -22,11 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SplashFragment extends Fragment {
-    @Bind(R.id.imgBg)
-    ImageView imgBg;
-    @Bind({R.id.imgLogo})
-    ImageView imgLogo;
-
     public static SplashFragment newInstance() {
         Bundle args = new Bundle();
         SplashFragment fragment = new SplashFragment();
@@ -37,12 +32,8 @@ public class SplashFragment extends Fragment {
     @Nullable
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragmen_splash, container, false);
-        ButterKnife.bind(this, view);
-
-
-        //  this.test();
-
-
+//        ButterKnife.bind(this, view);
+//         this.test();
         return view;
     }
 
@@ -68,14 +59,11 @@ public class SplashFragment extends Fragment {
         finally {
 
         }
-
         //  List<Notification> notifications = Notification.getAll();
-
     }
 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Picasso.with(getContext()).load(R.drawable.logo).fit().centerInside().into(this.imgLogo);
-        Picasso.with(getContext()).load(R.drawable.splash).fit().centerCrop().into(this.imgBg);
+//        Picasso.with(getContext()).load(R.drawable.logo).fit().centerInside().into(this.imgLogo);
     }
 }

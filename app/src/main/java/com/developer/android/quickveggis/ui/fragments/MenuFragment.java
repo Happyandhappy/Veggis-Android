@@ -60,8 +60,8 @@ import butterknife.ButterKnife;
 public class MenuFragment extends Fragment {
     MenuAdapter adapter;
     @Bind(R.id.blockUser)
-
     View blockUser;
+
     List<Menu> data;
 
     @Bind(R.id.imgAvatar)

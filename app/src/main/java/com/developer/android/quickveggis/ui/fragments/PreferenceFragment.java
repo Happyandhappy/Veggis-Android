@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.developer.android.quickveggis.R;
 import com.developer.android.quickveggis.ui.activity.ProfileActivity;
+import com.developer.android.quickveggis.ui.utils.FragmentUtils;
 
 import butterknife.ButterKnife;
 
@@ -31,6 +32,17 @@ public class PreferenceFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getActivity().setTitle(R.string.preference);
+        ((ProfileActivity)getActivity()).btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentUtils.popBackStack(getActivity());
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         ((ProfileActivity)getActivity()).btnSave.setVisibility(View.VISIBLE);
     }
 }

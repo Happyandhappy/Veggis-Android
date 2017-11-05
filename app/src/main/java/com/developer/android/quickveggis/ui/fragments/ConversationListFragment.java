@@ -24,6 +24,8 @@ import com.developer.android.quickveggis.ui.utils.RecyclerItemClickListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.developer.android.quickveggis.ui.activity.MainActivity.MENU_ARROW_VISIBLE;
+
 public class ConversationListFragment extends Fragment  implements MainActivity.MenuController{
     ConversationAdapter adapter;
     List<Conversation> data;
@@ -114,7 +116,7 @@ public class ConversationListFragment extends Fragment  implements MainActivity.
     }
 
     public int getMenuVisibility() {
-        return 1;
+        return 5;
     }
 
 }

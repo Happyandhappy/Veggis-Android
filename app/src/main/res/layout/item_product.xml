@@ -17,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/btn_border_yellow">
+            android:background="@drawable/btn_border_yellow"
+            android:id="@+id/cart_rectangle">
 
             <View
                 android:id="@+id/topLine"

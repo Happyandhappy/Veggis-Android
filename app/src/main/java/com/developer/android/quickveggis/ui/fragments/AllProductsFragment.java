@@ -66,7 +66,7 @@ public class AllProductsFragment extends Fragment {
     ArrayList<RecyclerView> rvList = new ArrayList<>();
     ArrayList<ProductAdapter> adapterList = new ArrayList<>();
     ArrayList<ArrayList<Product>> categoryProductsFilteredList = new ArrayList<>();
-
+    ArrayList<CartItem> cartItems=new ArrayList<>();
     /* renamed from: com.quickveggies.quickveggies.ui.fragment.ProductsFragment.1 */
     class C05681 implements RecyclerItemClickListener.OnItemClickListener {
         C05681() {
@@ -136,6 +136,7 @@ public class AllProductsFragment extends Fragment {
         }
 
         this.productsLoadingPage.setVisibility(View.VISIBLE);
+
         ServiceAPI.newInstance().getProductsByCategory(category.getCategoryId(), new ResponseCallback<ArrayList<Product>>() {
             @Override
             public void onSuccess(ArrayList<Product> data) {
@@ -157,10 +158,34 @@ public class AllProductsFragment extends Fragment {
                 }
 
                 products.addAll(data);
-                sortProducts();
-                productsFiltered.addAll(data);
+                //Get CartItem data from server
+                ServiceAPI.newInstance().getCartItems(new ResponseCallback<ArrayList<CartItem>>() {
+                    @Override
+                    public void onSuccess(ArrayList<CartItem> data) {
+                        cartItems.clear();
+                        if (data.size()>0) cartItems.addAll(data);
+                        //Compare the CartItem and Products
+                        if (cartItems.size()>0){
+                            ArrayList<Product> temp=new ArrayList<>();
+                            for (Product proTemp:products){
+                                for (CartItem cartTemp:cartItems){
+                                    if (proTemp.getId().equals(cartTemp.getProductId()))proTemp.setAddedCart();
+                                }
+                                temp.add(proTemp);
+                            }
+                            products.clear();
+                            products.addAll(temp);
+                        }
+                        sortProducts();
+                        productsFiltered.addAll(products);
+                        dataSetChanged();
+                    }
 
-                dataSetChanged();
+                    @Override
+                    public void onFailure(String error) {
+                        Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
+                    }
+                });
 
                 if (PreferenceUtil.getBooleanFromPreference(getActivity(), Config.PRODUCTS_TUTORIAL_VISIBLE, true)) {
                     tutorialLayout.setVisibility(View.VISIBLE);

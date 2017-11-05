@@ -45,11 +45,8 @@ public class NotificationListFragment extends Fragment implements MainActivity.M
 
     @Bind(R.id.rv)
     RecyclerView rv;
-    @Bind(R.id.tabNotification)
     View tabNotification;
-    @Bind(R.id.tabSupport)
     View tabSupport;
-    @Bind(R.id.btn_notislide)
     SlideButton btnSlide;
 
     boolean flag;
@@ -107,7 +104,6 @@ public class NotificationListFragment extends Fragment implements MainActivity.M
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notification_list, container, false);
         ButterKnife.bind((Object) this, view);
-
         return view;
     }
 
@@ -116,6 +112,10 @@ public class NotificationListFragment extends Fragment implements MainActivity.M
         getActivity().setTitle("Notification and Support");
 
         // Initially set tabNotification as current tab
+        tabNotification=((MainActivity)getActivity()).tabNotification;
+        tabSupport=((MainActivity)getActivity()).tabSupport;
+        btnSlide=((MainActivity)getActivity()).btnSlide;
+
         updateTab(TAB_NOTIFICATION);
         tabNotification.setSelected(true);
         tabSupport.setSelected(false);

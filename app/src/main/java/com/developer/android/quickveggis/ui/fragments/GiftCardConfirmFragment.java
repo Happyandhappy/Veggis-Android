@@ -24,6 +24,8 @@ import com.developer.android.quickveggis.ui.activity.MainActivity;
 import com.developer.android.quickveggis.ui.utils.FragmentUtils;
 import com.squareup.picasso.Picasso;
 
+import static com.developer.android.quickveggis.ui.activity.MainActivity.MENU_ARROW_VISIBLE;
+
 public class GiftCardConfirmFragment extends Fragment implements MainActivity.MenuController {
     @Bind(R.id.img)
     ImageView image;
@@ -153,6 +155,6 @@ public class GiftCardConfirmFragment extends Fragment implements MainActivity.Me
     }
 
     public int getMenuVisibility() {
-        return 1;
+        return 5;
     }
 }

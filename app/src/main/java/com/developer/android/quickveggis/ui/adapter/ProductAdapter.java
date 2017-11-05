@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -41,6 +42,8 @@ public class ProductAdapter extends Adapter<ProductAdapter.Holder> {
         RelativeLayout quantityLayout;
         @Bind(R.id.newBadge)
         TextView newBadge;
+        @Bind(R.id.cart_rectangle)
+        LinearLayout cart_recatangle;
 
         public Holder(View itemView) {
             super(itemView);
@@ -92,6 +95,7 @@ public class ProductAdapter extends Adapter<ProductAdapter.Holder> {
             holder.quantityLayout.setVisibility(View.VISIBLE);
         }
 
+
         try {
             boolean isNew = TimeUtils.isNewProduct(product.getDateAdded(), "yyyy-MM-dd HH:mm:ss");
             if (isNew) {
@@ -102,6 +106,10 @@ public class ProductAdapter extends Adapter<ProductAdapter.Holder> {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        if (product.checkAddedtoCart()) holder.cart_recatangle.setBackground(getContext().getResources().getDrawable(R.drawable.btn_border_yellow));
+        else holder.cart_recatangle.setBackground(getContext().getResources().getDrawable(R.drawable.btn_border_white));
+
     }
 
     public Context getContext() {

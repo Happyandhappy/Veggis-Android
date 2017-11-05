@@ -711,6 +711,7 @@ public class ProductFragment extends Fragment implements SlideButtonListener , M
                 DialogUtils.dismissUnlockDialog();
                 if (unlockSuccess) {
                     unlockedPopup.setVisibility(View.VISIBLE);
+                    MainActivity.getInstance().invalidateOptionsMenu();
                 }
 
             }
