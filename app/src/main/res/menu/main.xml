@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_messages"
-        android:icon="@drawable/ic_message"
-        android:title="Messages"
-        app:actionLayout="@layout/menu_badge"
+        android:id="@+id/action_map"
+        android:icon="@drawable/ic_point"
+        android:title="Google Map"
+        app:actionLayout="@layout/fragment_map"
         app:showAsAction="always|collapseActionView" />
     <item
         android:id="@+id/action_notifications"

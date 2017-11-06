@@ -356,7 +356,7 @@ Contact:%s"</string>
     <string name="fb_login_protocol_scheme">fb377136942489698</string>
 
     <string name="sendotp_key">84044AwKDEHKgbhjt554ef84d</string>
-
+    <string name="googlemap_apikey"></string>
     <integer name="fade_animation_duration">2000</integer>
     <integer name="fade_animation_duration_short">500</integer>
     <integer name="scale_animation_duration_short">500</integer>

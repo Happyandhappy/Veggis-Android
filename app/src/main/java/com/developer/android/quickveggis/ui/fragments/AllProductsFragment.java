@@ -345,5 +345,9 @@ public class AllProductsFragment extends Fragment {
             getActivity().finish();
         }
     }
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        MainActivity.getInstance().invalidateOptionsMenu();
+    }
 }

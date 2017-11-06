@@ -36,6 +36,7 @@ import com.developer.android.quickveggis.model.event.Logout;
 import com.developer.android.quickveggis.ui.BadgeDrawable;
 import com.developer.android.quickveggis.ui.fragments.CartFragment;
 import com.developer.android.quickveggis.ui.fragments.CategoriesFragment;
+import com.developer.android.quickveggis.ui.fragments.MapFragment;
 import com.developer.android.quickveggis.ui.fragments.MenuFragment;
 import com.developer.android.quickveggis.ui.fragments.NotificationListFragment;
 import com.developer.android.quickveggis.ui.fragments.ProductFragment;
@@ -230,48 +231,48 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onPrepareOptionsMenu(Menu menu) { // because of this, the app crash ???
 
-        setBadge(menu, R.id.action_messages, R.drawable.ic_message, MENU_NOT_VISIBLE); //
+//        setBadge(menu, R.id.action_messages, R.drawable.ic_message, MENU_NOT_VISIBLE); //
         setBadge(menu, R.id.action_cart, R.drawable.ic_shopping, MENU_VISIBLE);
         setBadge(menu, R.id.action_notifications, R.drawable.ic_reminder, MENU_CART_VISIBLE);
 
         switch (currentMenuVisibility) {
             case MutableDateTime.ROUND_NONE /*0*/:
-                menu.findItem(R.id.action_messages).setVisible(false);
+                menu.findItem(R.id.action_map).setVisible(true);
                 menu.findItem(R.id.action_cart).setVisible(true);
                 menu.findItem(R.id.action_notifications).setVisible(true);
                 menu.findItem(R.id.action_share).setVisible(false);
                 menu.findItem(R.id.action_edit).setVisible(false);
                 break;
             case MENU_NOT_VISIBLE /*1*/:
-                menu.findItem(R.id.action_messages).setVisible(false);
+                menu.findItem(R.id.action_map).setVisible(false);
                 menu.findItem(R.id.action_cart).setVisible(false);
                 menu.findItem(R.id.action_notifications).setVisible(false);
                 menu.findItem(R.id.action_share).setVisible(false);
                 menu.findItem(R.id.action_edit).setVisible(false);
                 break;
             case MENU_CART_VISIBLE /*2*/:
-                menu.findItem(R.id.action_messages).setVisible(false);
+                menu.findItem(R.id.action_map).setVisible(false);
                 menu.findItem(R.id.action_cart).setVisible(true);
                 menu.findItem(R.id.action_notifications).setVisible(false);
                 menu.findItem(R.id.action_share).setVisible(false);
                 menu.findItem(R.id.action_edit).setVisible(false);
                 break;
             case MENU_PRODUCT_VISIBLE:/*3*/
-                menu.findItem(R.id.action_messages).setVisible(false);
+                menu.findItem(R.id.action_map).setVisible(false);
                 menu.findItem(R.id.action_cart).setVisible(true);
                 menu.findItem(R.id.action_notifications).setVisible(false);
                 menu.findItem(R.id.action_share).setVisible(true);
                 menu.findItem(R.id.action_edit).setVisible(false);
                 break;
             case MENU_EDIT_VISIBLE:/*4*/
-                menu.findItem(R.id.action_messages).setVisible(false);
+                menu.findItem(R.id.action_map).setVisible(false);
                 menu.findItem(R.id.action_cart).setVisible(false);
                 menu.findItem(R.id.action_notifications).setVisible(false);
                 menu.findItem(R.id.action_share).setVisible(false);
                 menu.findItem(R.id.action_edit).setVisible(true);
                 break;
             case MENU_ARROW_VISIBLE:
-                menu.findItem(R.id.action_messages).setVisible(false);
+                menu.findItem(R.id.action_map).setVisible(false);
                 menu.findItem(R.id.action_cart).setVisible(false);
                 menu.findItem(R.id.action_notifications).setVisible(false);
                 menu.findItem(R.id.action_share).setVisible(false);
@@ -357,9 +358,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         switch (item.getItemId()) {
-            case R.id.action_messages:
+            case R.id.action_map:
+                FragmentUtils.popBackStack(this);
                 mDrawerToggle.setDrawerIndicatorEnabled(false);
-                Hotline.showConversations((FragmentActivity) this);
+                FragmentUtils.changeFragment((FragmentActivity) this, R.id.content, MapFragment.newInstance(), false);
                 break;
 
             case R.id.action_cart:

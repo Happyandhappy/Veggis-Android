@@ -265,4 +265,9 @@ public class ProductsFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        MainActivity.getInstance().invalidateOptionsMenu();
+    }
 }

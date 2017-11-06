@@ -45,6 +45,7 @@ public class NotificationListFragment extends Fragment implements MainActivity.M
 
     @Bind(R.id.rv)
     RecyclerView rv;
+
     View tabNotification;
     View tabSupport;
     SlideButton btnSlide;
