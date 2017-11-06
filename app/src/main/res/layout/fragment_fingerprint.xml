@@ -2,43 +2,43 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_marginBottom="20dp">
+    android:layout_marginBottom="20dp"
+    android:orientation="vertical">
 
     <LinearLayout
+        android:background="#e6e6e6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2">
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/finger_auth_start"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="visible">
-        <LinearLayout
-            android:background="#e6e6e6"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-        </LinearLayout>
+        android:visibility="visible"
+        android:layout_weight="1">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <pl.droidsonroids.gif.GifImageView
+                    android:id="@+id/imageFinger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:background="@color/white"
+                    android:src="@drawable/fingerprint" />
 
-        <FrameLayout
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone">
+            </FrameLayout>
 
-            <pl.droidsonroids.gif.GifImageView
-                android:id="@+id/imageFinger"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:background="@color/white"
-                android:src="@drawable/fingerprint" />
-        </FrameLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            android:visibility="gone"
-            android:layout_weight="1">
-
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_weight="1">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -56,30 +56,28 @@
                     android:layout_below="@id/textView"
                     android:textSize="20dp"/>
 
-            <TextView
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/no_thanks"
-                android:textAlignment="center"
-                android:textColor="@color/mainGreen"
-                android:textSize="30dp"
-                android:textStyle="bold"
-                android:layout_alignParentBottom="true"/>
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_weight="0.5"
-            android:visibility="visible">
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_success"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_thanks"
+                    android:textAlignment="center"
+                    android:textColor="@color/mainGreen"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    android:layout_alignParentBottom="true"/>
+            </RelativeLayout>
         </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/finger_auth_success"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:visibility="gone">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_success"/>
     </LinearLayout>
-
 </LinearLayout>
