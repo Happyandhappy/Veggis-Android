@@ -29,7 +29,10 @@ android {
 //            storePassword '123456'
 //        }
 //    }
-
+    dexOptions {
+        incremental true
+        javaMaxHeapSize "4g"
+    }
     defaultConfig {
         applicationId "com.developer.android.quickveggis"
         minSdkVersion 18
