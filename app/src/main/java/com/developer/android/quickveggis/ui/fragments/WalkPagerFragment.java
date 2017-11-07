@@ -156,8 +156,12 @@ public class WalkPagerFragment extends Fragment {
 
     private void fillList() {
         data.clear();
-        data.add(Walk1Fragment.newInstance(R.drawable.walk1_1, R.string.walk1_cashback, R.string.walk1_groceries));
-        data.add(Walk1Fragment.newInstance(R.drawable.walk1_2, R.string.walk1_earn_money, R.string.walk1_not_points));
-        data.add(Walk1Fragment.newInstance(R.drawable.walk1_3, R.string.walk1_everywhere, R.string.walk1_upload_receipt));
+        data.add(Walk1Fragment.newInstance(R.drawable.checkpoint1, R.string.walk1_cashback, R.string.walk1_groceries));
+        data.add(Walk1Fragment.newInstance(R.drawable.checkpoint2, R.string.walk1_snap, R.string.walk1_snap_receipt));
+        data.add(Walk1Fragment.newInstance(R.drawable.checkpoint3, R.string.walk1_earn_money, R.string.walk1_not_points));
+//
+//        data.add(Walk1Fragment.newInstance(R.drawable.walk1_1, R.string.walk1_cashback, R.string.walk1_groceries));
+//        data.add(Walk1Fragment.newInstance(R.drawable.walk1_2, R.string.walk1_earn_money, R.string.walk1_not_points));
+//        data.add(Walk1Fragment.newInstance(R.drawable.walk1_3, R.string.walk1_everywhere, R.string.walk1_upload_receipt));
     }
 }

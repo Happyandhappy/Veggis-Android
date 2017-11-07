@@ -143,12 +143,13 @@ You earned"</string>
     <string name="submit_title">"HOLD UP, IT WILL TAKE A \n LITTLE WHILE."</string>
     <string name="submit_sending">Sending to Kikbac...</string>
     <string name="walk_skip">Skip</string>
-    <string name="walk1_cashback">Get Cash Back Every time</string>
+    <string name="walk1_cashback">Get Cash Back, Every time</string>
     <string name="walk1_earn_money">Earn Real Money</string>
-    <string name="walk1_everywhere">Everywhere you shop</string>
-    <string name="walk1_groceries">You shop for Groceries</string>
-    <string name="walk1_not_points">Not Points</string>
-    <string name="walk1_upload_receipt">Just upload your receipt</string>
+    <string name="walk1_snap">A snap , Thats All</string>
+    <string name="walk1_groceries">Get Cashback by redeeming\nthe offers</string>
+    <string name="walk1_not_points">Earn real money, not points</string>
+    <string name="walk1_snap_receipt">Just snap a photo of your receipt\n&amp; products</string>
+
     <string name="walk2_1_subtitle">Choose from an extensive list of products.</string>
     <string name="walk2_1_title">Discover &amp; Earn</string>
     <string name="walk2_2_title">Discover &amp; Earn</string>
