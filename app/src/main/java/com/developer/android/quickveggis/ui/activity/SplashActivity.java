@@ -163,7 +163,7 @@ public class SplashActivity extends AppCompatActivity {
         finish();
     }
 
-    private void startWalk1Activity(){
+    public void startWalk1Activity(){
         startActivity(new Intent(this, Walk1Activity.class));
         finish();
     }

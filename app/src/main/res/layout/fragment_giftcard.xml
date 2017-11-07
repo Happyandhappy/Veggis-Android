@@ -2,22 +2,33 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:padding="15dp">
+    android:layout_width="match_parent">
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <android.support.v7.widget.CardView
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="5dp"
         app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="false">
+        app:cardUseCompatPadding="false"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
 
         <LinearLayout
             android:gravity="center"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_height="250dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent" />
 
             <TextView
                 android:gravity="center"
@@ -26,15 +37,9 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:textAllCaps="true"
-                android:textColor="@color/mainRed"
+                android:textColor="@color/mainGreen"
                 android:textSize="60sp"
                 android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/img"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent" />
 
             <TextView
                 android:gravity="center"
@@ -42,15 +47,31 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:text="@string/gift_card"
-                android:textColor="@color/black"
+                android:textStyle="bold"
                 android:textSize="24sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/gift_description"
+                android:gravity="center"
+                android:textSize="21dp"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="@string/gift_emailaddress"/>
 
             <Button
                 style="@style/BtnGreen"
-                android:background="@drawable/btn_red"
+                android:background="@drawable/btn_green"
                 android:id="@+id/btnNext"
                 android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
                 android:text="@string/confirm" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
+    </ScrollView>
 </RelativeLayout>

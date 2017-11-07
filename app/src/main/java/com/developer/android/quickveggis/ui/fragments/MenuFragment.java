@@ -2,6 +2,7 @@ package com.developer.android.quickveggis.ui.fragments;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -11,10 +12,12 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Shader;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
@@ -27,6 +30,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,6 +47,7 @@ import com.developer.android.quickveggis.ui.activity.ConversationActivity;
 import com.developer.android.quickveggis.ui.activity.MainActivity;
 import com.developer.android.quickveggis.ui.activity.ProfileActivity;
 import com.developer.android.quickveggis.ui.activity.TutorialActivity;
+import com.developer.android.quickveggis.ui.activity.Walk1Activity;
 import com.developer.android.quickveggis.ui.utils.FragmentUtils;
 import com.developer.android.quickveggis.ui.utils.PreferenceUtil;
 import com.developer.android.quickveggis.ui.utils.RecyclerItemClickListener;
@@ -390,6 +395,9 @@ public class MenuFragment extends Fragment {
         tutorial.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                startActivity(new Intent(getContext(), TutorialActivity.class));
+
                 PreferenceUtil.saveBooleanToPreference(getActivity(), Config.PRODUCTS_TUTORIAL_VISIBLE, true);
                 PreferenceUtil.saveBooleanToPreference(getActivity(), Config.PRODUCT_TUTORIAL_VISIBLE, true);
                 PreferenceUtil.saveBooleanToPreference(getActivity(), Config.CART_TUTORIAL_VISIBLE, true);
@@ -400,6 +408,24 @@ public class MenuFragment extends Fragment {
         howToUse.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                LayoutInflater li = LayoutInflater.from(getContext());
+                View promptsView = li.inflate(R.layout.popupscreen, null);
+
+                final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+                // set prompts.xml to alertdialog builder
+                alertDialogBuilder.setView(promptsView);
+                final Button closeBtn = (Button) promptsView.findViewById(R.id.popupclose);
+
+                final AlertDialog howtouseDialog = alertDialogBuilder.create();
+
+                closeBtn.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        howtouseDialog.dismiss();
+                    }
+                });
+                howtouseDialog.show();
+
                 dialog.dismiss();
             }
         });
@@ -407,6 +433,10 @@ public class MenuFragment extends Fragment {
         helpCenter.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent openURL = new Intent(android.content.Intent.ACTION_VIEW);
+                openURL.setData(Uri.parse("https://kikbac.zendesk.com/hc/en-us"));
+                startActivity(openURL);
+
                 dialog.dismiss();
             }
         });

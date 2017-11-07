@@ -135,7 +135,9 @@ You earned"</string>
     <string name="profile_enthnicity_other">Other</string>
     <string name="save">Save</string>
     <string name="wallet_cash_out">Cash out</string>
-    <string name="gift_card">Gift card</string>
+    <string name="gift_card">Gift card conformation</string>
+    <string name="gift_description">We will send the gift card to\n the registered email with us.</string>
+    <string name="gift_emailaddress">From : earn@kikback.com</string>
     <string name="confirm">Confirm</string>
     <string name="mobile">Mobile</string>
     <string name="submit_title">"HOLD UP, IT WILL TAKE A \n LITTLE WHILE."</string>

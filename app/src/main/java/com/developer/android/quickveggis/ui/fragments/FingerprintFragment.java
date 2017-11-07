@@ -5,7 +5,7 @@ import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
+import android.graphics.Color;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,8 +15,6 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +22,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.developer.android.quickveggis.R;
-import com.developer.android.quickveggis.model.ProfileMenu;
+
 import com.developer.android.quickveggis.ui.adapter.FingerprintHandler;
-import com.developer.android.quickveggis.ui.dialog.NotifyDialog;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.KeyStore;
@@ -37,8 +35,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -47,10 +43,14 @@ import javax.crypto.SecretKey;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import pl.droidsonroids.gif.GifImageView;
 
 import static com.developer.android.quickveggis.ui.fragments.TouchIDFragment.FINGERPRINT_ALLOW_STATE;
 
 public class FingerprintFragment extends Fragment {
+    @Bind(R.id.imageFinger)
+    GifImageView imageFinger;
+
     private KeyStore keyStore;
     private static final String KEY_NAME="EDMTDev";
     private Cipher cipher;
@@ -77,6 +77,20 @@ public class FingerprintFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getActivity().setTitle(R.string.security_settings);
+
+//        imageFinger.setBackgroundColor(Color.TRANSPARENT);
+//
+//        try {
+//            InputStream is = getActivity().getAssets().open("check_animation2.gif");
+//            byte[] bytes = new byte[is.available()];
+//            is.read(bytes);
+//            is.close();
+//
+//            imageFinger.setBytes(bytes);
+//            imageFinger.startAnimation();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
         SharedPreferences preferences = getActivity().getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
         Boolean state=preferences.getBoolean(FINGERPRINT_ALLOW_STATE,false);
