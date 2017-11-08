@@ -17,20 +17,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_weight="1">
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
-                <pl.droidsonroids.gif.GifImageView
+                <com.felipecsl.gifimageview.library.GifImageView
                     android:id="@+id/imageFinger"
                     android:layout_width="130dp"
                     android:layout_height="130dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/fingerprint"
                     android:visibility="visible"/>
+                <ImageView
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_gravity="center"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                    android:id="@+id/imageFailure"
+                    android:visibility="gone"/>
 
             </FrameLayout>
 
@@ -55,6 +61,7 @@
                     android:textAlignment="center"
                     android:text="@string/fingerprint_identity"
                     android:layout_below="@id/textView"
+                    android:id="@+id/auth_state_txt"
                     android:textSize="20dp"/>
 
                 <TextView
@@ -73,22 +80,32 @@
         android:id="@+id/finger_auth_success"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center"
             android:src="@drawable/success_mark"/>
-        <TextView
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/mainGreen"
+                android:textAlignment="center"
+                android:layout_gravity="bottom"
+                android:textSize="20dp"
+                android:text="Success"
+                android:layout_weight="1"/>
+        </FrameLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/mainGreen"
-            android:textAlignment="center"
-            android:layout_marginTop="10dp"
-            android:textSize="20dp"
-            android:text="Success"/>
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
     </LinearLayout>
 </LinearLayout>

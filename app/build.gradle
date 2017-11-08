@@ -114,10 +114,11 @@ dependencies {
         transitive = true;
     }
     compile 'com.msg91.sendotp.library:library:3.1'
-    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.8'
     //for google maps
     compile 'com.google.android.gms:play-services-maps:9.2.1'
     compile 'com.google.android.gms:play-services-location:9.2.1'
+    compile 'com.multidots:fingerprint-auth:1.0.1'
+    compile project(':fingerprint-auth')
 }
 
 apply plugin: 'com.google.gms.google-services'

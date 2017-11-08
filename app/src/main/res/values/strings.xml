@@ -350,9 +350,11 @@ Contact:%s"</string>
     <string name="finger_authorize">Authorize to continue</string>
     <string name="fingerprint_identity">Please your finger on the \ntrackpad to open the app</string>
     <string name="fingerprint_success">You have successfully logged in with fingerprint authentication</string>
-    <string name="fingerprint_nodevice">Fingerprint authentication permission not enable</string>
-    <string name="fingerprint_insert_register">Register at least one fingerprint in Settings</string>
-    <string name="fingerprint_lockscreen">Lock screen security not enabled in Settings</string>
+    <string name="fingerprint_nodevice">Your device does not have finger print scanner.</string>
+    <string name="fingerprint_nofinger_registered">There are no finger prints registered on this device. Please register your finger from settings.</string>
+    <string name="fingerprint_old_device">You are running older version of android that does not support finger print authentication.</string>
+    <string name="fingerprint_not_recognize">Cannot recognize your finger print. Please try again.</string>
+    <string name="fingerprint_not_initialize">Cannot initialize finger print authentication.</string>
     <string name="no_thanks">No Thanks</string>
     <!--377136942489698-->
     <string name="facebook_app_id">377136942489698</string>

@@ -1,2 +1,2 @@
-include ':app', 'DialTimePickerLibrary', ':ptr-lib', ':library'
+include ':app', 'DialTimePickerLibrary', ':ptr-lib', ':library', ':fingerprint-auth'
 include ':ViewPagerLibrary'

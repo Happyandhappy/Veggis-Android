@@ -1,62 +1,57 @@
 package com.developer.android.quickveggis.ui.fragments;
 /*Created by happyandhappy on 11/3/2017*/
-import android.Manifest;
-import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.hardware.fingerprint.FingerprintManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.security.keystore.KeyGenParameterSpec;
-import android.security.keystore.KeyProperties;
+import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.developer.android.quickveggis.R;
 
-import com.developer.android.quickveggis.ui.adapter.FingerprintHandler;
+import com.developer.android.quickveggis.config.Config;
+import com.felipecsl.gifimageview.library.GifImageView;
+import com.multidots.fingerprintauth.AuthErrorCodes;
+import com.multidots.fingerprintauth.FingerPrintAuthCallback;
+import com.multidots.fingerprintauth.FingerPrintAuthHelper;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateException;
-
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import pl.droidsonroids.gif.GifImageView;
+
 
 import static com.developer.android.quickveggis.ui.fragments.TouchIDFragment.FINGERPRINT_ALLOW_STATE;
 
-public class FingerprintFragment extends Fragment {
-    @Bind(R.id.imageFinger)
+public class FingerprintFragment extends Fragment implements FingerPrintAuthCallback {
+    @Bind(R.id.finger_auth_start)
+    LinearLayout auth_start;
+
+    @Bind(R.id.finger_auth_success)
+    LinearLayout auth_success;
+
+    @Bind(R.id.auth_state_txt)
+    TextView authStatetxt;
+
+    @Bind(R.id.imageFailure)
+    ImageView imageFailure;
+
     GifImageView imageFinger;
+    private FingerPrintAuthHelper mFingerPrintAuthHelper;
 
-    private KeyStore keyStore;
-    private static final String KEY_NAME="EDMTDev";
-    private Cipher cipher;
-    private TextView textView;
-    private Object key;
-
+    private final int FINGER_START=1;
+    private final int FINGER_SUCCESS=2;
+    private final int FINGER_NOTRECOG=3;
+    private final int FINGER_NOTINITIAL=4;
 
     public static FingerprintFragment newInstance() {
         Bundle args = new Bundle();
@@ -64,142 +59,140 @@ public class FingerprintFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-    public FingerprintFragment(){
+    void setState(int state){
+         switch (state) {
+             case FINGER_START:
+                 recogResult(false);
+                 imageFinger.setVisibility(View.VISIBLE);
+                 imageFailure.setVisibility(View.GONE);
+                 auth_start.setVisibility(View.VISIBLE);
+                 auth_success.setVisibility(View.GONE);
+                 authStatetxt.setText(getResources().getString(R.string.fingerprint_identity));
+                 recogResult(false);
+                 break;
+             case FINGER_SUCCESS:
+                 imageFinger.setVisibility(View.VISIBLE);
+                 imageFailure.setVisibility(View.GONE);
+                 auth_start.setVisibility(View.GONE);
+                 auth_success.setVisibility(View.VISIBLE);
+                 authStatetxt.setText(getResources().getString(R.string.fingerprint_identity));
+                 recogResult(true);
+                 break;
+             case FINGER_NOTRECOG:
+                 imageFinger.setVisibility(View.GONE);
+                 imageFailure.setVisibility(View.VISIBLE);
+                 auth_start.setVisibility(View.VISIBLE);
+                 auth_success.setVisibility(View.GONE);
+                 authStatetxt.setText(getResources().getString(R.string.fingerprint_not_recognize));
+                 recogResult(false);
+                 break;
+             case FINGER_NOTINITIAL:
+                 imageFinger.setVisibility(View.GONE);
+                 imageFailure.setVisibility(View.VISIBLE);
+                 auth_start.setVisibility(View.VISIBLE);
+                 auth_success.setVisibility(View.GONE);
+                 recogResult(false);
+                 authStatetxt.setText(getResources().getString(R.string.fingerprint_not_recognize));
+                 break;
+         }
+    }
+
+    void recogResult(Boolean value){
+        SharedPreferences preferences = getActivity().getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(FINGERPRINT_ALLOW_STATE,value);
+        editor.commit();
+    }
+
+    protected void startAnim(final int state){
+        imageFinger.clearAnimation();
+        imageFinger.startAnimation();
+        setState(FINGER_START);
+        new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    imageFinger.stopAnimation();
+                    setState(state);
+                }
+            }, 2500);
     }
 
     @Nullable
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_fingerprint, container, false);
+        imageFinger = (com.felipecsl.gifimageview.library.GifImageView)view.findViewById(R.id.imageFinger);
+        imageFinger.setBackgroundColor(Color.TRANSPARENT);
+        try {
+            InputStream is = getActivity().getAssets().open("fingerprint.gif");
+            byte[] bytes = new byte[is.available()];
+            is.read(bytes);
+            is.close();
+            imageFinger.setBytes(bytes);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         ButterKnife.bind((Object) this, view);
+        setState(FINGER_START);
         return view;
     }
 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getActivity().setTitle(R.string.security_settings);
+        mFingerPrintAuthHelper = FingerPrintAuthHelper.getHelper(getContext(), this);
+    }
 
-//        imageFinger.setBackgroundColor(Color.TRANSPARENT);
-//
-//        try {
-//            InputStream is = getActivity().getAssets().open("check_animation2.gif");
-//            byte[] bytes = new byte[is.available()];
-//            is.read(bytes);
-//            is.close();
-//
-//            imageFinger.setBytes(bytes);
-//            imageFinger.startAnimation();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+    @Override
+    public void onNoFingerPrintHardwareFound() {
+        Toast.makeText(getContext(),getResources().getString(R.string.fingerprint_nodevice),Toast.LENGTH_SHORT);
+        getActivity().finish();
+    }
 
-        SharedPreferences preferences = getActivity().getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
-        Boolean state=preferences.getBoolean(FINGERPRINT_ALLOW_STATE,false);
-        if (!state) {
-            Toast.makeText(getActivity(),"Please set Toggle App Lock in Security Settings", Toast.LENGTH_SHORT).show();
-            getActivity().finish();
-        }
+    @Override
+    public void onNoFingerPrintRegistered() {
+        authStatetxt.setText(getResources().getString(R.string.fingerprint_nofinger_registered));
+    }
 
-        KeyguardManager keyguardManager = (KeyguardManager) getActivity().getSystemService(Context.KEYGUARD_SERVICE);
-        FingerprintManager fingerprintManager = (FingerprintManager) getActivity().getSystemService(Context.FINGERPRINT_SERVICE);
+    @Override
+    public void onBelowMarshmallow() {
+        authStatetxt.setText(getResources().getString(R.string.fingerprint_old_device));
+        getActivity().finish();
+    }
 
-        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.USE_FINGERPRINT)!= PackageManager.PERMISSION_GRANTED){
-            Toast.makeText(getContext(),"Allow your Fingerprint permision",Toast.LENGTH_SHORT).show();
-            getActivity().finish();
-        }
+    @Override
+    public void onAuthSuccess(FingerprintManager.CryptoObject cryptoObject) {
+        startAnim(FINGER_SUCCESS);
+    }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!fingerprintManager.isHardwareDetected())
-                Toast.makeText(getActivity(), getResources().getString(R.string.fingerprint_nodevice), Toast.LENGTH_SHORT).show();
-            else {
-                if (!fingerprintManager.hasEnrolledFingerprints()) Toast.makeText(getActivity(), getResources().getString(R.string.fingerprint_insert_register), Toast.LENGTH_SHORT).show();
-                else {
-                    if (!keyguardManager.isKeyguardSecure())
-                        Toast.makeText(getActivity(), getResources().getString(R.string.fingerprint_lockscreen), Toast.LENGTH_SHORT).show();
-                    else getKey();
-
-                    if (cipherInit()){
-                        FingerprintManager.CryptoObject cryptoObject=new FingerprintManager.CryptoObject(cipher);
-                        FingerprintHandler helper=new FingerprintHandler(getActivity().getBaseContext());
-                        helper.startAuthentication(fingerprintManager,cryptoObject);
-                    }
-                }
-            }
+    @Override
+    public void onAuthFailed(int errorCode, String errorMessage) {
+        switch (errorCode) {
+            case AuthErrorCodes.CANNOT_RECOGNIZE_ERROR:
+                startAnim(FINGER_NOTRECOG);
+                break;
+            case AuthErrorCodes.NON_RECOVERABLE_ERROR:
+                //Fix crash error
+//                Toast.makeText(getActivity(),getResources().getString(R.string.fingerprint_not_initialize),Toast.LENGTH_SHORT);
+//                authStatetxt.setText(getResources().getString(R.string.fingerprint_not_initialize));
+                break;
+            case AuthErrorCodes.RECOVERABLE_ERROR:
+                authStatetxt.setText(errorMessage);
+//                Toast.makeText(getActivity(),errorMessage,Toast.LENGTH_SHORT);
+                break;
         }
     }
 
-    private boolean cipherInit() {
-        try {
-            cipher=Cipher.getInstance(KeyProperties.KEY_ALGORITHM_AES+"/"+KeyProperties.BLOCK_MODE_CBC+"/"+KeyProperties.ENCRYPTION_PADDING_PKCS7);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        }
-            try {
-                keyStore.load(null);
-                SecretKey key = (SecretKey) keyStore.getKey(KEY_NAME, null);
-                cipher.init(Cipher.ENCRYPT_MODE, key);
-                return true;
-            }catch (IOException e1){
-                e1.printStackTrace();
-                return false;
-            }catch (NoSuchAlgorithmException e1){
-                e1.printStackTrace();
-                return false;
-            }catch (CertificateException e1){
-                e1.printStackTrace();
-                return false;
-            }catch (UnrecoverableKeyException e1){
-                e1.printStackTrace();
-                return false;
-            }catch (KeyStoreException e1){
-                e1.printStackTrace();
-                return false;
-            }catch (InvalidKeyException e1){
-                e1.printStackTrace();
-                return false;
-            }
+    @Override
+    public void onResume() {
+        super.onResume();
+        mFingerPrintAuthHelper.startAuth();
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        mFingerPrintAuthHelper.stopAuth();
     }
 
-
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void getKey() {
-        try {
-            keyStore=KeyStore.getInstance("AndroidKeyStore");
-        } catch (KeyStoreException e) {
-
-            e.printStackTrace();
-        }
-
-        KeyGenerator keyGenerator=null;
-        try {
-            keyGenerator=KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES,"AndroidKeyStore");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (NoSuchProviderException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            keyStore.load(null);
-            keyGenerator.init(new KeyGenParameterSpec.Builder(KEY_NAME,KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
-                    .setBlockModes(KeyProperties.BLOCK_MODE_CBC)
-                    .setUserAuthenticationRequired(true)
-                    .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_PKCS7)
-                    .build()
-            );
-            keyGenerator.generateKey();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (CertificateException e) {
-            e.printStackTrace();
-        }catch (InvalidAlgorithmParameterException e){
-            e.printStackTrace();
-        }
-
-
-    }
 }

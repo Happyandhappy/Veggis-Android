@@ -32,28 +32,14 @@ public class TouchIDFragment extends Fragment{
     SwitchCompat finger_toggle;
 
     @OnClick(R.id.touchid_btn)
-    public void onClickTouchset(){
-        finger_toggle.setChecked(!finger_toggle.isChecked());
-        toggle_Changed_Request();
-    }
+    public void onClickTouchset(){ toggle_Changed_Request();}
     @OnClick(R.id.finger_toggle)
     public void onClickToggle(){
         toggle_Changed_Request();
     }
 
-    public void toggle_Changed_Request(){
-        SharedPreferences preferences = getActivity().getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        if (finger_toggle.isChecked()){
-            editor.putBoolean(FINGERPRINT_ALLOW_STATE,true);
-            Toast.makeText(getActivity(),"Fingerprint Allowed",Toast.LENGTH_SHORT).show();
-        }else{
-            editor.putBoolean(FINGERPRINT_ALLOW_STATE,false);
-            Toast.makeText(getActivity(),"Fingerprint not Allowed",Toast.LENGTH_SHORT).show();
-        }
-        editor.commit();
-        FragmentUtils.changeFragment(getActivity(),R.id.content,FingerprintFragment.newInstance(),true);
-    }
+    public void toggle_Changed_Request(){ FragmentUtils.changeFragment(getActivity(),R.id.content,FingerprintFragment.newInstance(),true);}
+
     public static TouchIDFragment newInstance() {
         Bundle args = new Bundle();
         TouchIDFragment fragment = new TouchIDFragment();
@@ -68,10 +54,14 @@ public class TouchIDFragment extends Fragment{
         return view;
     }
 
-
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getActivity().setTitle(R.string.security_settings);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         SharedPreferences preferences = getActivity().getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
         Boolean state=preferences.getBoolean(FINGERPRINT_ALLOW_STATE,false);
         finger_toggle.setChecked(state);
