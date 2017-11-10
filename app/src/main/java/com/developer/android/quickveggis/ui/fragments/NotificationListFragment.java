@@ -83,6 +83,7 @@ public class NotificationListFragment extends Fragment implements MainActivity.M
                 }
             } else if (flag){//if the current tab is tabSupport
                     Hotline.showConversations(NotificationListFragment.this.getActivity());
+
                     flag=!flag;
             }
         }
@@ -156,7 +157,8 @@ public class NotificationListFragment extends Fragment implements MainActivity.M
         this.btnSlide.startAnimation(100);
         this.tabSupport.setSelected(false);
         this.tabNotification.setSelected(true);
-        setSupportData();
+        Hotline.showConversations(getContext());
+        //setSupportData();
     }
 
     private void setNotificationData(){  // set data in notification list
@@ -190,6 +192,7 @@ public class NotificationListFragment extends Fragment implements MainActivity.M
     public void onResume() {
         super.onResume();
         flag=true;  // initial set flag for avoid double hotline screens
+        updateTab(TAB_NOTIFICATION);
     }
 
     @Override

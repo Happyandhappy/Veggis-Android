@@ -356,6 +356,7 @@ Contact:%s"</string>
     <string name="fingerprint_not_recognize">Cannot recognize your finger print. Please try again.</string>
     <string name="fingerprint_not_initialize">Cannot initialize finger print authentication.</string>
     <string name="no_thanks">No Thanks</string>
+    <string name="server_error">There was a problem getting the\ninformation from our servers...</string>
     <!--377136942489698-->
     <string name="facebook_app_id">377136942489698</string>
     <string name="fb_login_protocol_scheme">fb377136942489698</string>

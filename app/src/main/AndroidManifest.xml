@@ -60,6 +60,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme" />
         <activity
+            android:name="com.developer.android.quickveggis.ui.activity.FingerprintActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme" />
+        <activity
             android:name="com.developer.android.quickveggis.ui.activity.ConversationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme" />

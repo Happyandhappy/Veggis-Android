@@ -391,6 +391,7 @@ public class MenuFragment extends Fragment {
         TextView tutorial = (TextView) dialog.findViewById(R.id.tutorial);
         TextView howToUse = (TextView) dialog.findViewById(R.id.howToUse);
         TextView helpCenter = (TextView) dialog.findViewById(R.id.helpCenter);
+        TextView cancelBtn=(TextView)dialog.findViewById(R.id.cancelBtn);
 
         tutorial.setOnClickListener(new OnClickListener() {
             @Override
@@ -437,6 +438,13 @@ public class MenuFragment extends Fragment {
                 openURL.setData(Uri.parse("https://kikbac.zendesk.com/hc/en-us"));
                 startActivity(openURL);
 
+                dialog.dismiss();
+            }
+        });
+
+        cancelBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 dialog.dismiss();
             }
         });

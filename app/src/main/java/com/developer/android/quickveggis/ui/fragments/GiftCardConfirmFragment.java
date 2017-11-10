@@ -155,6 +155,6 @@ public class GiftCardConfirmFragment extends Fragment implements MainActivity.Me
     }
 
     public int getMenuVisibility() {
-        return 5;
+        return MENU_ARROW_VISIBLE;
     }
 }

@@ -25,6 +25,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 import static com.developer.android.quickveggis.App.wishlistChanged;
+import static com.developer.android.quickveggis.ui.activity.MainActivity.MENU_LOGO_GONE;
 import static com.developer.android.quickveggis.ui.utils.FadeAnim.startFadeInAnim;
 
 public class WishlistFragment extends Fragment implements WishAdapter.ActionListener, MainActivity.MenuController {
@@ -286,6 +287,6 @@ public class WishlistFragment extends Fragment implements WishAdapter.ActionList
     }
 
     public int getMenuVisibility() {
-        return 0;
+        return MENU_LOGO_GONE;
     }
 }

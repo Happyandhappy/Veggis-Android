@@ -2,12 +2,16 @@ package com.developer.android.quickveggis.ui.activity;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -29,6 +33,8 @@ import com.squareup.picasso.Picasso;
 import butterknife.Bind;
 
 import static com.developer.android.quickveggis.App.launched;
+import static com.developer.android.quickveggis.ui.fragments.TouchIDFragment.FINGERPRINT_ALLOW_STATE;
+import static com.developer.android.quickveggis.ui.fragments.TouchIDFragment.FINGERPRINT_CHECK_STATE;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -91,41 +97,45 @@ public class SplashActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences preferences=getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
+        boolean finger_check_result=preferences.getBoolean(FINGERPRINT_CHECK_STATE,false);
+
+    }
+
     private void startActivityOnCondition(){
-        if (SessionController.getInstance().isLoggedInSession()){
-            checkTutorial();
-            Log.d("session", SessionController.getInstance().getLoggedInSession());
-        }else {
-            ServiceAPI.newInstance().getSession(new ResponseCallback<Session>() {
-                @Override
-                public void onSuccess(Session data) {
-                    SessionController.getInstance().saveLoginSession(data.getSession());
-                    checkTutorial();
-                }
+//        SharedPreferences preferences = getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
+//        boolean finger_enabled=preferences.getBoolean(FINGERPRINT_ALLOW_STATE,false);
+//        if (finger_enabled) {
+//            startActivity(new Intent(this,FingerprintActivity.class));
+//            finish();
+//        }
 
-                @Override
-                public void onFailure(String error) {
-                    Toast.makeText(SplashActivity.this, error, Toast.LENGTH_SHORT).show();
+//        if(finger_enabled){
+            if (SessionController.getInstance().isLoggedInSession()) {
+                checkTutorial();
+                Log.d("session", SessionController.getInstance().getLoggedInSession());
+            } else {
+                ServiceAPI.newInstance().getSession(new ResponseCallback<Session>() {
+                    @Override
+                    public void onSuccess(Session data) {
+                        SessionController.getInstance().saveLoginSession(data.getSession());
+                        checkTutorial();
+                    }
 
-                    restartThisActivity();
-                }
-            });
-        }
+                    @Override
+                    public void onFailure(String error) {
+                        Toast.makeText(SplashActivity.this, error, Toast.LENGTH_SHORT).show();
 
-//            ServiceAPI.newInstance().getSession(new ResponseCallback<Session>() {
-//                @Override
-//                public void onSuccess(Session data) {
-//                    SessionController.getInstance().saveLoginSession(data.getSession());
-//                    checkTutorial();
-//                }
-//
-//                @Override
-//                public void onFailure(String error) {
-//                    Toast.makeText(SplashActivity.this, error, Toast.LENGTH_SHORT).show();
-//                    restartThisActivity();
-//                }
-//            });
-
+                        restartThisActivity();
+                    }
+                });
+            }
+ //       }else{
+ //           finish();
+ //       }
     }
 
     private void checkTutorial(){

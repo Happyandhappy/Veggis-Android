@@ -23,4 +23,5 @@ public class TutorialActivity extends AppCompatActivity {
         ButterKnife.bind((Activity) this);
         FragmentUtils.changeFragment((FragmentActivity) this, R.id.content, Walk2PagerFragment.newInstance(), false);
     }
+
 }

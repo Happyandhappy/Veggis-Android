@@ -3,6 +3,7 @@ package com.developer.android.quickveggis.ui.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
@@ -14,11 +15,14 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.developer.android.quickveggis.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +39,9 @@ public class NotifyDialog extends AppCompatDialogFragment {
     int title;
     @Bind(R.id.txtTitle)
     TextView txtTitle;
+
+    @Bind(R.id.notify_video)
+    VideoView notify_video;
 
     /* renamed from: com.quickveggies.quickveggies.ui.dialog.NotifyDialog.1 */
     class C02761 implements OnClickListener {
@@ -58,11 +65,12 @@ public class NotifyDialog extends AppCompatDialogFragment {
         context.getSharedPreferences("Dialog", AccessibilityNodeInfoCompat.ACTION_PASTE).edit().putBoolean(String.valueOf(id), value).apply();
     }
 
-    public static NotifyDialog newInstance(int id, int title, ArrayList<Integer> items) {
+    public static NotifyDialog newInstance(int id, int title, ArrayList<Integer> items,String uriPath) {
         Bundle args = new Bundle();
         args.putSerializable("items", items);
         args.putInt("title", title);
         args.putInt("id", id);
+        args.putString("videoUri",uriPath);
         NotifyDialog fragment = new NotifyDialog();
         fragment.setArguments(args);
         return fragment;
@@ -80,6 +88,15 @@ public class NotifyDialog extends AppCompatDialogFragment {
         fillItems();
         this.chDontShow.setChecked(!isShowDialog(getContext(), this.id));
         this.btnNext.setOnClickListener(new C02761());
+        String uriPath=bundle.getString("videoUri");
+        if (uriPath=="") this.notify_video.setVisibility(View.GONE);
+        else{
+            Uri uri2=Uri.parse(uriPath);
+            notify_video.setVideoURI(uri2);
+            notify_video.requestFocus();
+            notify_video.start();
+
+        }
         return view;
     }
 

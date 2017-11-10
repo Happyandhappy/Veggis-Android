@@ -1,4 +1,4 @@
-package com.developer.android.quickveggis.ui.fragments;
+package com.developer.android.quickveggis.ui.activity;
 /*Created by happyandhappy on 11/3/2017*/
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,8 +32,9 @@ import butterknife.ButterKnife;
 
 
 import static com.developer.android.quickveggis.ui.fragments.TouchIDFragment.FINGERPRINT_ALLOW_STATE;
+import static com.developer.android.quickveggis.ui.fragments.TouchIDFragment.FINGERPRINT_CHECK_STATE;
 
-public class FingerprintFragment extends Fragment implements FingerPrintAuthCallback {
+public class FingerprintActivity extends AppCompatActivity implements FingerPrintAuthCallback {
     @Bind(R.id.finger_auth_start)
     LinearLayout auth_start;
 
@@ -45,6 +47,9 @@ public class FingerprintFragment extends Fragment implements FingerPrintAuthCall
     @Bind(R.id.imageFailure)
     ImageView imageFailure;
 
+    @Bind(R.id.nothanksbutton)
+    TextView nothanksbutton;
+
     GifImageView imageFinger;
     private FingerPrintAuthHelper mFingerPrintAuthHelper;
 
@@ -53,12 +58,6 @@ public class FingerprintFragment extends Fragment implements FingerPrintAuthCall
     private final int FINGER_NOTRECOG=3;
     private final int FINGER_NOTINITIAL=4;
 
-    public static FingerprintFragment newInstance() {
-        Bundle args = new Bundle();
-        FingerprintFragment fragment = new FingerprintFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
     void setState(int state){
          switch (state) {
              case FINGER_START:
@@ -97,10 +96,10 @@ public class FingerprintFragment extends Fragment implements FingerPrintAuthCall
          }
     }
 
-    void recogResult(Boolean value){
-        SharedPreferences preferences = getActivity().getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
+    public void recogResult(Boolean value){
+        SharedPreferences preferences = getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean(FINGERPRINT_ALLOW_STATE,value);
+        editor.putBoolean(FINGERPRINT_CHECK_STATE,value);
         editor.commit();
     }
 
@@ -117,13 +116,14 @@ public class FingerprintFragment extends Fragment implements FingerPrintAuthCall
             }, 2500);
     }
 
-    @Nullable
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_fingerprint, container, false);
-        imageFinger = (com.felipecsl.gifimageview.library.GifImageView)view.findViewById(R.id.imageFinger);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_fingerprint);
+        imageFinger = (com.felipecsl.gifimageview.library.GifImageView)findViewById(R.id.imageFinger);
         imageFinger.setBackgroundColor(Color.TRANSPARENT);
         try {
-            InputStream is = getActivity().getAssets().open("fingerprint.gif");
+            InputStream is =getAssets().open("fingerprint.gif");
             byte[] bytes = new byte[is.available()];
             is.read(bytes);
             is.close();
@@ -133,21 +133,21 @@ public class FingerprintFragment extends Fragment implements FingerPrintAuthCall
             e.printStackTrace();
         }
 
-        ButterKnife.bind((Object) this, view);
+        ButterKnife.bind(this);
         setState(FINGER_START);
-        return view;
-    }
-
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        getActivity().setTitle(R.string.security_settings);
-        mFingerPrintAuthHelper = FingerPrintAuthHelper.getHelper(getContext(), this);
+        mFingerPrintAuthHelper = FingerPrintAuthHelper.getHelper(this,this);
+        nothanksbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override
     public void onNoFingerPrintHardwareFound() {
-        Toast.makeText(getContext(),getResources().getString(R.string.fingerprint_nodevice),Toast.LENGTH_SHORT);
-        getActivity().finish();
+        Toast.makeText(this,getResources().getString(R.string.fingerprint_nodevice),Toast.LENGTH_SHORT);
+        finish();
     }
 
     @Override
@@ -158,7 +158,7 @@ public class FingerprintFragment extends Fragment implements FingerPrintAuthCall
     @Override
     public void onBelowMarshmallow() {
         authStatetxt.setText(getResources().getString(R.string.fingerprint_old_device));
-        getActivity().finish();
+        finish();
     }
 
     @Override

@@ -82,7 +82,9 @@ public class HistoryListFragment extends Fragment implements MainActivity.MenuCo
 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getActivity().setTitle(R.string.history);
+        MainActivity activity = (MainActivity) getActivity();
+        activity.setTitle(R.string.kikbac);
+//        getActivity().setTitle(R.string.history);
         if (historyChanged) {
             getCartOrderHistorySections();
         } else {
@@ -157,7 +159,7 @@ public class HistoryListFragment extends Fragment implements MainActivity.MenuCo
 
     @Override
     public int getMenuVisibility() {
-        return 0;
+        return 6;
     }
 
     @Override

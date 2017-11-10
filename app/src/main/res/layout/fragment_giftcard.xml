@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:background="@color/mainGray">
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -34,11 +35,10 @@
                 android:gravity="center"
                 android:id="@+id/txtPrice"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:textAllCaps="true"
                 android:textColor="@color/mainGreen"
-                android:textSize="60sp"
+                android:textSize="55sp"
                 android:textStyle="bold" />
 
             <TextView

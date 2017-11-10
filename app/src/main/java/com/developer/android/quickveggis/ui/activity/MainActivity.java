@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -56,6 +57,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
+    public static final int MENU_LOGO_GONE=6;
     public static final int MENU_ARROW_VISIBLE=5;
     public static final int MENU_EDIT_VISIBLE = 4;
     public static final int MENU_PRODUCT_VISIBLE = 3;
@@ -70,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.appBar)
     AppBarLayout appBarLayout;
     private OnBackStackChangedListener backStackListener;
-    int currentMenuVisibility;
+    public int currentMenuVisibility;
     @Bind(R.id.drawerLayout)
     public DrawerLayout mDrawerLayout;
 
@@ -90,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
     ///////////////////////////////////////////////////////////////////////////////////////
     @Bind(R.id.txtOffline)
     public TextView txtOffline;
+    @Bind(R.id.toolbar_logo)
+    public ImageView toolbar_logo;
 
     public static MainActivity instance;
 
@@ -234,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
 //        setBadge(menu, R.id.action_messages, R.drawable.ic_message, MENU_NOT_VISIBLE); //
         setBadge(menu, R.id.action_cart, R.drawable.ic_shopping, MENU_VISIBLE);
         setBadge(menu, R.id.action_notifications, R.drawable.ic_reminder, MENU_CART_VISIBLE);
-
+//        toolbar_logo.setVisibility(View.GONE);
         switch (currentMenuVisibility) {
             case MutableDateTime.ROUND_NONE /*0*/:
                 menu.findItem(R.id.action_map).setVisible(true);
@@ -242,6 +246,15 @@ public class MainActivity extends AppCompatActivity {
                 menu.findItem(R.id.action_notifications).setVisible(true);
                 menu.findItem(R.id.action_share).setVisible(false);
                 menu.findItem(R.id.action_edit).setVisible(false);
+                toolbar_logo.setVisibility(View.VISIBLE);
+                break;
+            case MENU_LOGO_GONE: /*6*/
+                menu.findItem(R.id.action_map).setVisible(true);
+                menu.findItem(R.id.action_cart).setVisible(true);
+                menu.findItem(R.id.action_notifications).setVisible(true);
+                menu.findItem(R.id.action_share).setVisible(false);
+                menu.findItem(R.id.action_edit).setVisible(false);
+                toolbar_logo.setVisibility(View.GONE);
                 break;
             case MENU_NOT_VISIBLE /*1*/:
                 menu.findItem(R.id.action_map).setVisible(false);
@@ -249,6 +262,7 @@ public class MainActivity extends AppCompatActivity {
                 menu.findItem(R.id.action_notifications).setVisible(false);
                 menu.findItem(R.id.action_share).setVisible(false);
                 menu.findItem(R.id.action_edit).setVisible(false);
+                toolbar_logo.setVisibility(View.GONE);
                 break;
             case MENU_CART_VISIBLE /*2*/:
                 menu.findItem(R.id.action_map).setVisible(false);
@@ -256,6 +270,7 @@ public class MainActivity extends AppCompatActivity {
                 menu.findItem(R.id.action_notifications).setVisible(false);
                 menu.findItem(R.id.action_share).setVisible(false);
                 menu.findItem(R.id.action_edit).setVisible(false);
+                toolbar_logo.setVisibility(View.GONE);
                 break;
             case MENU_PRODUCT_VISIBLE:/*3*/
                 menu.findItem(R.id.action_map).setVisible(false);
@@ -263,6 +278,7 @@ public class MainActivity extends AppCompatActivity {
                 menu.findItem(R.id.action_notifications).setVisible(false);
                 menu.findItem(R.id.action_share).setVisible(true);
                 menu.findItem(R.id.action_edit).setVisible(false);
+                toolbar_logo.setVisibility(View.GONE);
                 break;
             case MENU_EDIT_VISIBLE:/*4*/
                 menu.findItem(R.id.action_map).setVisible(false);
@@ -270,13 +286,15 @@ public class MainActivity extends AppCompatActivity {
                 menu.findItem(R.id.action_notifications).setVisible(false);
                 menu.findItem(R.id.action_share).setVisible(false);
                 menu.findItem(R.id.action_edit).setVisible(true);
+                toolbar_logo.setVisibility(View.GONE);
                 break;
-            case MENU_ARROW_VISIBLE:
+            case MENU_ARROW_VISIBLE:/*5*/
                 menu.findItem(R.id.action_map).setVisible(false);
                 menu.findItem(R.id.action_cart).setVisible(false);
                 menu.findItem(R.id.action_notifications).setVisible(false);
                 menu.findItem(R.id.action_share).setVisible(false);
                 menu.findItem(R.id.action_edit).setVisible(false);
+                toolbar_logo.setVisibility(View.GONE);
                 break;
         }
 /*For change the back-arrow color*/
@@ -285,7 +303,7 @@ public class MainActivity extends AppCompatActivity {
             toolbar_notisupport.setVisibility(View.VISIBLE);
             toolbar.setBackground(getResources().getDrawable(R.color.white));
             upArrow.setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
-        }else if(currentMenuVisibility==MutableDateTime.ROUND_NONE) {
+        }else if(currentMenuVisibility==MutableDateTime.ROUND_NONE || currentMenuVisibility==MENU_LOGO_GONE) {
             upArrow = getResources().getDrawable(R.drawable.ic_action_nav);
             toolbar_notisupport.setVisibility(View.GONE);
             toolbar.setBackground(getResources().getDrawable(R.color.mainGreen));
@@ -422,7 +440,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         txtOffline.setVisibility(View.INVISIBLE);
 
         switch (where){

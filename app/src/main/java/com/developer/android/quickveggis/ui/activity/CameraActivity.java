@@ -520,7 +520,8 @@ public class CameraActivity extends AppCompatActivity implements PreviewAdapter.
     }
 
     private void makeSureDialog() {
-        NotifyDialog.newInstance(0, R.string.make_sure, new ArrayList(Arrays.asList(new Integer[]{Integer.valueOf(R.string.notify_item1), Integer.valueOf(R.string.notify_item2), Integer.valueOf(R.string.notify_item3)}))).show(getSupportFragmentManager(), "dialog");
+        NotifyDialog.newInstance(0, R.string.make_sure, new ArrayList(Arrays.asList(new Integer[]{Integer.valueOf(R.string.notify_item1), Integer.valueOf(R.string.notify_item2), Integer.valueOf(R.string.notify_item3)})),
+                "android.resource://com.developer.android.quickveggis/"+R.raw.capture_item).show(getSupportFragmentManager(), "dialog");
     }
 
     private File getPhotoLink() {
@@ -658,7 +659,7 @@ public class CameraActivity extends AppCompatActivity implements PreviewAdapter.
 
     private void verifyDialog() {
         if (NotifyDialog.isShowDialog(this, 2)) {
-            NotifyDialog notifyDialog = NotifyDialog.newInstance(2, R.string.verify_purchases, new ArrayList(Arrays.asList(new Integer[]{Integer.valueOf(R.string.verify_item1), Integer.valueOf(R.string.verify_item2)})));
+            NotifyDialog notifyDialog = NotifyDialog.newInstance(2, R.string.verify_purchases, new ArrayList(Arrays.asList(new Integer[]{Integer.valueOf(R.string.verify_item1), Integer.valueOf(R.string.verify_item2)})),"");
             notifyDialog.show(getSupportFragmentManager(), "dialog");
             notifyDialog.setListener(this);
             return;

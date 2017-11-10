@@ -47,6 +47,8 @@ import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.viewpagerindicator.CirclePageIndicator;
 
+import org.joda.time.MutableDateTime;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -235,10 +237,9 @@ public class CategoriesFragment extends Fragment implements MainActivity.MenuCon
         super.onActivityCreated(savedInstanceState);
         this.rv.setLayoutManager(new GridLayoutManager(getContext(), 3));
         MainActivity activity = (MainActivity) getActivity();
-        activity.setTitle(R.string.kikbac);
+        activity.setTitle("");
 
         this.adapter = new CategoryAdapter();
-//        this.adapterBanner = getPagerAdapter(activity.getSupportFragmentManager());
         this.adapterBanner = new ViewPagerAdapter(getActivity().getApplicationContext());
         this.rv.setNestedScrollingEnabled(false);
         this.rv.setHasFixedSize(false);
@@ -340,6 +341,8 @@ public class CategoriesFragment extends Fragment implements MainActivity.MenuCon
         };
 
         mHandler.sendEmptyMessageDelayed(0, updateInterval);
+        MainActivity.getInstance().currentMenuVisibility=0;
+        getActivity().invalidateOptionsMenu();
     }
 
     @Override
@@ -439,7 +442,7 @@ public class CategoriesFragment extends Fragment implements MainActivity.MenuCon
     }
 
     public int getMenuVisibility() {
-        return 0;
+        return MutableDateTime.ROUND_NONE;
     }
 
     public class MySearchAdapter extends ArrayAdapter<String> {

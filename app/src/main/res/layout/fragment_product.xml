@@ -329,6 +329,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:orientation="vertical"
+                    android:gravity="center"
                     android:visibility="visible">
 
                     <LinearLayout
@@ -341,6 +342,7 @@
                             android:layout_width="18sp"
                             android:layout_height="18sp"
                             android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
                             android:background="@drawable/ic_symbol_clock" />
 
                         <TextView
@@ -388,6 +390,7 @@
                             android:layout_width="18sp"
                             android:layout_height="18sp"
                             android:layout_marginTop="5sp"
+                            android:layout_marginLeft="10dp"
                             android:background="@drawable/ic_symbol_1"/>
 
                         <TextView
@@ -411,6 +414,7 @@
                             android:layout_width="18sp"
                             android:layout_height="18sp"
                             android:layout_marginTop="5sp"
+                            android:layout_marginLeft="10dp"
                             android:background="@drawable/ic_symbol_1"/>
 
                         <TextView
@@ -433,6 +437,7 @@
                         <ImageView
                             android:layout_width="18sp"
                             android:layout_height="18sp"
+                            android:layout_marginLeft="10dp"
                             android:background="@drawable/ic_symbol_1"
                             android:layout_marginTop="5sp"/>
 
@@ -461,6 +466,7 @@
                             <ImageView
                                 android:layout_width="18sp"
                                 android:layout_height="18sp"
+                                android:layout_marginLeft="10dp"
                                 android:background="@drawable/ic_symbol_store" />
 
                             <TextView
@@ -476,7 +482,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginLeft="20dp"
                             android:orientation="vertical">
 
                         </LinearLayout>

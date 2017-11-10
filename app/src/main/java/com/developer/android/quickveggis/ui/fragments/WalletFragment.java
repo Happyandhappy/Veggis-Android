@@ -32,6 +32,8 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+import static com.developer.android.quickveggis.ui.activity.MainActivity.MENU_LOGO_GONE;
+
 public class WalletFragment extends Fragment implements MainActivity.MenuController, CardAdapter.Listener{
     CardAdapter adapter;
     @Bind(R.id.btnPayout)
@@ -125,7 +127,7 @@ public class WalletFragment extends Fragment implements MainActivity.MenuControl
     };
 
     public int getMenuVisibility() {
-        return 0;
+        return MENU_LOGO_GONE;
     }
 
 //    public void onCardSelected(GiftCard card) {
