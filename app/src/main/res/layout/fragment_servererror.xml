@@ -22,5 +22,6 @@
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:id="@+id/server_refresh"
-        android:src="@drawable/ic_refresh"/>
+        android:src="@drawable/ic_refresh"
+        android:clickable="true"/>
 </LinearLayout>

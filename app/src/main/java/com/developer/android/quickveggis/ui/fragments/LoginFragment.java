@@ -206,13 +206,6 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
         });
     }
 
-
-//    @OnClick(R.id.btnGoogle)
-//    public void onClickGoogleLogin(){
-//        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-//        startActivityForResult(signInIntent, RC_SIGN_IN);
-//    }
-
     private void initGoogle() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.server_client_id))

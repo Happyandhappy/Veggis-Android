@@ -33,6 +33,7 @@ import butterknife.ButterKnife;
 
 import static com.developer.android.quickveggis.ui.fragments.TouchIDFragment.FINGERPRINT_ALLOW_STATE;
 import static com.developer.android.quickveggis.ui.fragments.TouchIDFragment.FINGERPRINT_CHECK_STATE;
+import static com.developer.android.quickveggis.ui.fragments.TouchIDFragment.FINGERPRINT_INIT_STATE;
 
 public class FingerprintActivity extends AppCompatActivity implements FingerPrintAuthCallback {
     @Bind(R.id.finger_auth_start)
@@ -100,7 +101,17 @@ public class FingerprintActivity extends AppCompatActivity implements FingerPrin
         SharedPreferences preferences = getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean(FINGERPRINT_CHECK_STATE,value);
+        editor.putBoolean(FINGERPRINT_INIT_STATE,true);
+
         editor.commit();
+        if (value){
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    finish();
+                }
+            }, 2000);
+        }
     }
 
     protected void startAnim(final int state){
@@ -195,4 +206,14 @@ public class FingerprintActivity extends AppCompatActivity implements FingerPrin
         mFingerPrintAuthHelper.stopAuth();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        SharedPreferences preferences = getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(FINGERPRINT_CHECK_STATE,false);
+        editor.putBoolean(FINGERPRINT_INIT_STATE,false);
+        editor.commit();
+    }
 }

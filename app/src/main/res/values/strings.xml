@@ -361,7 +361,7 @@ Contact:%s"</string>
     <string name="mobile_verify">Mobile Verification</string>
     <string name="enter_mobileNumber">Please enter your mobile number</string>
     <string name="otp_sentCode">We have sent you access code\nvia SMS for mobile number verification</string>
-    <string name="otp_notreceive">Didn't Receive the OTP?</string>
+    <string name="otp_notreceive">Didn\'t Receive the OTP //?</string>
     <string name="otp_resend">Resend Code</string>
     <!--377136942489698-->
     <string name="facebook_app_id">377136942489698</string>

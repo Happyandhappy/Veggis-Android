@@ -26,7 +26,7 @@ import butterknife.OnClick;
 public class TouchIDFragment extends Fragment{
     public static final String FINGERPRINT_ALLOW_STATE="Fingerprint_state";
     public static final String FINGERPRINT_CHECK_STATE="Fingerprint_result";
-
+    public static final String FINGERPRINT_INIT_STATE="Fingerprint_init";
     @Bind(R.id.touchid_btn)
     RelativeLayout touchBtn;
     @Bind(R.id.finger_toggle)

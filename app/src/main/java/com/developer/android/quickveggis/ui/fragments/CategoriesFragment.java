@@ -267,6 +267,7 @@ public class CategoriesFragment extends Fragment implements MainActivity.MenuCon
                 @Override
                 public void onFailure(String error) {
                     progressDialog.dismiss();
+                    FragmentUtils.changeFragment(getActivity(), R.id.menu, ServerErrorFragment.newInstance(), false);
                 }
             });
         }
@@ -306,6 +307,7 @@ public class CategoriesFragment extends Fragment implements MainActivity.MenuCon
 
                 @Override
                 public void onFailure(String error) {
+                    FragmentUtils.changeFragment(getActivity(), R.id.menu, ServerErrorFragment.newInstance(), false);
                 }
             });
         }

@@ -22,6 +22,13 @@ public class ServerErrorFragment extends Fragment{
     @Bind(R.id.server_refresh)
     ImageView refresh_button;
 
+    public static ServerErrorFragment newInstance() {
+        Bundle args = new Bundle();
+        ServerErrorFragment mFragment = new ServerErrorFragment();
+        mFragment.setArguments(args);
+        return mFragment;
+    }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_servererror,container,false);
         ButterKnife.bind((Object) this, view);

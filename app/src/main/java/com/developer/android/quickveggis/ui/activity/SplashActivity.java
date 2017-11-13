@@ -32,9 +32,11 @@ import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
 
+import static com.developer.android.quickveggis.App.bool;
 import static com.developer.android.quickveggis.App.launched;
 import static com.developer.android.quickveggis.ui.fragments.TouchIDFragment.FINGERPRINT_ALLOW_STATE;
 import static com.developer.android.quickveggis.ui.fragments.TouchIDFragment.FINGERPRINT_CHECK_STATE;
+import static com.developer.android.quickveggis.ui.fragments.TouchIDFragment.FINGERPRINT_INIT_STATE;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -100,44 +102,47 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
         SharedPreferences preferences=getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
         boolean finger_check_result=preferences.getBoolean(FINGERPRINT_CHECK_STATE,false);
+        boolean finger_allow_state=preferences.getBoolean(FINGERPRINT_ALLOW_STATE,false);
+        boolean finger_init_state=preferences.getBoolean(FINGERPRINT_INIT_STATE,false);
 
+        if (finger_allow_state && finger_check_result && finger_init_state) start();
+        else if(finger_allow_state && finger_check_result && !finger_init_state){
+            finish();
+            System.exit(0);
+        }
     }
 
     private void startActivityOnCondition(){
-//        SharedPreferences preferences = getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
-//        boolean finger_enabled=preferences.getBoolean(FINGERPRINT_ALLOW_STATE,false);
-//        if (finger_enabled) {
-//            startActivity(new Intent(this,FingerprintActivity.class));
-//            finish();
-//        }
-
-//        if(finger_enabled){
-            if (SessionController.getInstance().isLoggedInSession()) {
-                checkTutorial();
-                Log.d("session", SessionController.getInstance().getLoggedInSession());
-            } else {
-                ServiceAPI.newInstance().getSession(new ResponseCallback<Session>() {
-                    @Override
-                    public void onSuccess(Session data) {
-                        SessionController.getInstance().saveLoginSession(data.getSession());
-                        checkTutorial();
-                    }
-
-                    @Override
-                    public void onFailure(String error) {
-                        Toast.makeText(SplashActivity.this, error, Toast.LENGTH_SHORT).show();
-
-                        restartThisActivity();
-                    }
-                });
-            }
- //       }else{
- //           finish();
- //       }
+        SharedPreferences preferences = getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
+        if (preferences.getBoolean(FINGERPRINT_ALLOW_STATE,false))
+            startActivity(new Intent(SplashActivity.this,FingerprintActivity.class));
+        else
+            start();
     }
 
+    void start(){
+        if (SessionController.getInstance().isLoggedInSession()) {
+            checkTutorial();
+            Log.d("session", SessionController.getInstance().getLoggedInSession());
+        } else {
+            ServiceAPI.newInstance().getSession(new ResponseCallback<Session>() {
+                @Override
+                public void onSuccess(Session data) {
+                    SessionController.getInstance().saveLoginSession(data.getSession());
+                    checkTutorial();
+                }
+
+                @Override
+                public void onFailure(String error) {
+                    Toast.makeText(SplashActivity.this, error, Toast.LENGTH_SHORT).show();
+                    restartThisActivity();
+                }
+            });
+        }
+    }
     private void checkTutorial(){
         if (SessionController.getInstance().isExistShownFirstTutorial())
         {

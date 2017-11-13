@@ -2,6 +2,7 @@ package com.developer.android.quickveggis.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
@@ -41,6 +42,7 @@ import com.developer.android.quickveggis.ui.fragments.MapFragment;
 import com.developer.android.quickveggis.ui.fragments.MenuFragment;
 import com.developer.android.quickveggis.ui.fragments.NotificationListFragment;
 import com.developer.android.quickveggis.ui.fragments.ProductFragment;
+import com.developer.android.quickveggis.ui.fragments.ServerErrorFragment;
 import com.developer.android.quickveggis.ui.utils.FragmentUtils;
 import com.freshdesk.hotline.Hotline;
 import com.freshdesk.hotline.HotlineConfig;
@@ -55,6 +57,9 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
+import static com.developer.android.quickveggis.ui.fragments.TouchIDFragment.FINGERPRINT_CHECK_STATE;
+import static com.developer.android.quickveggis.ui.fragments.TouchIDFragment.FINGERPRINT_INIT_STATE;
 
 public class MainActivity extends AppCompatActivity {
     public static final int MENU_LOGO_GONE=6;
@@ -456,6 +461,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void getCustomerInfo() {
+
         ServiceAPI.newInstance().getAccountDetails(new ResponseCallback<Customer>() {
             @Override
             public void onSuccess(Customer data) {
@@ -465,7 +471,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(String error) {
-                FragmentUtils.changeFragment(MainActivity.this, R.id.menu, MenuFragment.newInstance(), false);
+                FragmentUtils.changeFragment(MainActivity.this, R.id.menu, ServerErrorFragment.newInstance(), false);
+
             }
         });
     }
@@ -483,7 +490,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(String error) {
-
+                FragmentUtils.changeFragment(MainActivity.this, R.id.menu, ServerErrorFragment.newInstance(), false);
             }
         });
     }
@@ -504,5 +511,16 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == Config.REQUEST_CODE_SHARE){
             invalidateOptionsMenu();
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        SharedPreferences preferences = getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(FINGERPRINT_CHECK_STATE,false);
+        editor.putBoolean(FINGERPRINT_INIT_STATE,false);
+        editor.commit();
     }
 }
