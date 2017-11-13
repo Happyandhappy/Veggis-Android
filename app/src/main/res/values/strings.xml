@@ -32,7 +32,7 @@
     <string name="email_address">Email Address</string>
     <string name="sign_up_txt">By tapping \"Sign Up\" you agree</string>
     <string name="sign_up_txt1">to the</string>
-    <string name="sign_up_txt2">terms &amp; conditions</string>
+    <string name="sign_up_txt2">Terms &amp; conditions</string>
     <string name="forget_password">Forgot Password?</string>
     <string name="address">Address</string>
     <string name="pincode">Pincode</string>
@@ -357,6 +357,12 @@ Contact:%s"</string>
     <string name="fingerprint_not_initialize">Cannot initialize finger print authentication.</string>
     <string name="no_thanks">No Thanks</string>
     <string name="server_error">There was a problem getting the\ninformation from our servers...</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="mobile_verify">Mobile Verification</string>
+    <string name="enter_mobileNumber">Please enter your mobile number</string>
+    <string name="otp_sentCode">We have sent you access code\nvia SMS for mobile number verification</string>
+    <string name="otp_notreceive">Didn't Receive the OTP?</string>
+    <string name="otp_resend">Resend Code</string>
     <!--377136942489698-->
     <string name="facebook_app_id">377136942489698</string>
     <string name="fb_login_protocol_scheme">fb377136942489698</string>

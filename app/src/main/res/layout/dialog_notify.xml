@@ -8,10 +8,9 @@
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="false">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:orientation="vertical">
+        android:layout_width="match_parent">
 
         <TextView
             android:gravity="center"
@@ -23,8 +22,10 @@
             android:textColor="@color/black"
             android:textSize="20sp" />
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="250dp">
+            android:layout_width="fill_parent"
+            android:layout_height="250dp"
+            android:layout_below="@id/txtTitle"
+            android:id="@+id/relativelayout1">
             <VideoView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -45,7 +46,8 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp" />
+            android:paddingRight="10dp"
+            android:layout_below="@id/relativelayout1"/>
 
         <CheckBox
             android:id="@+id/chDontShow"
@@ -53,11 +55,13 @@
             android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:paddingLeft="10dp"
-            android:text="@string/dontshow" />
+            android:text="@string/dontshow"
+            android:layout_below="@id/blockItems"/>
 
         <Button
             style="@style/BtnGreen"
             android:id="@+id/btnNext"
-            android:text="@string/dialog_continue" />
-    </LinearLayout>
+            android:text="@string/dialog_continue"
+            android:layout_below="@id/chDontShow"/>
+    </RelativeLayout>
 </android.support.v7.widget.CardView>

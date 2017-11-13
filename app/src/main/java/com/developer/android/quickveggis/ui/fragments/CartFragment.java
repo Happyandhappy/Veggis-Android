@@ -508,7 +508,6 @@ public class CartFragment extends Fragment implements MainActivity.MenuControlle
                 @Override
                 public void onClick(View v) {
                     startActivity(OfflineRedeemActivity.getStartIntent(CartFragment.this.getContext()));
-//                    FragmentUtils.changeFragment(getActivity(), R.id.content, SubmitFragment.newInstance(null, null), false);
                 }
             });
             this.blockHeader.setOnClickListener(new OnClickListener() {
