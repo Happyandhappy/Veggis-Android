@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
 import android.support.v7.app.AppCompatDialogFragment;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -43,6 +44,12 @@ public class NotifyDialog extends AppCompatDialogFragment {
     @Bind(R.id.notify_video)
     VideoView notify_video;
 
+    @Bind(R.id.notify_title)
+    TextView notify_title;
+
+    @Bind(R.id.notify_descript)
+    TextView notify_descript;
+
     /* renamed from: com.quickveggies.quickveggies.ui.dialog.NotifyDialog.1 */
     class C02761 implements OnClickListener {
         C02761() {
@@ -65,12 +72,14 @@ public class NotifyDialog extends AppCompatDialogFragment {
         context.getSharedPreferences("Dialog", AccessibilityNodeInfoCompat.ACTION_PASTE).edit().putBoolean(String.valueOf(id), value).apply();
     }
 
-    public static NotifyDialog newInstance(int id, int title, ArrayList<Integer> items,String uriPath) {
+    public static NotifyDialog newInstance(int id, int title, ArrayList<Integer> items,String titleStr,String descriptStr,String uriPath) {
         Bundle args = new Bundle();
         args.putSerializable("items", items);
         args.putInt("title", title);
         args.putInt("id", id);
         args.putString("videoUri",uriPath);
+        args.putString("titlestr",titleStr);
+        args.putString("descript",descriptStr);
         NotifyDialog fragment = new NotifyDialog();
         fragment.setArguments(args);
         return fragment;
@@ -89,6 +98,7 @@ public class NotifyDialog extends AppCompatDialogFragment {
         this.chDontShow.setChecked(!isShowDialog(getContext(), this.id));
         this.btnNext.setOnClickListener(new C02761());
         String uriPath=bundle.getString("videoUri");
+
         if (uriPath=="") this.notify_video.setVisibility(View.GONE);
         else{
             Uri uri2=Uri.parse(uriPath);
@@ -97,6 +107,9 @@ public class NotifyDialog extends AppCompatDialogFragment {
             notify_video.start();
 
         }
+
+        notify_title.setText(bundle.getString("titlestr"));
+        notify_descript.setText(bundle.getString("descript"));
         return view;
     }
 

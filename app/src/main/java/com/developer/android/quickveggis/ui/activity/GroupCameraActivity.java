@@ -319,7 +319,15 @@ public class GroupCameraActivity extends AppCompatActivity implements PreviewAda
     }
 
     private void makeVerifyDialog() {
-        NotifyDialog.newInstance(0, R.string.verify_purchases, new ArrayList(Arrays.asList(new Integer[]{Integer.valueOf(R.string.item1), Integer.valueOf(R.string.item1), Integer.valueOf(R.string.item1)})),"").show(getSupportFragmentManager(), "dialog");
+        NotifyDialog.newInstance(0, R.string.verify_purchases,
+                new ArrayList(Arrays.asList(
+                        new Integer[]{Integer.valueOf(R.string.item1),
+                            Integer.valueOf(R.string.item1),
+                            Integer.valueOf(R.string.item1)})),
+                "",
+                "",
+                "").
+                show(getSupportFragmentManager(), "dialog");
     }
 
     private File getPhotoLink() {

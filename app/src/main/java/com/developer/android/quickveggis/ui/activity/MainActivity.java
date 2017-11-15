@@ -471,7 +471,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(String error) {
-                FragmentUtils.changeFragment(MainActivity.this, R.id.menu, ServerErrorFragment.newInstance(), false);
+//                FragmentUtils.changeFragment(MainActivity.this, R.id.menu, ServerErrorFragment.newInstance(), false);
 
             }
         });
@@ -490,7 +490,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(String error) {
-                FragmentUtils.changeFragment(MainActivity.this, R.id.menu, ServerErrorFragment.newInstance(), false);
+//                FragmentUtils.changeFragment(MainActivity.this, R.id.menu, ServerErrorFragment.newInstance(), false);
             }
         });
     }

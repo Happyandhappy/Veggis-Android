@@ -21,4 +21,5 @@ public class TimeUtils {
         Date date = sdf.parse(inputString);
         return date.getTime();
     }
+
 }

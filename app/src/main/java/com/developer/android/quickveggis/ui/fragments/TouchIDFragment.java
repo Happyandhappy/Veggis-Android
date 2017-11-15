@@ -40,7 +40,7 @@ public class TouchIDFragment extends Fragment{
     }
 
     public void toggle_Changed_Request(){
-        setState(false);
+        init();
         startActivity(new Intent(getContext(),FingerprintActivity.class));
     }
     public void setState(Boolean value){
@@ -56,10 +56,18 @@ public class TouchIDFragment extends Fragment{
         return fragment;
     }
 
+    public void init(){
+        SharedPreferences preferences = getActivity().getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(FINGERPRINT_INIT_STATE,false);
+        editor.putBoolean(FINGERPRINT_CHECK_STATE,false);
+        editor.commit();
+    }
     @Nullable
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_touchid, container, false);
         ButterKnife.bind((Object) this, view);
+        init();
         return view;
     }
 
@@ -72,8 +80,16 @@ public class TouchIDFragment extends Fragment{
     public void onResume() {
         super.onResume();
         SharedPreferences preferences = getActivity().getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
-        Boolean state=preferences.getBoolean(FINGERPRINT_CHECK_STATE,false);
-        setState(state);
-        finger_toggle.setChecked(state);
+        Boolean state=preferences.getBoolean(FINGERPRINT_ALLOW_STATE,false);
+        Boolean check=preferences.getBoolean(FINGERPRINT_CHECK_STATE,false);
+        Boolean initial=preferences.getBoolean(FINGERPRINT_INIT_STATE,false);
+
+        if (initial){
+            if (check){
+                if (state) setState(false);
+                else setState(true);
+            }
+        }
+        finger_toggle.setChecked(preferences.getBoolean(FINGERPRINT_ALLOW_STATE,false));
     }
 }

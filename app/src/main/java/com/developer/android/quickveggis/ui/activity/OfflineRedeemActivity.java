@@ -46,7 +46,14 @@ public class OfflineRedeemActivity extends AppCompatActivity implements ActionLi
 
     private void makeSureDialog() {
         if (NotifyDialog.isShowDialog(this, DIALOG_MAKE_SURE)) {
-            NotifyDialog notifyDialog = NotifyDialog.newInstance(DIALOG_MAKE_SURE, R.string.make_sure, new ArrayList(Arrays.asList(new Integer[]{Integer.valueOf(R.string.item1), Integer.valueOf(R.string.item1), Integer.valueOf(R.string.item1)})),"");
+            NotifyDialog notifyDialog = NotifyDialog.newInstance(DIALOG_MAKE_SURE, R.string.make_sure,
+                    new ArrayList(Arrays.asList(new Integer[]{
+                            Integer.valueOf(R.string.makesure_item1),
+                            Integer.valueOf(R.string.makesure_item2),
+                            Integer.valueOf(R.string.makesure_item3)})),
+                    getBaseContext().getResources().getString(R.string.makesure_title),
+                    getBaseContext().getResources().getString(R.string.makesure_descript),
+                    "android.resource://com.developer.android.quickveggis/"+R.raw.capture_recceipt);
             notifyDialog.show(getSupportFragmentManager(), "dialog");
             notifyDialog.setListener(this);
             return;
@@ -56,7 +63,14 @@ public class OfflineRedeemActivity extends AppCompatActivity implements ActionLi
 
     private void verifyDialog() {
         if (NotifyDialog.isShowDialog(this, DIALOG_NOTIFY)) {
-            NotifyDialog notifyDialog = NotifyDialog.newInstance(DIALOG_NOTIFY, R.string.verify_purchases, new ArrayList(Arrays.asList(new Integer[]{Integer.valueOf(R.string.item1), Integer.valueOf(R.string.item1), Integer.valueOf(R.string.item1)})),"");
+            NotifyDialog notifyDialog = NotifyDialog.newInstance(DIALOG_NOTIFY, R.string.verify_purchases,
+                    new ArrayList(Arrays.asList(
+                            new Integer[]{Integer.valueOf(R.string.item1),
+                                Integer.valueOf(R.string.item1),
+                                Integer.valueOf(R.string.item1)})),
+                                "",
+                                "",
+                    "android.resource://com.developer.android.quickveggis/"+R.raw.capture_item);
             notifyDialog.show(getSupportFragmentManager(), "dialog");
             notifyDialog.setListener(this);
             return;
@@ -89,9 +103,6 @@ public class OfflineRedeemActivity extends AppCompatActivity implements ActionLi
 
                         finish();
                     } else {
-                        //this.toolbar.setVisibility(0);
-                        //FragmentUtils.changeFragment((FragmentActivity) this, (int) R.id.content, SubmitFragment.newInstance(links, null), false);
-                        //startActivityForResult(GroupCameraActivity.getStartIntent(this), DIALOG_NOTIFY);
                         verifyDialog();
                     }
                 }

@@ -45,6 +45,12 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragmen_splash);
 
+        SharedPreferences preferences = getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(FINGERPRINT_INIT_STATE,false);
+        editor.putBoolean(FINGERPRINT_CHECK_STATE,false);
+        editor.commit();
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1010);
         } else {
@@ -58,20 +64,6 @@ public class SplashActivity extends AppCompatActivity {
                 }
             }, Config.SPLASH_DELAY_TIME);
         }
-
-//        try {
-//            PackageInfo info = getPackageManager().getPackageInfo(
-//                    "com.developer.android.myquickveggis",
-//                    PackageManager.GET_SIGNATURES);
-//            for (Signature signature : info.signatures) {
-//                MessageDigest md = MessageDigest.getInstance("SHA");
-//                md.update(signature.toByteArray());
-//                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-//            }
-//        } catch (PackageManager.NameNotFoundException e) {
-//
-//        } catch (NoSuchAlgorithmException e) {
-//        }
     }
     // Requestion of External storage read/write permission using Code  (Can set it using manifest permission)
     @Override
@@ -79,13 +71,11 @@ public class SplashActivity extends AppCompatActivity {
         if(requestCode == 1010) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 launched = false;
-                //FragmentUtils.changeFragment(this, R.id.content, SplashFragment.newInstance(), false);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         startActivityOnCondition();
-//                        progressDialog.dismiss();
                     }
                 }, Config.SPLASH_DELAY_TIME);
             } else {
@@ -94,7 +84,6 @@ public class SplashActivity extends AppCompatActivity {
             }
 
         } else if(requestCode == 334) {
-
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
@@ -102,16 +91,17 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         SharedPreferences preferences=getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
         boolean finger_check_result=preferences.getBoolean(FINGERPRINT_CHECK_STATE,false);
         boolean finger_allow_state=preferences.getBoolean(FINGERPRINT_ALLOW_STATE,false);
         boolean finger_init_state=preferences.getBoolean(FINGERPRINT_INIT_STATE,false);
 
-        if (finger_allow_state && finger_check_result && finger_init_state) start();
-        else if(finger_allow_state && finger_check_result && !finger_init_state){
-            finish();
-            System.exit(0);
+        if (finger_allow_state){
+            if (finger_init_state && finger_check_result) start();
+            if (finger_init_state && !finger_check_result){
+                finish();
+                System.exit(0);
+            }
         }
     }
 

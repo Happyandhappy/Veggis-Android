@@ -230,5 +230,4 @@ public class PersistentCookieStore implements CookieStore {
     private void removeAllFromPersistence() {
         sharedPreferences.edit().clear().apply();
     }
-
 }

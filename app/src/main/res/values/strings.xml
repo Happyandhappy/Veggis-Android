@@ -237,6 +237,11 @@ Contact:%s"</string>
     <string name="cash_delivery">Cash on Delivery</string>
     <string name="card_delivery">Internet Banking</string>
     <string name="make_sure">Make sure!</string>
+    <string name="makesure_title">TAKE A PICTURE OF YOUR RECEIPT</string>
+    <string name="makesure_descript">for best results kindly ensure\nthe following.</string>
+    <string name="makesure_item1">Is your receipt from RetailerName?</string>
+    <string name="makesure_item2">Is the date of the receipt between\nDD/MM/YY and DD/MM/YY?</string>
+    <string name="makesure_item3">Please capture the full receipt including\nproduct details, date and total.</string>
     <string name="item1">Text text text text text text text text text text text text text text text</string>
     <string name="verify_purchases">Verify your purchases</string>
     <string name="submit">Submit</string>

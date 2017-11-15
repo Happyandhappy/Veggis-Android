@@ -496,7 +496,7 @@ public class CameraActivity extends AppCompatActivity implements PreviewAdapter.
 
             int inclination = (int) Math.round(Math.toDegrees(Math.acos(g[2])));
 
-            if (inclination < 5 || inclination > 175) {
+            if (inclination < 10 || inclination > 170) {
                 // device is flat
                 deviceFlatAlertLayout.setVisibility(View.INVISIBLE);
             } else {
@@ -520,7 +520,13 @@ public class CameraActivity extends AppCompatActivity implements PreviewAdapter.
     }
 
     private void makeSureDialog() {
-        NotifyDialog.newInstance(0, R.string.make_sure, new ArrayList(Arrays.asList(new Integer[]{Integer.valueOf(R.string.notify_item1), Integer.valueOf(R.string.notify_item2), Integer.valueOf(R.string.notify_item3)})),
+        NotifyDialog.newInstance(0, R.string.make_sure,
+                new ArrayList(Arrays.asList(
+                        new Integer[]{Integer.valueOf(R.string.notify_item1),
+                            Integer.valueOf(R.string.notify_item2),
+                            Integer.valueOf(R.string.notify_item3)})),
+                getBaseContext().getResources().getString(R.string.makesure_title),
+                getBaseContext().getResources().getString(R.string.makesure_descript),
                 "android.resource://com.developer.android.quickveggis/"+R.raw.capture_item).show(getSupportFragmentManager(), "dialog");
     }
 
@@ -659,7 +665,13 @@ public class CameraActivity extends AppCompatActivity implements PreviewAdapter.
 
     private void verifyDialog() {
         if (NotifyDialog.isShowDialog(this, 2)) {
-            NotifyDialog notifyDialog = NotifyDialog.newInstance(2, R.string.verify_purchases, new ArrayList(Arrays.asList(new Integer[]{Integer.valueOf(R.string.verify_item1), Integer.valueOf(R.string.verify_item2)})),"");
+            NotifyDialog notifyDialog = NotifyDialog.newInstance(2, R.string.verify_purchases,
+                    new ArrayList(Arrays.asList(
+                            new Integer[]{Integer.valueOf(R.string.verify_item1),
+                                Integer.valueOf(R.string.verify_item2)})),
+                    "",
+                    "",
+                    "");
             notifyDialog.show(getSupportFragmentManager(), "dialog");
             notifyDialog.setListener(this);
             return;

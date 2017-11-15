@@ -37,14 +37,6 @@ public class FragmentUtils {
         }
     }
 
-//    public static void changeFragment(Activity activity, int contentFrame, android.app.Fragment fr, boolean addToBackStack) {
-//        android.app.FragmentTransaction ft = activity.getFragmentManager().beginTransaction();
-//        ft.replace(contentFrame, fr, FRAGMENT_TAG);
-//        if (addToBackStack) {
-//            ft.addToBackStack(null);
-//        }
-//        ft.commitAllowingStateLoss();
-//    }
 
     public static Fragment getCurrent(FragmentActivity activity) {
         return activity.getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG);
