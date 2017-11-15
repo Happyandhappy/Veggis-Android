@@ -65,12 +65,12 @@ public class OfflineRedeemActivity extends AppCompatActivity implements ActionLi
         if (NotifyDialog.isShowDialog(this, DIALOG_NOTIFY)) {
             NotifyDialog notifyDialog = NotifyDialog.newInstance(DIALOG_NOTIFY, R.string.verify_purchases,
                     new ArrayList(Arrays.asList(
-                            new Integer[]{Integer.valueOf(R.string.item1),
-                                Integer.valueOf(R.string.item1),
-                                Integer.valueOf(R.string.item1)})),
-                                "",
-                                "",
-                    "android.resource://com.developer.android.quickveggis/"+R.raw.capture_item);
+                            new Integer[]{Integer.valueOf(R.string.verif_item1),
+                                Integer.valueOf(R.string.verif_item2),
+                                Integer.valueOf(R.string.verif_item3)})),
+                                getBaseContext().getResources().getString(R.string.verif_title),
+                                getBaseContext().getResources().getString(R.string.verif_descript),
+                                "android.resource://com.developer.android.quickveggis/"+R.raw.capture_item);
             notifyDialog.show(getSupportFragmentManager(), "dialog");
             notifyDialog.setListener(this);
             return;

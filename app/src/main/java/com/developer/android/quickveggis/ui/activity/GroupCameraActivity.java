@@ -321,13 +321,13 @@ public class GroupCameraActivity extends AppCompatActivity implements PreviewAda
     private void makeVerifyDialog() {
         NotifyDialog.newInstance(0, R.string.verify_purchases,
                 new ArrayList(Arrays.asList(
-                        new Integer[]{Integer.valueOf(R.string.item1),
-                            Integer.valueOf(R.string.item1),
-                            Integer.valueOf(R.string.item1)})),
-                "",
-                "",
-                "").
-                show(getSupportFragmentManager(), "dialog");
+                        new Integer[]{Integer.valueOf(R.string.verif_item1),
+                            Integer.valueOf(R.string.verif_item2),
+                            Integer.valueOf(R.string.verif_item3)})),
+                            getBaseContext().getResources().getString(R.string.verif_title),
+                            getBaseContext().getResources().getString(R.string.verif_descript),
+                            "android.resource://com.developer.android.quickveggis/"+R.raw.capture_item).
+                            show(getSupportFragmentManager(), "dialog");
     }
 
     private File getPhotoLink() {

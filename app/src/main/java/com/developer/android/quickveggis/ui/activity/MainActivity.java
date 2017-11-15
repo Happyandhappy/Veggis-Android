@@ -523,4 +523,5 @@ public class MainActivity extends AppCompatActivity {
         editor.putBoolean(FINGERPRINT_INIT_STATE,false);
         editor.commit();
     }
+
 }

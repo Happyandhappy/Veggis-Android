@@ -49,13 +49,10 @@ public class Walk2PagerFragment extends Fragment {
         }
 
         public void onClick(View v) {
-//            Walk2PagerFragment.this.getActivity().startActivity(MainActivity.getStartIntent(Walk2PagerFragment.this.getContext()));
-//            Walk2PagerFragment.this.getActivity().finish();
-
             Intent intent = new Intent(getActivity(), MainActivity.class);
 
             getActivity().startActivity(intent);
-//            getActivity().finish();
+            getActivity().finish();
         }
     }
 

@@ -242,8 +242,13 @@ Contact:%s"</string>
     <string name="makesure_item1">Is your receipt from RetailerName?</string>
     <string name="makesure_item2">Is the date of the receipt between\nDD/MM/YY and DD/MM/YY?</string>
     <string name="makesure_item3">Please capture the full receipt including\nproduct details, date and total.</string>
-    <string name="item1">Text text text text text text text text text text text text text text text</string>
+    <string name="verif_title">TAKE A PICTURE OF YOUR ITEMS</string>
+    <string name="verif_descript">for best results kindly ensure the following</string>
+    <string name="verif_item1">Are all the items purchased present in the picture?</string>
+    <string name="verif_item2">Please make sure the photo is well lit\nand all the items are clearly visible in the photo.</string>
+    <string name="verif_item3">Take multiple photos if too many items</string>
     <string name="verify_purchases">Verify your purchases</string>
+    <string name="item1">Take multiple photos if too many items</string>
     <string name="submit">Submit</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>

@@ -107,8 +107,10 @@ public class SplashActivity extends AppCompatActivity {
 
     private void startActivityOnCondition(){
         SharedPreferences preferences = getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
-        if (preferences.getBoolean(FINGERPRINT_ALLOW_STATE,false))
+        if (preferences.getBoolean(FINGERPRINT_ALLOW_STATE,false)){
             startActivity(new Intent(SplashActivity.this,FingerprintActivity.class));
+            finish();
+        }
         else
             start();
     }
@@ -138,20 +140,6 @@ public class SplashActivity extends AppCompatActivity {
         {
             if (CustomerController.getInstance().isCustomerLoggedIn()) {
                 startMainActivity();
-//                ServiceAPI.newInstance().login(SessionController.getInstance().getLoginUserInfo().getEmail(), SessionController.getInstance().getLoginUserInfo().getPassword(),
-//                        new ResponseCallback<Customer>() {
-//                            @Override
-//                            public void onSuccess(Customer data) {
-//                                CustomerController.getInstance().saveLoginCustomer(data);
-//                                startMainActivity();
-//                            }
-//
-//                            @Override
-//                            public void onFailure(String error) {
-//                                Toast.makeText(getApplicationContext(), "Login Failed. Please login", Toast.LENGTH_SHORT).show();
-//                                startLoginActivity();
-//                            }
-//                        });
             }
             else {
                 startLoginActivity();

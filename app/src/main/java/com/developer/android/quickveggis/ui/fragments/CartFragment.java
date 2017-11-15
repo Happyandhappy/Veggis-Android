@@ -469,21 +469,9 @@ public class CartFragment extends Fragment implements MainActivity.MenuControlle
 
         updatePrice();
 
-        if (shoppingListChanged) {
-            getCartItems();
-        } else {
-            if (data.size() > 0) {
-                emptyPage.setVisibility(View.GONE);
-            } else {
-                unlockedImageLayout.setVisibility(View.VISIBLE);
-            }
-            updateProducts();
-            adapter.notifyDataSetChanged();
-        }
+        setCart();
 
-//        this.rv.addItemDecoration(((Builder) ((Builder) new Builder(getActivity()).color(getResources().getColor(17170445))).sizeResId(R.dimen.divider_cart)).build());
         if (this.mode == MODE_WE_DELIVER) {
-//            Picasso.with(getContext()).load("http://cdn.corporate.walmart.com/resource/assets-bsp3/images/corp/walmart-logo.64968e7648c4bbc87f823a1eff1d6bc7.png").fit().centerInside().into(this.imgSponsor);
             Picasso.with(getContext()).load("http://cdn.corporate.walmart.com/resource/assets-bsp3/images/corp/walmart-logo.64968e7648c4bbc87f823a1eff1d6bc7.png").fit().centerInside().into(this.imgSponsor);
 
             getActivity().setTitle(R.string.we_deliver);
@@ -517,7 +505,6 @@ public class CartFragment extends Fragment implements MainActivity.MenuControlle
                 }
             });
 
-//            ((MainActivity)getActivity()).txtOffline.setVisibility(View.VISIBLE);
         }
 
         addFromFavoritesLayout.setOnClickListener(new OnClickListener() {
@@ -530,6 +517,20 @@ public class CartFragment extends Fragment implements MainActivity.MenuControlle
 
     }
 
+    void setCart(){
+        if (shoppingListChanged) {
+            getCartItems();
+        } else {
+            if (data.size() > 0) {
+                emptyPage.setVisibility(View.GONE);
+            } else {
+                unlockedImageLayout.setVisibility(View.VISIBLE);
+            }
+            updateProducts();
+            adapter.notifyDataSetChanged();
+        }
+
+    }
     void getCartItems() {
 
         ServiceAPI.newInstance().getCartItems(new ResponseCallback<ArrayList<CartItem>>() {
@@ -538,9 +539,11 @@ public class CartFragment extends Fragment implements MainActivity.MenuControlle
                 CartFragment.this.data.clear();
                 if (data.size() > 0) {
                     emptyPage.setVisibility(View.GONE);
+                    unlockedImageLayout.setVisibility(View.VISIBLE);
                     startFadeInAnim(rv);
                 } else {
-                    unlockedImageLayout.setVisibility(View.VISIBLE);
+                    emptyPage.setVisibility(View.VISIBLE);
+                    unlockedImageLayout.setVisibility(View.GONE);
                 }
                 CartFragment.this.data.addAll(data);
                 updateProducts();
@@ -595,8 +598,6 @@ public class CartFragment extends Fragment implements MainActivity.MenuControlle
             int count = Integer.parseInt(data.get(i).getQuantity());
 
             if (count > 0) {
-//                finalPrice = (float) (finalPrice + (((double) count) * (Double.parseDouble(data.get(i).getTaskInfo().get(0).getTaskAmount()))));
-
                 float tempPrice = 0.0f;
                 for (int j = 0; j < data.get(i).getTaskInfo().size(); j++) {
                     tempPrice = (float) (Double.parseDouble(data.get(i).getTaskInfo().get(j).getTaskAmount()));
@@ -631,13 +632,6 @@ public class CartFragment extends Fragment implements MainActivity.MenuControlle
 
     private void updatePrice() {
         float finalPrice = 0.0f;
-//        for (Entry<CartItem, Integer> entry : this.counts.entrySet()) {
-//            int count = (entry.getValue()).intValue();
-//            if (count > 0) {
-//                finalPrice = (float) (((double) finalPrice) + (((double) count) * ((CartItem) entry.getKey()).getPrice()));
-//            }
-//        }
-
         this.txtCartTotal.setText(PriceFormat.format(finalPrice));
         this.txtShipping.setText(PriceFormat.format(this.deliveryPrice));
         this.txtTotal.setText(PriceFormat.format(this.deliveryPrice + finalPrice));
@@ -749,5 +743,13 @@ public class CartFragment extends Fragment implements MainActivity.MenuControlle
             list.add(point);
         }
         return list;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateProducts();
+        adapter.notifyDataSetChanged();
+        shoppingListChanged = true;
     }
 }

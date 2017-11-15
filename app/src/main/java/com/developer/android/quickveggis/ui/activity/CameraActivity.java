@@ -496,7 +496,7 @@ public class CameraActivity extends AppCompatActivity implements PreviewAdapter.
 
             int inclination = (int) Math.round(Math.toDegrees(Math.acos(g[2])));
 
-            if (inclination < 10 || inclination > 170) {
+            if (!(inclination < 10 || inclination > 170)) {
                 // device is flat
                 deviceFlatAlertLayout.setVisibility(View.INVISIBLE);
             } else {
@@ -667,11 +667,14 @@ public class CameraActivity extends AppCompatActivity implements PreviewAdapter.
         if (NotifyDialog.isShowDialog(this, 2)) {
             NotifyDialog notifyDialog = NotifyDialog.newInstance(2, R.string.verify_purchases,
                     new ArrayList(Arrays.asList(
-                            new Integer[]{Integer.valueOf(R.string.verify_item1),
-                                Integer.valueOf(R.string.verify_item2)})),
-                    "",
-                    "",
-                    "");
+                            new Integer[]{
+                                Integer.valueOf(R.string.verif_item1),
+                                Integer.valueOf(R.string.verif_item2),
+                                Integer.valueOf(R.string.verif_item3)})),
+                                getBaseContext().getResources().getString(R.string.verif_title),
+                                getBaseContext().getResources().getString(R.string.verif_descript),
+                                "android.resource://com.developer.android.quickveggis/"+R.raw.capture_recceipt);
+
             notifyDialog.show(getSupportFragmentManager(), "dialog");
             notifyDialog.setListener(this);
             return;

@@ -193,19 +193,9 @@ public class SubmitFragment extends Fragment
         return localView;
     }
 
-    private void testest() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                gotItDialog();
-            }
-        }, 3000);
-    }
-
     public void sendData() {
         setSendingState();
-        //for test
-        //testest();
+
 //        if (this.receiptImagePath.size() > 0)
 //            imageUploadTask.execute(uploadedCount + "", "receipt_" + uploadedCount + ".jpg", TASK_RECEIPT_IMAGES_UPLOAD_MODE);
 
