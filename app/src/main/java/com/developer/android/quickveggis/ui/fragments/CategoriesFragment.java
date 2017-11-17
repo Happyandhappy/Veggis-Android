@@ -17,7 +17,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.support.v7.widget.RecyclerView.ViewHolder;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +59,6 @@ import static com.developer.android.quickveggis.App.launched;
 
 public class CategoriesFragment extends Fragment implements MainActivity.MenuController {
     public CategoryAdapter adapter;
-//    public FragmentStatePagerAdapter adapterBanner;
     public ViewPagerAdapter adapterBanner;
     public ArrayList<ProductBanner> bannerProducts;
     List<Bundle> search_data;
@@ -222,7 +220,6 @@ public class CategoriesFragment extends Fragment implements MainActivity.MenuCon
                 @Override
                 public void handleMessage(Message msg) {
                     super.handleMessage(msg);
-//                    helloLayout.setVisibility(View.GONE);
                     FadeAnim.startSlideAnim(helloLayout, false);
                 }
             };
@@ -260,14 +257,13 @@ public class CategoriesFragment extends Fragment implements MainActivity.MenuCon
                     progressDialog.dismiss();
                     categories.addAll(data);
                     adapter.notifyDataSetChanged();
-
                     showGreetings();
                 }
 
                 @Override
                 public void onFailure(String error) {
                     progressDialog.dismiss();
-                    FragmentUtils.changeFragment(getActivity(), R.id.menu, ServerErrorFragment.newInstance(), false);
+                    FragmentUtils.changeFragment(getActivity(), R.id.content, ServerErrorFragment.newInstance(), true);
                 }
             });
         }
@@ -301,13 +297,12 @@ public class CategoriesFragment extends Fragment implements MainActivity.MenuCon
                         productBanner.getProductInfo().setImage(productBanner.getProductInfo().getImage().replace(" ", "%20"));
                         productBanner.getProductInfo().setBanner(productBanner.getProductInfo().getBanner().replace(" ", "%20"));
                     }
-
                     adapterBanner.notifyDataSetChanged();
                 }
 
                 @Override
                 public void onFailure(String error) {
-                    FragmentUtils.changeFragment(getActivity(), R.id.menu, ServerErrorFragment.newInstance(), false);
+//                    FragmentUtils.changeFragment(getActivity(), R.id.content, ServerErrorFragment.newInstance(), true);
                 }
             });
         }

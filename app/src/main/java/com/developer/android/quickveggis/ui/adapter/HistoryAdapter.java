@@ -83,7 +83,7 @@ public class HistoryAdapter extends SectioningAdapter {
 
     @Override
     public int getNumberOfItemsInSection(int sectionIndex) {
-        return data.get(sectionIndex).getAryOrders().size();
+         return data.get(sectionIndex).getAryOrders().size();
     }
 
     @Override

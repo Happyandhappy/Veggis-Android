@@ -104,6 +104,7 @@ public class HistoryListFragment extends Fragment implements MainActivity.MenuCo
         ServiceAPI.newInstance().getOrdersByCustomerId(new ResponseCallback<ArrayList<OrderHistory>>() {
             @Override
             public void onSuccess(ArrayList<OrderHistory> orderHistorySections) {
+                int size=orderHistorySections.size();
                 if (orderHistorySections.size() > 0) {
                     emptyLayout.setVisibility(View.GONE);
                     rv.setVisibility(View.VISIBLE);
@@ -131,7 +132,7 @@ public class HistoryListFragment extends Fragment implements MainActivity.MenuCo
         boolean pendingSectionAdded = false;
         boolean completeSectionAdded = false;
 
-        for (int i = 0; i < data.size(); i ++){
+        for (int i = 0; i < data.size(); i++){
             OrderHistory orderHistory = data.get(i);
 
             if (orderHistory.getStatus() == null || orderHistory.getStatus().equals("Pending") || orderHistory.getStatus().equals("pending") || orderHistory.getStatus().equals("processing")){
@@ -154,7 +155,7 @@ public class HistoryListFragment extends Fragment implements MainActivity.MenuCo
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new HistoryAdapter(getContext(), orderHistorySections, this);
         rv.setAdapter(this.adapter);
-//        rv.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), new C05651()));
+        rv.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), new C05651()));
     }
 
     @Override
