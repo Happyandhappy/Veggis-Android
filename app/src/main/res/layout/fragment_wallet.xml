@@ -95,7 +95,8 @@
             android:layout_marginTop="10dp"
             android:clipToPadding="false"
             android:paddingLeft="10dp"
-            android:background="#eeeeee">
+            >
+            <!--&gt;android:background="#eeeeee"-->
 
             <android.support.v4.view.ViewPager
                 android:layout_width="@dimen/card_width"

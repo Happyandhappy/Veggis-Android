@@ -70,7 +70,6 @@
 
                 <RadioButton
                     android:id="@+id/radioFemale"
-                    style="@style/ProfileValue_Radio_Inline"
                     android:layout_marginLeft="20dp"
                     android:text="@string/profile_female" />
             </RadioGroup>

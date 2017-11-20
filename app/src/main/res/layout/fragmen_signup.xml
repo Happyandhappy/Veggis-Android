@@ -57,13 +57,14 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/txt_userName"
+            android:id="@+id/txt_userMobile"
             style="@style/EditEmail"
             android:layout_height="35dp"
             android:layout_marginTop="10dp"
-            android:hint="@string/hint_user_name"
+            android:hint="@string/hint_user_mobile"
             android:textSize="13sp"
             android:singleLine="true"
+            android:inputType="phone"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"/>
 

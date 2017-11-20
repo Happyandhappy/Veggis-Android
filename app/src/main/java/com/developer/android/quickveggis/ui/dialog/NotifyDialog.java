@@ -3,6 +3,7 @@ package com.developer.android.quickveggis.ui.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -105,7 +106,12 @@ public class NotifyDialog extends AppCompatDialogFragment {
             notify_video.setVideoURI(uri2);
             notify_video.requestFocus();
             notify_video.start();
-
+            notify_video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    mp.setLooping(true);
+                }
+            });
         }
 
         notify_title.setText(bundle.getString("titlestr"));

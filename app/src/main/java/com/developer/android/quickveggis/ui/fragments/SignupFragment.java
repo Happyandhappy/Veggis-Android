@@ -36,7 +36,7 @@ public class SignupFragment extends Fragment {
     EditText txt_lastname;
     @Bind(R.id.txt_email)
     EditText txt_email;
-    @Bind(R.id.txt_userName)
+    @Bind(R.id.txt_userMobile)
     EditText txt_username;
     @Bind(R.id.txt_password)
     EditText txt_password;

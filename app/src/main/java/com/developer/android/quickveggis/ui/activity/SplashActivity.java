@@ -109,7 +109,7 @@ public class SplashActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("com.login.user.social", Context.MODE_PRIVATE);
         if (preferences.getBoolean(FINGERPRINT_ALLOW_STATE,false)){
             startActivity(new Intent(SplashActivity.this,FingerprintActivity.class));
-            finish();
+//            finish();
         }
         else
             start();
